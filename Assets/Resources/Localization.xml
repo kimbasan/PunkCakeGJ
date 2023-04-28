@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Keys xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<Key Name="Menu">
+		<Translates/>
+	</Key>
+	<Key Name="StartGame_Key">
+		<Translates>
+			<en-us>Start Game</en-us>
+			<ru>Начало Игры</ru>
+		</Translates>
+	</Key>
+	<Key Name="Exit_Key">
+		<Translates>
+			<en-us>Exit</en-us>
+			<ru>Выход</ru>
+		</Translates>
+	</Key>
+	<Key Name="Pause">
+		<Translates/>
+	</Key>
+	<Key Name="Continue_Key">
+		<Translates>
+			<en-us>Continue</en-us>
+			<ru>Продолжить</ru>
+		</Translates>
+	</Key>
+	<Key Name="Restart_Key">
+		<Translates>
+			<en-us>Restart</en-us>
+			<ru>Рестарт</ru>
+		</Translates>
+	</Key>
+	<Key Name="Setting_Key">
+		<Translates>
+			<en-us>Stetting</en-us>
+			<ru>Настройки</ru>
+		</Translates>
+	</Key>
+	<Key Name="Menu_Key">
+		<Translates>
+			<en-us>Menu</en-us>
+			<ru>Меню</ru>
+		</Translates>
+	</Key>
+</Keys>
