@@ -1,55 +1,47 @@
 using System.Collections.Generic;
 using UnityEngine;
-using System.IO;
-using System.Runtime.Serialization.Formatters.Binary;
 
 using static PlayerMovement;
 
 public class CloneMovement : MonoBehaviour
 {
-    //public PlayerMovement PlayerMovement;
-    public List<Vector2> Way;
-    //public PlayerMoves olderMoves;
+    public PlayerMovement playerMovement;
 
-    //private Queue<Movements> movements;
-    //void Awake()
-    //{        
-    //    movements = olderMoves?.moves;
-    //    playerMovement.PlayerMoved += PlayerMovement_PlayerMoved;
-    //}
-    public void LoadWay()//выгрузка сохраненного пути
+    private Queue<Movements> movements;
+
+    public void SetClone(CloneState cloneState)
     {
-        string Data = PlayerPrefs.GetString("Positions", "");
-        if (!string.IsNullOrEmpty(Data))
+        this.movements = cloneState.moves;
+        transform.position = cloneState.startingPosition.ToVector3();
+    }
+
+    void Awake()
+    {        
+        if (playerMovement != null)
         {
-            Way.Clear();
-            string[] PositionsData = Data.Split(';');
-            for (int i = 0; i < PositionsData.Length; i++)
+            playerMovement.PlayerMoved += PlayerMovement_PlayerMoved;
+        }
+    }
+    
+    private void PlayerMovement_PlayerMoved(object sender, System.EventArgs e)
+    {
+        Movements result;
+        if (movements != null && movements.TryDequeue(out result))
+        {
+            switch (result)
             {
-                if (!string.IsNullOrEmpty(PositionsData[i]))
-                {
-                    string[] PositionValues = PositionsData[i].Split(',');
-                    if (PositionValues.Length == 2)
-                    {
-                        Way.Add(new Vector2(float.Parse(PositionValues[0]), float.Parse(PositionValues[1])));
-                    }
-                }
+                case Movements.Wait: break;
+                case Movements.Up: Move(Vector3.forward); break;
+                case Movements.Down: Move(Vector3.back); break;
+                case Movements.Left: Move(Vector3.left); break;
+                case Movements.Right: Move(Vector3.right); break;
             }
         }
     }
-    //private void PlayerMovement_PlayerMoved(object sender, System.EventArgs e)
-    //{
-    //    Movements result;
-    //    if (movements != null && movements.TryDequeue(out result))
-    //    {
-    //        switch (result)
-    //        {
-    //            case Movements.Wait: break;
-    //            case Movements.Up: transform.position += Vector3.forward; break;
-    //            case Movements.Down: transform.position += Vector3.back; break;
-    //            case Movements.Left: transform.position += Vector3.left; break;
-    //            case Movements.Right: transform.position += Vector3.right; break;
-    //        }
-    //    }
-    //}
+
+    private void Move(Vector3 direction)
+    {
+        transform.position+= direction;
+        transform.rotation = Quaternion.LookRotation(direction);
+    }
 }

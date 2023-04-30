@@ -1,17 +1,16 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
 
-public class SavingManager
+public class SavingController
 {
     public static string directory = "SaveData";
-    public static string fileName = "moves1.txt";
+    public static string fileName = "level1.txt";
 
-    public static void Save(PlayerMoves moves)
+    // нужно добавить удаление сейва когда уровень проигран
+
+    public static void Save(LevelState moves)
     {
         if (!DirectoryExists())
         {
@@ -24,16 +23,16 @@ public class SavingManager
         fileStream.Close();
     }
 
-    public static PlayerMoves Load()
+    public static LevelState Load()
     {
-        PlayerMoves playerMoves = null;
+        LevelState playerMoves = null;
         if (SaveExists())
         {
             try
             {
                 BinaryFormatter binaryFormatter = new BinaryFormatter();
                 FileStream fileStream = File.Open(GetFullPath(), FileMode.Open);
-                playerMoves = (PlayerMoves) binaryFormatter.Deserialize(fileStream);
+                playerMoves = (LevelState) binaryFormatter.Deserialize(fileStream);
                 fileStream.Close();
             }
             catch (SerializationException)
