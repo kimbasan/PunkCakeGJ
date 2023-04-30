@@ -28,106 +28,70 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             ""id"": ""25fd4fa9-34ff-41c5-8f37-c532175d9d13"",
             ""actions"": [
                 {
-                    ""name"": ""W"",
-                    ""type"": ""Button"",
-                    ""id"": ""3f3c6fda-0201-4f6b-957a-bca1360f9ac2"",
-                    ""expectedControlType"": ""Button"",
+                    ""name"": ""Move"",
+                    ""type"": ""Value"",
+                    ""id"": ""c7ac14e7-2214-43ee-b696-7ab602e557fb"",
+                    ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
-                },
-                {
-                    ""name"": ""Wait"",
-                    ""type"": ""Button"",
-                    ""id"": ""b5e6312a-7a93-404b-aa27-e75e0eb3baf4"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""S"",
-                    ""type"": ""Button"",
-                    ""id"": ""2151d033-da01-48b5-91d3-e0f597eedd8f"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""A"",
-                    ""type"": ""Button"",
-                    ""id"": ""da53d4f8-55a2-4452-b751-2a6809a95b73"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""D"",
-                    ""type"": ""Button"",
-                    ""id"": ""d8c7cd1e-b269-4452-92e0-e6010e350824"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
                 {
-                    ""name"": """",
-                    ""id"": ""42de83de-cac0-4de1-86b1-4a46f1bf2b77"",
-                    ""path"": ""<Keyboard>/space"",
+                    ""name"": ""2D Vector"",
+                    ""id"": ""40e23255-cf58-4c65-b291-9e01401c1a95"",
+                    ""path"": ""2DVector"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Wait"",
-                    ""isComposite"": false,
+                    ""action"": ""Move"",
+                    ""isComposite"": true,
                     ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": """",
-                    ""id"": ""3e140590-cd89-4b6a-8524-46623e4e9f1b"",
+                    ""name"": ""up"",
+                    ""id"": ""f926ce89-590f-4f48-b66e-8d883028d7f9"",
                     ""path"": ""<Keyboard>/w"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""W"",
+                    ""action"": ""Move"",
                     ""isComposite"": false,
-                    ""isPartOfComposite"": false
+                    ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": """",
-                    ""id"": ""5e6f96d5-4855-4b95-bc88-d4447da76841"",
+                    ""name"": ""down"",
+                    ""id"": ""d982a485-4edf-41b8-86c5-16a8b71888a1"",
                     ""path"": ""<Keyboard>/s"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""S"",
+                    ""action"": ""Move"",
                     ""isComposite"": false,
-                    ""isPartOfComposite"": false
+                    ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": """",
-                    ""id"": ""63b5c93b-31b0-4cb3-8e10-71bae88c37c1"",
+                    ""name"": ""left"",
+                    ""id"": ""00462af3-6f21-43b7-9a28-fd220f2d4e5d"",
                     ""path"": ""<Keyboard>/a"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""A"",
+                    ""action"": ""Move"",
                     ""isComposite"": false,
-                    ""isPartOfComposite"": false
+                    ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": """",
-                    ""id"": ""38144705-3872-423b-81e1-8f8738e31a60"",
+                    ""name"": ""right"",
+                    ""id"": ""dd2ee7cb-cb23-4912-bbfe-8e0b01ab47b3"",
                     ""path"": ""<Keyboard>/d"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""D"",
+                    ""action"": ""Move"",
                     ""isComposite"": false,
-                    ""isPartOfComposite"": false
+                    ""isPartOfComposite"": true
                 }
             ]
         }
@@ -136,11 +100,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
 }");
         // Player
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
-        m_Player_W = m_Player.FindAction("W", throwIfNotFound: true);
-        m_Player_Wait = m_Player.FindAction("Wait", throwIfNotFound: true);
-        m_Player_S = m_Player.FindAction("S", throwIfNotFound: true);
-        m_Player_A = m_Player.FindAction("A", throwIfNotFound: true);
-        m_Player_D = m_Player.FindAction("D", throwIfNotFound: true);
+        m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -202,20 +162,12 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     // Player
     private readonly InputActionMap m_Player;
     private List<IPlayerActions> m_PlayerActionsCallbackInterfaces = new List<IPlayerActions>();
-    private readonly InputAction m_Player_W;
-    private readonly InputAction m_Player_Wait;
-    private readonly InputAction m_Player_S;
-    private readonly InputAction m_Player_A;
-    private readonly InputAction m_Player_D;
+    private readonly InputAction m_Player_Move;
     public struct PlayerActions
     {
         private @PlayerInputActions m_Wrapper;
         public PlayerActions(@PlayerInputActions wrapper) { m_Wrapper = wrapper; }
-        public InputAction @W => m_Wrapper.m_Player_W;
-        public InputAction @Wait => m_Wrapper.m_Player_Wait;
-        public InputAction @S => m_Wrapper.m_Player_S;
-        public InputAction @A => m_Wrapper.m_Player_A;
-        public InputAction @D => m_Wrapper.m_Player_D;
+        public InputAction @Move => m_Wrapper.m_Player_Move;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -225,40 +177,16 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         {
             if (instance == null || m_Wrapper.m_PlayerActionsCallbackInterfaces.Contains(instance)) return;
             m_Wrapper.m_PlayerActionsCallbackInterfaces.Add(instance);
-            @W.started += instance.OnW;
-            @W.performed += instance.OnW;
-            @W.canceled += instance.OnW;
-            @Wait.started += instance.OnWait;
-            @Wait.performed += instance.OnWait;
-            @Wait.canceled += instance.OnWait;
-            @S.started += instance.OnS;
-            @S.performed += instance.OnS;
-            @S.canceled += instance.OnS;
-            @A.started += instance.OnA;
-            @A.performed += instance.OnA;
-            @A.canceled += instance.OnA;
-            @D.started += instance.OnD;
-            @D.performed += instance.OnD;
-            @D.canceled += instance.OnD;
+            @Move.started += instance.OnMove;
+            @Move.performed += instance.OnMove;
+            @Move.canceled += instance.OnMove;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
         {
-            @W.started -= instance.OnW;
-            @W.performed -= instance.OnW;
-            @W.canceled -= instance.OnW;
-            @Wait.started -= instance.OnWait;
-            @Wait.performed -= instance.OnWait;
-            @Wait.canceled -= instance.OnWait;
-            @S.started -= instance.OnS;
-            @S.performed -= instance.OnS;
-            @S.canceled -= instance.OnS;
-            @A.started -= instance.OnA;
-            @A.performed -= instance.OnA;
-            @A.canceled -= instance.OnA;
-            @D.started -= instance.OnD;
-            @D.performed -= instance.OnD;
-            @D.canceled -= instance.OnD;
+            @Move.started -= instance.OnMove;
+            @Move.performed -= instance.OnMove;
+            @Move.canceled -= instance.OnMove;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -278,10 +206,6 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     public PlayerActions @Player => new PlayerActions(this);
     public interface IPlayerActions
     {
-        void OnW(InputAction.CallbackContext context);
-        void OnWait(InputAction.CallbackContext context);
-        void OnS(InputAction.CallbackContext context);
-        void OnA(InputAction.CallbackContext context);
-        void OnD(InputAction.CallbackContext context);
+        void OnMove(InputAction.CallbackContext context);
     }
 }
