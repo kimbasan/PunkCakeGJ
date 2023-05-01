@@ -42,4 +42,13 @@
 			<ru>Меню</ru>
 		</Translates>
 	</Key>
+	<Key Name="Interface">
+		<Translates/>
+	</Key>
+	<Key Name="Score_Key">
+		<Translates>
+			<en-us>Score :</en-us>
+			<ru>Счет : </ru>
+		</Translates>
+	</Key>
 </Keys>
