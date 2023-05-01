@@ -6,6 +6,8 @@ using UnityEngine.UI;
 public class KeyInteractionCard : MonoBehaviour
 {
     [SerializeField] private Image CardImage;
+    [SerializeField] private AudioClip Clip;
+    [SerializeField] private AudioSource Source;
     private PlayerInputActions PlayerInputActions;
     public bool CheckKeyCard, CheckDoor, AvailabilityKeyCard;
 
@@ -40,6 +42,7 @@ public class KeyInteractionCard : MonoBehaviour
         }
         else if(CheckDoor && AvailabilityKeyCard == false)
         {
+            Source.PlayOneShot(Clip);
             Debug.Log("Где карта");
         }
     }
