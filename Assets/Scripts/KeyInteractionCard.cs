@@ -1,9 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class KeyInteractionCard : MonoBehaviour
 {
+    [SerializeField] private Image CardImage;
     private PlayerInputActions PlayerInputActions;
     public bool CheckKeyCard, CheckDoor, AvailabilityKeyCard;
 
@@ -11,6 +13,7 @@ public class KeyInteractionCard : MonoBehaviour
     {
         PlayerInputActions = new PlayerInputActions();
         PlayerInputActions.Player.Action.performed += context => InteractionWithTheEnvironment();
+        CardImage.enabled = false;
     }
     private void OnEnable()
     {
@@ -26,7 +29,10 @@ public class KeyInteractionCard : MonoBehaviour
         {
             AvailabilityKeyCard = true;
             CheckKeyCard = false;
+            CardImage.enabled = true;
+            GetComponent<FindObject>().ActionText.enabled = false;
             Destroy(GetComponent<FindObject>().ObjectFind.GetComponent<ParentSearch>().Parent);
+            GetComponent<FindObject>().ObjectFind = null;
         }
         else if(CheckDoor && AvailabilityKeyCard)
         {
