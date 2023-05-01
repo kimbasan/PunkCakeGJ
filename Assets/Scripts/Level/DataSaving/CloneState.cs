@@ -7,11 +7,9 @@ using static PlayerMovement;
 public class CloneState
 {
     public Queue<Movements> moves;
-    public SerializableVector3 startingPosition;
 
-    public CloneState(Queue<Movements> moves, Vector3 startingPosition)
+    public CloneState(Queue<Movements> moves)
     {
         this.moves = moves;
-        this.startingPosition = new SerializableVector3(startingPosition);
     }
 }
