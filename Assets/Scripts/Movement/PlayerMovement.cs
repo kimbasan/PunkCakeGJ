@@ -1,6 +1,8 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -11,6 +13,12 @@ public class PlayerMovement : MonoBehaviour
     private Queue<Movements> movementsQueue;
     public LayerMask LayerMask;//маска, которую ищет луч
     public int NumberOfSteps, NumberOfStepsLeft;//1)общее количесвто ходов, 2)оставшееся количество ходов
+    public Text _numberOfStepsText;
+    /// <summary>
+    /// Дальность передвижения за один шаг
+    /// </summary>
+    [Header("Дальность передвижения за один шаг")]
+    public float StepDistance;
 
     public enum Movements
     {
@@ -20,11 +28,14 @@ public class PlayerMovement : MonoBehaviour
         Right,
         Wait, Interact
     }
+    private bool _isReady;
 
     private void Awake()
     {
+        _isReady = true;
         PlayerInputActions = new PlayerInputActions();
         PlayerInputActions.Player.Move.performed += context => MovePlane();
+        PlayerInputActions.Player.Stay.performed += context => MovePlane(stay : true);
         NumberOfStepsLeft = NumberOfSteps;
         movementsQueue = new Queue<Movements>();
     }
@@ -36,23 +47,34 @@ public class PlayerMovement : MonoBehaviour
     {
         PlayerInputActions.Disable();
     }
-    private void MovePlane()
+    private void MovePlane(bool stay = false)
     {//выбор направления
-        if (NumberOfStepsLeft > 0)
+        if (NumberOfStepsLeft > 0 && _isReady)
         {
             MoveDirection = PlayerInputActions.Player.Move.ReadValue<Vector2>();
-            Vector3 Move = new Vector3(transform.position.x + MoveDirection.x, transform.position.y, transform.position.z + MoveDirection.y);
+            Vector3 Move = new Vector3(transform.position.x + MoveDirection.x * StepDistance, transform.position.y, transform.position.z + MoveDirection.y * StepDistance); // Дальность перемещение это 1, по нажатию. 
             TransformVector = new Vector3(MoveDirection.x, 0, MoveDirection.y);
 
-            // если можно перейти
-            if (CheckPlane())
+            if (stay)
+            {
+                NumberOfStepsLeft--;
+                _numberOfStepsText.text = NumberOfStepsLeft.ToString();
+                RecordMove(MoveDirection, stay);
+
+                if (PlayerMoved != null)
+                {
+                    PlayerMoved.Invoke(this, EventArgs.Empty);
+                }
+            }
+            else if (CheckPlane()) // Если можно пройти
             {
                 // повернутся
                 transform.rotation = Quaternion.LookRotation(TransformVector);
 
-                transform.position = new Vector3(Move.x, Move.y, Move.z);//перемещение
+                StartCoroutine(MoveAnim(Move));//перемещение
                 NumberOfStepsLeft--;
-                RecordMove(MoveDirection);
+                _numberOfStepsText.text = NumberOfStepsLeft.ToString();
+                RecordMove(MoveDirection, stay);
 
                 // событие чтобы сдвинулись другие клоны
                 if (PlayerMoved!= null)
@@ -62,6 +84,7 @@ public class PlayerMovement : MonoBehaviour
             }
         }
     }
+
     private bool CheckPlane()
     {
         bool movable = false;
@@ -75,8 +98,14 @@ public class PlayerMovement : MonoBehaviour
         return movable;
     }
     
-    private void RecordMove(Vector2 move)
+    private void RecordMove(Vector2 move, bool wait)
     {
+        if (wait)
+        {
+            movementsQueue.Enqueue(Movements.Wait);
+            return;
+        }
+
         if (move == Vector2.up)
         {
             movementsQueue.Enqueue(Movements.Up);
@@ -95,5 +124,22 @@ public class PlayerMovement : MonoBehaviour
     public Queue<Movements> GetMovements()
     {
         return movementsQueue;
+    }
+
+    public void ClearMovements()
+    {
+        movementsQueue.Clear();
+    }
+
+    private IEnumerator MoveAnim(Vector3 target)
+    {
+        _isReady = false;
+        while(transform.position != target)
+        {
+            gameObject.transform.position = Vector3.MoveTowards(transform.position, target, 5 * Time.deltaTime);
+            yield return new WaitForEndOfFrame();
+        }
+        yield return new WaitForSeconds(0.2f);
+        _isReady = true;
     }
 }

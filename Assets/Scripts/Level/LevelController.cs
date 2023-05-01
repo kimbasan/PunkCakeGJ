@@ -1,51 +1,79 @@
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class LevelController: MonoBehaviour
 {
-    [SerializeField] private PlayerMovement playerMovement;
+    [Header("дебаг")]
+    [SerializeField] private GameObject _playerPrefab;
+    [SerializeField] private GameObject _clonePrefab;
+    [Header("дебаг")]
+    [SerializeField] private List<CloneMovement> _clonesList;
+    [SerializeField] public Transform _playerSpawner;
 
-    [SerializeField] private CloneMovement cloneMovement;
-    [SerializeField] private GameObject clone;
-    
-    [SerializeField] private LevelState currentState;
+    [Header("Настройки игрока")]
+    [SerializeField] private float _stepDistance; //Дальность передвижения за один шаг
+    [SerializeField] private int _numberOfSteps;
+    [SerializeField] private LayerMask LayerMask;//маска, которую ищет луч
 
-    private Vector3 startingPosition;
+    [SerializeField] public Text _numberOfStepsText;
+    [SerializeField] private GameObject _deadPanel;
+
+
+    private GameObject _player;
+    private PlayerMovement _playerMovement;
+    private Vector3 _startClonePosition;
+    private Quaternion _startCloneRotation;
 
     private void Awake()
     {
         //запоминаем позицию с которой клон начнет
-        startingPosition = playerMovement.transform.position;
-
-        LevelState previousState = SavingController.Load();
-        if (previousState != null)
-        {
-            //enable clone
-            cloneMovement.SetClone(previousState.cloneStates[0]); // переписать на много клонов
-            clone.SetActive(true);
-
-            // move player to previous position
-            playerMovement.transform.position = previousState.playerPosition.ToVector3();
-        }
-        
+        _player = Instantiate(_playerPrefab, _playerSpawner.position, _playerSpawner.rotation);
+        _clonesList = new List<CloneMovement>();
     }
+
+    private void Start()
+    {
+        _player.GetComponent<CollisionChecker>().PlayerCollision += Dead;
+        _playerMovement = _player.GetComponent<PlayerMovement>();
+        _playerMovement._numberOfStepsText = _numberOfStepsText;
+        _playerMovement.StepDistance = _stepDistance;
+        _playerMovement.NumberOfSteps = _numberOfSteps;
+        _playerMovement.NumberOfStepsLeft = _numberOfSteps;
+    }
+
     public void ReloadLevel()
     {
-        if (currentState == null)
-        {
-            currentState = new LevelState();
-        }
-        // сохраняем ходы и начальную позицию
-        CloneState clone = new CloneState(playerMovement.GetMovements(), startingPosition);
-        currentState.cloneStates.Add(clone);
-        currentState.playerPosition = new SerializableVector3(playerMovement.transform.position);
-
-        SavingController.Save(currentState);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
-    public void FailLevel()
+    public void StartNextClone()
     {
-        // clean up old save and reload
+        CloneMovement currentClone;
+        if (_clonesList.Count == 0)
+        {
+            currentClone = Instantiate(_clonePrefab, _playerSpawner.position, _playerSpawner.rotation).GetComponent<CloneMovement>();
+        }
+        else
+        {
+            currentClone = Instantiate(_clonePrefab, _startClonePosition, _startCloneRotation).GetComponent<CloneMovement>();
+
+        }
+        currentClone.Initialization(_playerMovement, _playerMovement.GetMovements(), _stepDistance);
+        currentClone.GetComponent<CollisionChecker>().PlayerCollision += Dead;
+        _startClonePosition = _playerMovement.transform.position;
+        _startCloneRotation = _playerMovement.transform.rotation;
+        _clonesList.Add(currentClone);
+        currentClone.name = $"Clone {_clonesList.Count}";
+        _playerMovement.ClearMovements();
+        _playerMovement.NumberOfStepsLeft = _numberOfSteps;
+        _numberOfStepsText.text = _playerMovement.NumberOfStepsLeft.ToString();
+    }
+
+    private void Dead()
+    {
+        _deadPanel.SetActive(true);
     }
 }
