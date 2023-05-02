@@ -5,12 +5,13 @@ public class Wire : MonoBehaviour
     public int interactableLayer;
     public int electricityOnLayer;
     public int electricityOffLayer;
-
-    private bool electricityOn;
-    private bool isTeared;
+    
+    [Header("Debug")]    
+    [SerializeField] private bool electricityOn;
+    [SerializeField] private bool isTeared;
     private void Awake()
     {
-        electricityOn= true;
+        electricityOn = true;
         isTeared = false;
     }
 
@@ -46,5 +47,11 @@ public class Wire : MonoBehaviour
             this.gameObject.layer = electricityOffLayer;
             Debug.Log("Wire teared");
         }
+    }
+
+    public void ResetWire(bool electricity)
+    {
+        electricityOn = electricity;
+        isTeared = false;
     }
 }

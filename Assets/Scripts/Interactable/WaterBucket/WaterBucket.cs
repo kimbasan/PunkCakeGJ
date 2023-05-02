@@ -15,10 +15,13 @@ public class WaterBucket : MonoBehaviour
     
     private PlayerMovement playerMovement;
     private Vector3 waterDirection;
+    private LevelController levelController;
 
     public void Start()
     {
         playerMovement = FindAnyObjectByType<PlayerMovement>();
+        levelController = FindAnyObjectByType<LevelController>();
+        levelController._cloneEvent += ResetBucket;
     }
 
     public void PushBucket(Vector3 actorPosition)
@@ -27,6 +30,7 @@ public class WaterBucket : MonoBehaviour
         wateredTiles = new List<GameObject>();
 
         // уронить ведро
+        gameObject.transform.rotation= Quaternion.Euler(new Vector3(0, 0, -60));
         
         // найти направление куда лить
         Vector3 actor = new Vector3(actorPosition.x, 0, actorPosition.z);
@@ -97,6 +101,24 @@ public class WaterBucket : MonoBehaviour
             tilesToWater.Enqueue(hit.collider.gameObject);
         }
        
+    }
+
+    private void ResetBucket()
+    {
+        // вернуть на место ведро
+        gameObject.transform.rotation= Quaternion.identity;
+        // удалить воду
+        foreach(GameObject waterTile in wateredTiles)
+        {
+            Destroy(waterTile);
+        }
+        tilesToWater?.Clear();
+        wateredTiles?.Clear();
+        waterDirection = Vector3.zero;
+        if (playerMovement != null)
+        {
+            playerMovement.PlayerMoved -= PlayerMovement_PlayerMoved;
+        }
     }
 
 }

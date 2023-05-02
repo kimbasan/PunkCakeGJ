@@ -27,7 +27,7 @@ public class LevelController: MonoBehaviour
     private PlayerMovement _playerMovement;
     private Vector3 _startClonePosition;
     private Quaternion _startCloneRotation;
-    private Action _cloneEvent;
+    public Action _cloneEvent;
 
     private void Awake()
     {
