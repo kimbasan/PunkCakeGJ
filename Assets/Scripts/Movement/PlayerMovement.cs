@@ -14,6 +14,7 @@ public class PlayerMovement : MonoBehaviour
     public LayerMask LayerMask;//маска, которую ищет луч
     public int NumberOfSteps, NumberOfStepsLeft;//1)общее количесвто ходов, 2)оставшееся количество ходов
     public Text _numberOfStepsText;
+    public Interaction interaction;
     /// <summary>
     /// Дальность передвижения за один шаг
     /// </summary>
@@ -36,9 +37,16 @@ public class PlayerMovement : MonoBehaviour
         PlayerInputActions = new PlayerInputActions();
         PlayerInputActions.Player.Move.performed += context => MovePlane();
         PlayerInputActions.Player.Stay.performed += context => MovePlane(stay : true);
+        PlayerInputActions.Player.Interact.performed += context => Interact();
         NumberOfStepsLeft = NumberOfSteps;
         movementsQueue = new Queue<Movements>();
     }
+
+    private void Interact()
+    {
+        interaction?.TryInteract(transform.rotation);
+    }
+
     private void OnEnable()
     {
         PlayerInputActions.Enable();
