@@ -113,7 +113,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   connectedWires:
   - {fileID: 0}
-  electricityOn: 1
+  startingElectricityOn: 1
 --- !u!114 &6441577013492148229
 MonoBehaviour:
   m_ObjectHideFlags: 0
