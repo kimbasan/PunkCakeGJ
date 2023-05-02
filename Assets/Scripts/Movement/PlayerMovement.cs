@@ -91,7 +91,7 @@ public class PlayerMovement : MonoBehaviour
         RaycastHit Hit;
         Ray Ray = new Ray(transform.position, TransformVector);//направляет луч
         Debug.DrawRay(Ray.origin, Ray.direction * 1.5f);//рисует луч (короткий промежуток)
-        if(Physics.Raycast(transform.position, TransformVector, out Hit, 1.5f, LayerMask))//проверка, есть ли в направлении Collider со слоем
+        if(Physics.Raycast(transform.position, TransformVector, out Hit, 1 * StepDistance, LayerMask))//проверка, есть ли в направлении Collider со слоем
         {
             movable = true;
         }
