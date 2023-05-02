@@ -8,6 +8,9 @@ using Vector3 = UnityEngine.Vector3;
 
 public class CloneMovement : MonoBehaviour
 {
+    /// <summary>
+    /// Служит конструктором и необходим при создании нового объекта
+    /// </summary>
     public void Initialization(PlayerMovement playerMovement, Queue<Movements> movements, float stepDistance)
     {
         _startPosition = gameObject.transform.position;
@@ -29,6 +32,7 @@ public class CloneMovement : MonoBehaviour
         }
     }
 
+    private Collider _myCollider;
     private float _stepDistance;
     private Vector3 _startPosition;
     private Quaternion _startRotation;
@@ -38,11 +42,16 @@ public class CloneMovement : MonoBehaviour
     
     private void PlayerMovement_PlayerMoved(object sender, System.EventArgs e)
     {
+        if (gameObject.active == false)
+        {
+            return;
+        }
         Movements result;
         if (_currentMovementsQueue.Count == 0)
         {
             gameObject.transform.position = _startPosition;
             gameObject.transform.rotation = _startRotation;
+            gameObject.SetActive(false);
 
             foreach (var item in _movementsQueue)
             {
@@ -62,6 +71,11 @@ public class CloneMovement : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        _myCollider = gameObject.GetComponent<Collider>();
+    }
+
     private void Move(Vector3 direction)
     {
         Vector3 Move = new Vector3(transform.position.x + direction.x * _stepDistance, transform.position.y, transform.position.z + direction.z * _stepDistance);
@@ -78,5 +92,31 @@ public class CloneMovement : MonoBehaviour
             yield return new WaitForEndOfFrame();
         }
         //_isReady = true;
+    }
+
+    /// <summary>
+    /// Таймер неактивного коллайдера при возврате на стартовую позицию, чтобы не задеть игрока и клонов
+    /// </summary>
+    private IEnumerator SpawnActiveTimer()
+    {
+        _myCollider.enabled = false;
+        yield return new WaitForSeconds(1);
+        _myCollider.enabled = true;
+    }
+
+    /// <summary>
+    /// Когда клонируем, то все клоны возвращаются на стартовую позицию появления
+    /// </summary>
+    public void RestartPosition()
+    {
+        SpawnActiveTimer();
+        gameObject.transform.position = _startPosition;
+        gameObject.transform.rotation = _startRotation;
+        _currentMovementsQueue.Clear();
+
+        foreach (var item in _movementsQueue)
+        {
+            _currentMovementsQueue.Enqueue(item);
+        }
     }
 }
