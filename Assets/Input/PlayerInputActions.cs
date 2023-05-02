@@ -48,7 +48,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                 {
                     ""name"": ""Action"",
                     ""type"": ""Button"",
-                    ""id"": ""e45a2bff-f259-4642-bbb1-2210a572015c"",
+                    ""id"": ""7a7c147d-c713-4aaf-bff6-ab865b778f12"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -124,7 +124,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""558d6882-5da7-4ed5-8dab-dfba17a534a7"",
+                    ""id"": ""867546e5-6d57-43d4-bda1-7e4e9701ddf1"",
                     ""path"": ""<Keyboard>/e"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -206,14 +206,14 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     private List<IPlayerActions> m_PlayerActionsCallbackInterfaces = new List<IPlayerActions>();
     private readonly InputAction m_Player_Move;
     private readonly InputAction m_Player_Stay;
-    private readonly InputAction m_Player_Interact;
+    private readonly InputAction m_Player_Action;
     public struct PlayerActions
     {
         private @PlayerInputActions m_Wrapper;
         public PlayerActions(@PlayerInputActions wrapper) { m_Wrapper = wrapper; }
         public InputAction @Move => m_Wrapper.m_Player_Move;
         public InputAction @Stay => m_Wrapper.m_Player_Stay;
-        public InputAction @Interact => m_Wrapper.m_Player_Interact;
+        public InputAction @Action => m_Wrapper.m_Player_Action;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -229,9 +229,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @Stay.started += instance.OnStay;
             @Stay.performed += instance.OnStay;
             @Stay.canceled += instance.OnStay;
-            @Interact.started += instance.OnInteract;
-            @Interact.performed += instance.OnInteract;
-            @Interact.canceled += instance.OnInteract;
+            @Action.started += instance.OnAction;
+            @Action.performed += instance.OnAction;
+            @Action.canceled += instance.OnAction;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -242,9 +242,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @Stay.started -= instance.OnStay;
             @Stay.performed -= instance.OnStay;
             @Stay.canceled -= instance.OnStay;
-            @Interact.started -= instance.OnInteract;
-            @Interact.performed -= instance.OnInteract;
-            @Interact.canceled -= instance.OnInteract;
+            @Action.started -= instance.OnAction;
+            @Action.performed -= instance.OnAction;
+            @Action.canceled -= instance.OnAction;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -266,6 +266,6 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     {
         void OnMove(InputAction.CallbackContext context);
         void OnStay(InputAction.CallbackContext context);
-        void OnInteract(InputAction.CallbackContext context);
+        void OnAction(InputAction.CallbackContext context);
     }
 }

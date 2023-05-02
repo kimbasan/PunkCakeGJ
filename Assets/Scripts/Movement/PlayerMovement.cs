@@ -37,7 +37,7 @@ public class PlayerMovement : MonoBehaviour
         PlayerInputActions = new PlayerInputActions();
         PlayerInputActions.Player.Move.performed += context => MovePlane();
         PlayerInputActions.Player.Stay.performed += context => MovePlane(stay : true);
-        PlayerInputActions.Player.Interact.performed += context => Interact();
+        PlayerInputActions.Player.Action.performed += context => Interact();
         NumberOfStepsLeft = NumberOfSteps;
         movementsQueue = new Queue<Movements>();
     }

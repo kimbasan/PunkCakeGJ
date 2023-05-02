@@ -3993,6 +3993,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 214928956, guid: e9110de6c80602d419b7c76da063f697, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 927076404}
+    - target: {fileID: 214928956, guid: e9110de6c80602d419b7c76da063f697, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: StartNextClone
+      objectReference: {fileID: 0}
     - target: {fileID: 7835342571015741340, guid: e9110de6c80602d419b7c76da063f697, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
