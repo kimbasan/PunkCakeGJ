@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -26,6 +27,7 @@ public class LevelController: MonoBehaviour
     private PlayerMovement _playerMovement;
     private Vector3 _startClonePosition;
     private Quaternion _startCloneRotation;
+    public Action _cloneEvent;
 
     private void Awake()
     {
@@ -51,6 +53,7 @@ public class LevelController: MonoBehaviour
 
     public void StartNextClone()
     {
+        _cloneEvent?.Invoke();
         CloneMovement currentClone;
         if (_clonesList.Count == 0)
         {
@@ -61,7 +64,12 @@ public class LevelController: MonoBehaviour
             currentClone = Instantiate(_clonePrefab, _startClonePosition, _startCloneRotation).GetComponent<CloneMovement>();
 
         }
+        foreach (var item in _clonesList)
+        {
+            item.gameObject.SetActive(true);
+        }
         currentClone.Initialization(_playerMovement, _playerMovement.GetMovements(), _stepDistance);
+        _cloneEvent += currentClone.RestartPosition;
         currentClone.GetComponent<CollisionChecker>().PlayerCollision += Dead;
         _startClonePosition = _playerMovement.transform.position;
         _startCloneRotation = _playerMovement.transform.rotation;
