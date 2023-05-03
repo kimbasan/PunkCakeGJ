@@ -84,6 +84,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -1174661770378217370, guid: 8fa65ac34c5a79f4296e6651fb32314e, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 64a05c6ca2d6b864ebf054e2fbcd4c9e, type: 2}
     - target: {fileID: 919132149155446097, guid: 8fa65ac34c5a79f4296e6651fb32314e, type: 3}
       propertyPath: m_Name
       value: electrical box
@@ -92,6 +96,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 1006664530441509266, guid: 8fa65ac34c5a79f4296e6651fb32314e, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 64a05c6ca2d6b864ebf054e2fbcd4c9e, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8fa65ac34c5a79f4296e6651fb32314e, type: 3}
 --- !u!1 &5143827971624606725 stripped

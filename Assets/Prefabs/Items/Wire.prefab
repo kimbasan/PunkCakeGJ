@@ -287,6 +287,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: cable_from_the_electrical_box_low
       objectReference: {fileID: 0}
+    - target: {fileID: 6309449898861830401, guid: deca4954a47bdbd4895c390a2ff479d4, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 64a05c6ca2d6b864ebf054e2fbcd4c9e, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: deca4954a47bdbd4895c390a2ff479d4, type: 3}
 --- !u!4 &5541683426962022189 stripped
