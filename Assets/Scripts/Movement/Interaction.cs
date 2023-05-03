@@ -66,6 +66,10 @@ public class Interaction : MonoBehaviour
             {
                 ItemsArray[i].GetComponent<KeyInteractionCard>().KeyCard();
             }
+            if(ItemsArray[i] != null && ItemsArray[i].GetComponent<ScoreMoney>() != null)
+            {
+                ItemsArray[i].GetComponent<ScoreMoney>().CheckMoney();
+            }
         }
     }
     public void TextActionOn(int Index)
