@@ -9,7 +9,7 @@ public class AssignmentOfKeyInteraction : MonoBehaviour
     private void Start()
     {
         TurningOffText();
-        Outline = GetComponent<Outline>();
+        //Outline = GetComponent<Outline>();
         Outline.enabled = false;//выключает подстветку
     }
     public void TurningOffText()//выключает текст

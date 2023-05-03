@@ -90,4 +90,43 @@
 			<ru>Победил</ru>
 		</Translates>
 	</Key>
+	<Key Name="Quests">
+		<Translates/>
+	</Key>
+	<Key Name="TheMainQuest_Key">
+		<Translates>
+			<en-us>&lt;size=12&gt;Release the host :</en-us>
+			<ru>&lt;size=12&gt;Освободить хозяина :</ru>
+		</Translates>
+	</Key>
+	<Key Name="FindTheKeycard_Key">
+		<Translates>
+			<en-us>&lt;size=12&gt;Find the key card</en-us>
+			<ru>&lt;size=12&gt;Найти ключ-карту</ru>
+		</Translates>
+	</Key>
+	<Key Name="CollectGlitter_Key">
+		<Translates>
+			<en-us>&lt;size=12&gt;Collect glitter</en-us>
+			<ru>&lt;size=12&gt;Собрать блестяшки</ru>
+		</Translates>
+	</Key>
+	<Key Name="NeutralizeGuard_Key">
+		<Translates>
+			<en-us>&lt;size=12&gt;Neutralize a guard with a walkie-talkie</en-us>
+			<ru>&lt;size=12&gt;Нейтрализовать охранника с рацией</ru>
+		</Translates>
+	</Key>
+	<Key Name="CutDown_Key">
+		<Translates>
+			<en-us>&lt;size=12&gt;Cut down with electricity</en-us>
+			<ru>&lt;size=12&gt;Вырубить с помощью электричества </ru>
+		</Translates>
+	</Key>
+	<Key Name="ORLockHim_Key">
+		<Translates>
+			<en-us>&lt;size=12&gt;OR lock him in a room</en-us>
+			<ru>&lt;size=12&gt;ИЛИ запереть в комнате </ru>
+		</Translates>
+	</Key>
 </Keys>
