@@ -180,7 +180,7 @@ MonoBehaviour:
   TextAction:
   - {fileID: 4902943154321429139}
   - {fileID: 4902943154100919177}
-  Outline: {fileID: 0}
+  Outline: {fileID: 1250820066636344567}
 --- !u!114 &6871395770397765939
 MonoBehaviour:
   m_ObjectHideFlags: 0

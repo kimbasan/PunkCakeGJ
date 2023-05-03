@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8588543151220511107}
   - component: {fileID: 8392344654986683302}
   m_Layer: 8
-  m_Name: Lever
+  m_Name: lever
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -66,8 +66,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: -0.33, z: -0.36}
+  m_Size: {x: 1, y: 1, z: 0.28401783}
+  m_Center: {x: 0, y: -0.33000004, z: -0.0020089298}
 --- !u!114 &8392344654986683302
 MonoBehaviour:
   m_ObjectHideFlags: 0
