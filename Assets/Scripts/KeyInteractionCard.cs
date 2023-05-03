@@ -25,16 +25,21 @@ public class KeyInteractionCard : MonoBehaviour
     {
         PlayerInputActions.Disable();
     }
+    public void KeyCard()
+    {
+        CheckKeyCard = true;
+    }
     public void InteractionWithTheEnvironment()
     {
         if (CheckKeyCard)
         {
+            Source.PlayOneShot(Clip);
             AvailabilityKeyCard = true;
             CheckKeyCard = false;
             CardImage.enabled = true;
-            GetComponent<FindObject>().ActionText.enabled = false;
-            Destroy(GetComponent<FindObject>().ObjectFind.GetComponent<ParentSearch>().Parent);
-            GetComponent<FindObject>().ObjectFind = null;
+            //GetComponent<FindObject>().ActionText.enabled = false;
+            Destroy(gameObject);
+            //GetComponent<FindObject>().ObjectFind = null;
         }
         else if(CheckDoor && AvailabilityKeyCard)
         {

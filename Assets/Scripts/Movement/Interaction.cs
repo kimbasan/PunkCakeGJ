@@ -56,8 +56,22 @@ public class Interaction : MonoBehaviour
             TextActionOn(0);
             ItemsArray[1] = null;
         }
+        CheckAction();
     }
-
+    public void CheckAction()
+    {
+        for (int i = 0; i < ItemsArray.Length; i++)
+        {
+            if (ItemsArray[i] != null && ItemsArray[i].GetComponent<KeyInteractionCard>() != null)
+            {
+                ItemsArray[i].GetComponent<KeyInteractionCard>().KeyCard();
+            }
+            if(ItemsArray[i] != null && ItemsArray[i].GetComponent<ScoreMoney>() != null)
+            {
+                ItemsArray[i].GetComponent<ScoreMoney>().CheckMoney();
+            }
+        }
+    }
     public void TextActionOn(int Index)
     {
         if (ItemsArray[Index] != null)
