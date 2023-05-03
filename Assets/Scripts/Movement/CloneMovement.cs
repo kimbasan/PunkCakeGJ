@@ -87,10 +87,10 @@ public class CloneMovement : MonoBehaviour
         raysToCheck[1] = new Ray(transform.position, Vector3.right);
         raysToCheck[2] = new Ray(transform.position, Vector3.back);
         raysToCheck[3] = new Ray(transform.position, Vector3.left);
-        Debug.DrawRay(transform.position, Vector3.forward * RayDistance, Color.green, 3, true);
-        Debug.DrawRay(transform.position, Vector3.right * RayDistance, Color.green, 3, true);
-        Debug.DrawRay(transform.position, Vector3.back * RayDistance, Color.green, 3, true);
-        Debug.DrawRay(transform.position, Vector3.left * RayDistance, Color.green, 3, true);
+        Debug.DrawRay(transform.position, Vector3.forward * RayDistance, Color.green, 1, true);
+        Debug.DrawRay(transform.position, Vector3.right * RayDistance, Color.green, 1, true);
+        Debug.DrawRay(transform.position, Vector3.back * RayDistance, Color.green, 1, true);
+        Debug.DrawRay(transform.position, Vector3.left * RayDistance, Color.green, 1, true);
         for (int j = 0; j < ItemsArray.Length; j++) //выключаем подсказки и удаляем объект
         {
             if (ItemsArray[j] != null)

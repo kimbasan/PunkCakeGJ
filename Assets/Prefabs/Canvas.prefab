@@ -227,7 +227,7 @@ GameObject:
   - component: {fileID: 539800521}
   - component: {fileID: 539800520}
   m_Layer: 5
-  m_Name: Info (1)
+  m_Name: StepsLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -523,7 +523,7 @@ GameObject:
   - component: {fileID: 1437146749}
   - component: {fileID: 1437146748}
   m_Layer: 5
-  m_Name: Info (2)
+  m_Name: NumberOfSteps
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
