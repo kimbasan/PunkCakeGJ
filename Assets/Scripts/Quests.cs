@@ -27,6 +27,13 @@ public class Quests : MonoBehaviour
             EducationalQuests[i].SetActive(false);
         }
     }
+    public void CheckAdditionalQuests(int IndexQuest)
+    {
+        if (AdditionalTasksReceivedBool[IndexQuest])
+        {
+            AdditionalQuests[IndexQuest].SetActive(true);
+        }
+    }
     public void CheckProgressAdditionalQuest(int IndexQuest)
     {
         if (CompletingTheQuest[IndexQuest])
