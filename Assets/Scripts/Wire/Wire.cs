@@ -1,16 +1,24 @@
+using System;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Wire : MonoBehaviour
 {
     public int interactableLayer;
     public int electricityOnLayer;
     public int electricityOffLayer;
-    
+
+    public Material normalMaterial;
+    public Material tearedMaterial;
+
     [Header("Debug")]    
     [SerializeField] private bool electricityOn;
     [SerializeField] private bool isTeared;
+    private MeshRenderer meshRenderer;
+
     private void Awake()
     {
+        meshRenderer= GetComponent<MeshRenderer>();
         electricityOn = true;
         isTeared = false;
     }
@@ -39,11 +47,14 @@ public class Wire : MonoBehaviour
         {
             // убить игрока
             Debug.Log("Player killed");
+            var levelController = FindAnyObjectByType<LevelController>();
+            levelController?.Dead();
             this.gameObject.layer = electricityOnLayer;
         } else
         {
             // порвать кабель
             isTeared = true;
+            meshRenderer.material = tearedMaterial;
             this.gameObject.layer = electricityOffLayer;
             Debug.Log("Wire teared");
         }
@@ -53,5 +64,7 @@ public class Wire : MonoBehaviour
     {
         electricityOn = electricity;
         isTeared = false;
+        meshRenderer.material = normalMaterial;
+        gameObject.layer = interactableLayer;
     }
 }

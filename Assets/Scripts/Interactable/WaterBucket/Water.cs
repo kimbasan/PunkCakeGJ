@@ -1,5 +1,7 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Water: MonoBehaviour
 {
@@ -32,12 +34,20 @@ public class Water: MonoBehaviour
                 var water = obj.GetComponent<Water>();
                 water.Electricity(!isElectric); // Переключить воду в электрическое/неэлектрическое состояние
             }
-        } else
+        }
+    }
+
+    // Коллиззия с игроком
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (isElectric)
         {
-            if (isElectric)
+            // если охранник, вырубить, если игрок - проиграть
+            if (collision.gameObject.CompareTag(Constants.CLONE_TAG))
             {
-                // если охранник, вырубить, если игрок - проиграть
-                Debug.Log("Someone died");
+                var levelController = FindAnyObjectByType<LevelController>();
+                levelController?.Dead();
+                Debug.Log("Player died");
             }
         }
     }

@@ -5,14 +5,19 @@ using UnityEngine;
 public class WaterBucket : MonoBehaviour
 {
     [SerializeField] private int maxTiles; 
-    [SerializeField] private float tileSize;
     [SerializeField] private LayerMask walkableTileMask;
     [SerializeField] private LayerMask wallMask;
     [SerializeField] private GameObject waterTilePrefab;
 
+    [SerializeField] private int interactableLayer;
+    [SerializeField] private int usedLayer;
+    [SerializeField] private AssignmentOfKeyInteraction buttonVisual;
+
     [SerializeField] private Queue<GameObject> tilesToWater;
     [SerializeField] private List<GameObject> wateredTiles; // для отката
     
+
+
     private PlayerMovement playerMovement;
     private Vector3 waterDirection;
     private LevelController levelController;
@@ -24,36 +29,46 @@ public class WaterBucket : MonoBehaviour
         levelController._cloneEvent += ResetBucket;
     }
 
-    public void PushBucket(Vector3 actorPosition)
+    public void PushBucket(Vector3 actorPosition, bool isClone = false)
     {
         tilesToWater = new Queue<GameObject>();
         wateredTiles = new List<GameObject>();
 
         // уронить ведро
-        gameObject.transform.rotation= Quaternion.Euler(new Vector3(0, 0, -60));
+        gameObject.transform.rotation= Quaternion.Euler(new Vector3(0, 0, -60)); // переделать
         
         // найти направление куда лить
         Vector3 actor = new Vector3(actorPosition.x, 0, actorPosition.z);
         Vector3 bucket = new Vector3(transform.position.x, 0, transform.position.z);
         var direction = bucket - actor;
         // начать разливать воду
-        Activate(direction.normalized);
+        Activate(direction.normalized, isClone);
 
+        // выключить взаимодействие
+        gameObject.layer = usedLayer;
+        buttonVisual?.TurningOffText();
     }
 
-    private void Activate(Vector3 direction)
+    private void Activate(Vector3 direction, bool isClone)
     {
         waterDirection = direction;
-        if (playerMovement != null)
-        {
-            playerMovement.PlayerMoved += PlayerMovement_PlayerMoved;
-        }
-
+        
         // найти клетки которые будем заливатьa
         FindTilesToWater();
 
         // залить первую клетку
-        Spill();
+        // если игрок - зальет по ивенту
+        if (isClone)
+        {
+            Spill();
+        }
+        
+
+        // подписатся на движения игрока
+        if (playerMovement != null)
+        {
+            playerMovement.PlayerMoved += PlayerMovement_PlayerMoved;
+        }
     }
 
     private void PlayerMovement_PlayerMoved(object sender, System.EventArgs e)
@@ -81,7 +96,7 @@ public class WaterBucket : MonoBehaviour
     private void FindTilesToWater()
     {
         RaycastHit wallHit;
-        float rayLength = maxTiles * tileSize;
+        float rayLength = maxTiles * Constants.TILE_SIZE;
         // проверяем есть ли на пути стена
         bool findWall = Physics.Raycast(transform.position, waterDirection, out wallHit, rayLength, wallMask, QueryTriggerInteraction.Ignore);
         if (findWall)
@@ -115,6 +130,10 @@ public class WaterBucket : MonoBehaviour
         tilesToWater?.Clear();
         wateredTiles?.Clear();
         waterDirection = Vector3.zero;
+
+        // включить interactable
+        gameObject.layer = interactableLayer;
+
         if (playerMovement != null)
         {
             playerMovement.PlayerMoved -= PlayerMovement_PlayerMoved;

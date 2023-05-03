@@ -99,7 +99,7 @@ GameObject:
   - component: {fileID: 7170513293642997141}
   - component: {fileID: 477181538959789327}
   - component: {fileID: 12672363982669045}
-  - component: {fileID: 5944251876811779467}
+  - component: {fileID: 2085617925424189220}
   m_Layer: 6
   m_Name: Player
   m_TagString: Clone
@@ -250,7 +250,7 @@ MonoBehaviour:
   NumberOfSteps: 8
   NumberOfStepsLeft: 0
   _numberOfStepsText: {fileID: 0}
-  interaction: {fileID: 5944251876811779467}
+  interaction: {fileID: 2085617925424189220}
   StepDistance: 2
 --- !u!114 &12672363982669045
 MonoBehaviour:
@@ -265,7 +265,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tag: 
---- !u!114 &5944251876811779467
+--- !u!114 &2085617925424189220
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -281,3 +281,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   tileSize: 2
+  ItemsArray:
+  - {fileID: 0}
+  - {fileID: 0}

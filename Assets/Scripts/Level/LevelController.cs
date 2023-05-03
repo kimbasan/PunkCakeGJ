@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -80,7 +81,7 @@ public class LevelController: MonoBehaviour
         _numberOfStepsText.text = _playerMovement.NumberOfStepsLeft.ToString();
     }
 
-    private void Dead()
+    public void Dead()
     {
         _deadPanel.SetActive(true);
     }

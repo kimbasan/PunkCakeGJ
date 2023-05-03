@@ -27,7 +27,8 @@ public class PlayerMovement : MonoBehaviour
         Down, 
         Left,
         Right,
-        Wait, Interact
+        Wait,
+        Action, SecondaryAction
     }
     private bool _isReady;
 
@@ -37,14 +38,23 @@ public class PlayerMovement : MonoBehaviour
         PlayerInputActions = new PlayerInputActions();
         PlayerInputActions.Player.Move.performed += context => MovePlane();
         PlayerInputActions.Player.Stay.performed += context => MovePlane(stay : true);
-        PlayerInputActions.Player.Action.performed += context => Interact();
+        PlayerInputActions.Player.Action.performed += context => DoAction();
+        PlayerInputActions.Player.SecondaryAction.performed += context => DoSecondaryAction();
         NumberOfStepsLeft = NumberOfSteps;
         movementsQueue = new Queue<Movements>();
     }
 
-    private void Interact()
+    private void DoAction()
     {
-        interaction?.TryInteract(transform.rotation);
+        RecordMove(Movements.Action);
+        interaction?.DoAction();
+        PlayerMoved?.Invoke(this, EventArgs.Empty);
+    }
+    private void DoSecondaryAction()
+    {
+        RecordMove(Movements.SecondaryAction);
+        interaction?.DoSecondaryAction();
+        PlayerMoved?.Invoke(this, EventArgs.Empty);
     }
 
     private void OnEnable()
@@ -60,7 +70,7 @@ public class PlayerMovement : MonoBehaviour
         if (NumberOfStepsLeft > 0 && _isReady)
         {
             MoveDirection = PlayerInputActions.Player.Move.ReadValue<Vector2>();
-            Vector3 Move = new Vector3(transform.position.x + MoveDirection.x * StepDistance, transform.position.y, transform.position.z + MoveDirection.y * StepDistance); // Дальность перемещение это 1, по нажатию. 
+            Vector3 Move = new Vector3(transform.position.x + MoveDirection.x * StepDistance, transform.position.y, transform.position.z + MoveDirection.y * StepDistance);
             TransformVector = new Vector3(MoveDirection.x, 0, MoveDirection.y);
 
             if (stay)
@@ -97,8 +107,6 @@ public class PlayerMovement : MonoBehaviour
     {
         bool movable = false;
         RaycastHit Hit;
-        Ray Ray = new Ray(transform.position, TransformVector);//направляет луч
-        Debug.DrawRay(Ray.origin, Ray.direction * 1.5f);//рисует луч (короткий промежуток)
         if(Physics.Raycast(transform.position, TransformVector, out Hit, 1.5f, LayerMask))//проверка, есть ли в направлении Collider со слоем
         {
             movable = true;
@@ -129,6 +137,12 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    private void RecordMove(Movements move)
+    {
+        movementsQueue.Enqueue(move);
+    }
+
+
     public Queue<Movements> GetMovements()
     {
         return movementsQueue;
@@ -149,5 +163,8 @@ public class PlayerMovement : MonoBehaviour
         }
         yield return new WaitForSeconds(0.2f);
         _isReady = true;
+
+        // проверить есть ли рядом новые объекты для действий
+        interaction.RayItems();
     }
 }
