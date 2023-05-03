@@ -5956,6 +5956,30 @@ PrefabInstance:
       propertyPath: m_LocalPosition.x
       value: -0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 1923754386904723617, guid: 5eca3401816d8024898d04d68fc1031d, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.000014901161
+      objectReference: {fileID: 0}
+    - target: {fileID: 1923754386904723617, guid: 5eca3401816d8024898d04d68fc1031d, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1923754386904723617, guid: 5eca3401816d8024898d04d68fc1031d, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 1923754386904723617, guid: 5eca3401816d8024898d04d68fc1031d, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1923754386904723617, guid: 5eca3401816d8024898d04d68fc1031d, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.70710677
+      objectReference: {fileID: 0}
+    - target: {fileID: 1923754386904723617, guid: 5eca3401816d8024898d04d68fc1031d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -90
+      objectReference: {fileID: 0}
     - target: {fileID: 6871395770397765939, guid: 5eca3401816d8024898d04d68fc1031d, type: 3}
       propertyPath: connectedWires.Array.size
       value: 2
@@ -19964,6 +19988,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wire
       objectReference: {fileID: 0}
+    - target: {fileID: 1938641321770167056, guid: 73f1ec7714bbc0f46b904cc4cd359ef7, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1938641321770167057, guid: 73f1ec7714bbc0f46b904cc4cd359ef7, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 5561349426305759274, guid: 525d6ffe5ad71ca44a8bb8bbf7eaa48a, type: 3}
     - target: {fileID: 1938641321770167058, guid: 73f1ec7714bbc0f46b904cc4cd359ef7, type: 3}
       propertyPath: m_Size.x
       value: 0.5000003
