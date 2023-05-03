@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8910263417884137828}
   - component: {fileID: 6059829951031342832}
   - component: {fileID: 2950083292742386303}
+  - component: {fileID: 1006104785}
   m_Layer: 8
   m_Name: Key Card
   m_TagString: Untagged
@@ -26,7 +27,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 549508092535300671}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 18.954979, y: 1.3065643, z: 15.242}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -83,6 +84,24 @@ MonoBehaviour:
   - {fileID: 316492223252764601}
   - {fileID: 316492223979642531}
   Outline: {fileID: 8910263417884137828}
+--- !u!114 &1006104785
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 549508092535300671}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5bfbb5ad8fcd9ba409ff72e2ee4e665b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CardImage: {fileID: 0}
+  Clip: {fileID: 8300000, guid: 558782dcbeedc814db0327544fe6f83b, type: 3}
+  Source: {fileID: 0}
+  CheckKeyCard: 0
+  CheckDoor: 0
+  AvailabilityKeyCard: 0
 --- !u!1001 &3153415526001584498
 PrefabInstance:
   m_ObjectHideFlags: 0
