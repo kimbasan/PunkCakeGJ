@@ -9,6 +9,18 @@
 			<ru>Начало Игры</ru>
 		</Translates>
 	</Key>
+	<Key Name="Setting_Key">
+		<Translates>
+			<en-us>Setting</en-us>
+			<ru>Настройки</ru>
+		</Translates>
+	</Key>
+	<Key Name="Authors_Key">
+		<Translates>
+			<en-us>Authors</en-us>
+			<ru>Авторы</ru>
+		</Translates>
+	</Key>
 	<Key Name="Exit_Key">
 		<Translates>
 			<en-us>Exit</en-us>
@@ -30,16 +42,52 @@
 			<ru>Рестарт</ru>
 		</Translates>
 	</Key>
-	<Key Name="Setting_Key">
-		<Translates>
-			<en-us>Stetting</en-us>
-			<ru>Настройки</ru>
-		</Translates>
-	</Key>
 	<Key Name="Menu_Key">
 		<Translates>
 			<en-us>Menu</en-us>
 			<ru>Меню</ru>
+		</Translates>
+	</Key>
+	<Key Name="Interface">
+		<Translates/>
+	</Key>
+	<Key Name="Score_Key">
+		<Translates>
+			<en-us>Score :</en-us>
+			<ru>Счет : </ru>
+		</Translates>
+	</Key>
+	<Key Name="Last Window">
+		<Translates/>
+	</Key>
+	<Key Name="DeathButton_Key">
+		<Translates>
+			<en-us>Перейти в таймлайн, в которой ты победишь </en-us>
+			<ru>Перейти в таймлайн, в которой ты победишь </ru>
+		</Translates>
+	</Key>
+	<Key Name="WinButton_Key">
+		<Translates>
+			<en-us>Перепройти на “отлично”</en-us>
+			<ru>Перепройти на “отлично”</ru>
+		</Translates>
+	</Key>
+	<Key Name="WinAAAButton_Key">
+		<Translates>
+			<en-us>Покорить новый таймлайн </en-us>
+			<ru>Покорить новый таймлайн </ru>
+		</Translates>
+	</Key>
+	<Key Name="Death_Key">
+		<Translates>
+			<en-us>Death</en-us>
+			<ru>Умер</ru>
+		</Translates>
+	</Key>
+	<Key Name="Win_Key">
+		<Translates>
+			<en-us>Win</en-us>
+			<ru>Победил</ru>
 		</Translates>
 	</Key>
 </Keys>
