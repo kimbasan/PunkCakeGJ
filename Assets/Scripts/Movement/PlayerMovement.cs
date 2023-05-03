@@ -7,18 +7,18 @@ using UnityEngine.UI;
 public class PlayerMovement : MonoBehaviour
 {
     public event EventHandler PlayerMoved;
-    private PlayerInputActions PlayerInputActions;//скрипт на управление
-    private Vector2 MoveDirection;// 1)вектор направления
-    private Vector3 TransformVector;//вектор направления луча
+    private PlayerInputActions PlayerInputActions;//Г±ГЄГ°ГЁГЇГІ Г­Г  ГіГЇГ°Г ГўГ«ГҐГ­ГЁГҐ
+    private Vector2 MoveDirection;// 1)ГўГҐГЄГІГ®Г° Г­Г ГЇГ°Г ГўГ«ГҐГ­ГЁГї
+    private Vector3 TransformVector;//ГўГҐГЄГІГ®Г° Г­Г ГЇГ°Г ГўГ«ГҐГ­ГЁГї Г«ГіГ·Г 
     private Queue<Movements> movementsQueue;
-    public LayerMask LayerMask;//маска, которую ищет луч
-    public int NumberOfSteps, NumberOfStepsLeft;//1)общее количесвто ходов, 2)оставшееся количество ходов
+    public LayerMask LayerMask;//Г¬Г Г±ГЄГ , ГЄГ®ГІГ®Г°ГіГѕ ГЁГ№ГҐГІ Г«ГіГ·
+    public int NumberOfSteps, NumberOfStepsLeft;//1)Г®ГЎГ№ГҐГҐ ГЄГ®Г«ГЁГ·ГҐГ±ГўГІГ® ГµГ®Г¤Г®Гў, 2)Г®Г±ГІГ ГўГёГҐГҐГ±Гї ГЄГ®Г«ГЁГ·ГҐГ±ГІГўГ® ГµГ®Г¤Г®Гў
     public Text _numberOfStepsText;
     public Interaction interaction;
     /// <summary>
-    /// Дальность передвижения за один шаг
+    /// Г„Г Г«ГјГ­Г®Г±ГІГј ГЇГҐГ°ГҐГ¤ГўГЁГ¦ГҐГ­ГЁГї Г§Г  Г®Г¤ГЁГ­ ГёГ ГЈ
     /// </summary>
-    [Header("Дальность передвижения за один шаг")]
+    [Header("Г„Г Г«ГјГ­Г®Г±ГІГј ГЇГҐГ°ГҐГ¤ГўГЁГ¦ГҐГ­ГЁГї Г§Г  Г®Г¤ГЁГ­ ГёГ ГЈ")]
     public float StepDistance;
 
     public enum Movements
@@ -66,7 +66,7 @@ public class PlayerMovement : MonoBehaviour
         PlayerInputActions.Disable();
     }
     private void MovePlane(bool stay = false)
-    {//выбор направления
+    {//ГўГ»ГЎГ®Г° Г­Г ГЇГ°Г ГўГ«ГҐГ­ГЁГї
         if (NumberOfStepsLeft > 0 && _isReady)
         {
             MoveDirection = PlayerInputActions.Player.Move.ReadValue<Vector2>();
@@ -84,17 +84,17 @@ public class PlayerMovement : MonoBehaviour
                     PlayerMoved.Invoke(this, EventArgs.Empty);
                 }
             }
-            else if (CheckPlane()) // Если можно пройти
+            else if (CheckPlane()) // Г…Г±Г«ГЁ Г¬Г®Г¦Г­Г® ГЇГ°Г®Г©ГІГЁ
             {
-                // повернутся
+                // ГЇГ®ГўГҐГ°Г­ГіГІГ±Гї
                 transform.rotation = Quaternion.LookRotation(TransformVector);
 
-                StartCoroutine(MoveAnim(Move));//перемещение
+                StartCoroutine(MoveAnim(Move));//ГЇГҐГ°ГҐГ¬ГҐГ№ГҐГ­ГЁГҐ
                 NumberOfStepsLeft--;
                 _numberOfStepsText.text = NumberOfStepsLeft.ToString();
                 RecordMove(MoveDirection, stay);
 
-                // событие чтобы сдвинулись другие клоны
+                // Г±Г®ГЎГ»ГІГЁГҐ Г·ГІГ®ГЎГ» Г±Г¤ГўГЁГ­ГіГ«ГЁГ±Гј Г¤Г°ГіГЈГЁГҐ ГЄГ«Г®Г­Г»
                 if (PlayerMoved!= null)
                 {
                     PlayerMoved.Invoke(this, EventArgs.Empty);
@@ -107,7 +107,7 @@ public class PlayerMovement : MonoBehaviour
     {
         bool movable = false;
         RaycastHit Hit;
-        if(Physics.Raycast(transform.position, TransformVector, out Hit, 1.5f, LayerMask))//проверка, есть ли в направлении Collider со слоем
+        if(Physics.Raycast(transform.position, TransformVector, out Hit, 1.5f, LayerMask))//ГЇГ°Г®ГўГҐГ°ГЄГ , ГҐГ±ГІГј Г«ГЁ Гў Г­Г ГЇГ°Г ГўГ«ГҐГ­ГЁГЁ Collider Г±Г® Г±Г«Г®ГҐГ¬
         {
             movable = true;
         }
@@ -164,7 +164,7 @@ public class PlayerMovement : MonoBehaviour
         yield return new WaitForSeconds(0.2f);
         _isReady = true;
 
-        // проверить есть ли рядом новые объекты для действий
+        // ГЇГ°Г®ГўГҐГ°ГЁГІГј ГҐГ±ГІГј Г«ГЁ Г°ГїГ¤Г®Г¬ Г­Г®ГўГ»ГҐ Г®ГЎГєГҐГЄГІГ» Г¤Г«Гї Г¤ГҐГ©Г±ГІГўГЁГ©
         interaction.RayItems();
     }
 }
