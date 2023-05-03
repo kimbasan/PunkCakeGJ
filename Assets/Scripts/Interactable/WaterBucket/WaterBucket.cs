@@ -15,7 +15,8 @@ public class WaterBucket : MonoBehaviour
 
     [SerializeField] private Queue<GameObject> tilesToWater;
     [SerializeField] private List<GameObject> wateredTiles; // для отката
-    
+
+    private bool pushed = false;
 
 
     private PlayerMovement playerMovement;
@@ -31,23 +32,29 @@ public class WaterBucket : MonoBehaviour
 
     public void PushBucket(Vector3 actorPosition, bool isClone = false)
     {
-        tilesToWater = new Queue<GameObject>();
-        wateredTiles = new List<GameObject>();
+        if (!pushed)
+        {
+            tilesToWater = new Queue<GameObject>();
+            wateredTiles = new List<GameObject>();
 
-        // уронить ведро
-        gameObject.transform.rotation= Quaternion.Euler(new Vector3(0, 0, -60)); // переделать
-        
-        // найти направление куда лить
-        Vector3 actor = new Vector3(actorPosition.x, 0, actorPosition.z);
-        Vector3 bucket = new Vector3(transform.position.x, 0, transform.position.z);
-        var direction = bucket - actor;
-        // начать разливать воду
-        Activate(direction.normalized, isClone);
+            // уронить ведро
+            gameObject.transform.rotation = Quaternion.Euler(new Vector3(0, 0, -60)); // переделать
 
-        // выключить взаимодействие
-        gameObject.layer = usedLayer;
-        buttonVisual?.TurningOffText();
+            // найти направление куда лить
+            Vector3 actor = new Vector3(actorPosition.x, 0, actorPosition.z);
+            Vector3 bucket = new Vector3(transform.position.x, 0, transform.position.z);
+            var direction = bucket - actor;
+            // начать разливать воду
+            Activate(direction.normalized, isClone);
+
+            // выключить взаимодействие
+            gameObject.layer = usedLayer;
+            buttonVisual?.TurningOffText();
+
+            pushed= true;
+        }
     }
+
 
     private void Activate(Vector3 direction, bool isClone)
     {
@@ -120,6 +127,7 @@ public class WaterBucket : MonoBehaviour
 
     private void ResetBucket()
     {
+        pushed = false;
         // вернуть на место ведро
         gameObject.transform.rotation= Quaternion.identity;
         // удалить воду

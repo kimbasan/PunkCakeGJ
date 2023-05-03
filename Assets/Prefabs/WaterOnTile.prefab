@@ -104,6 +104,8 @@ MonoBehaviour:
   electricMaterial: {fileID: 2100000, guid: 2acb86b0e9ba5324e911199f1a26780b, type: 2}
   waterDefaultLayer: 12
   electricWaterLayer: 13
+  wireOn: 11
+  wireOff: 10
   waterList: []
   isElectric: 0
 --- !u!65 &7863946501769680827

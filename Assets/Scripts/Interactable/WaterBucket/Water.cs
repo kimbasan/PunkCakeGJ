@@ -10,6 +10,9 @@ public class Water: MonoBehaviour
     [SerializeField] private Material electricMaterial;
     [SerializeField] private int waterDefaultLayer;
     [SerializeField] private int electricWaterLayer;
+    [Header("слои провода")]
+    [SerializeField] private int wireOn;
+    [SerializeField] private int wireOff;
 
     [Header("Debug")]
     [SerializeField] private List<GameObject> waterList;
@@ -29,10 +32,15 @@ public class Water: MonoBehaviour
 
         if (other.CompareTag("Wire"))
         {
+            bool electricity = false;
+            if (other.gameObject.layer == wireOn)
+            {
+                electricity= true;
+            }
             foreach (GameObject obj in waterList)
             {
                 var water = obj.GetComponent<Water>();
-                water.Electricity(!isElectric); // Переключить воду в электрическое/неэлектрическое состояние
+                water.Electricity(electricity); // Переключить воду в электрическое/неэлектрическое состояние
             }
         }
     }
