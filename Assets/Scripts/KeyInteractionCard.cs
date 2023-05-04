@@ -8,7 +8,7 @@ public class KeyInteractionCard : MonoBehaviour
     [SerializeField] private Image CardImage;
     [SerializeField] private AudioClip Clip;
     [SerializeField] private AudioSource Source;
-    private PlayerInputActions PlayerInputActions;
+    //private PlayerInputActions PlayerInputActions;
     public bool CheckKeyCard, CheckDoor, AvailabilityKeyCard;
     public Quests quests;
 

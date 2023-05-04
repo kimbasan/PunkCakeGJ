@@ -5,19 +5,40 @@ using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
+    [SerializeField] private GameObject SettingPanel;
+    public bool ActiveSettingPanel;
     public GameObject PauseObject;
     bool CheckPause;
+    private PlayerInputActions PlayerInputActions;
+
+    private void Awake()
+    {
+        PlayerInputActions = new PlayerInputActions();
+        PlayerInputActions.Player.ClosePanel.performed += context => CheckPanel();
+    }
+    private void OnEnable()
+    {
+        PlayerInputActions.Enable();
+    }
+    private void OnDisable()
+    {
+        PlayerInputActions.Disable();
+    }
+    public void CheckPanel()
+    {
+        if(ActiveSettingPanel==false)
+        {
+            Continue();
+        }
+        else if((SettingPanel.activeSelf))
+        {
+            Setting();
+        }
+    }
     private void Start()
     {
         CheckPause = false;
         PauseObject.SetActive(CheckPause);       
-    }
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            Continue();
-        }
     }
     public void Continue()
     {
@@ -32,10 +53,10 @@ public class PauseMenu : MonoBehaviour
             Time.timeScale = 0;
         }
     }
-    public void Restart()
+    public void Setting()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        Time.timeScale = 1;
+        ActiveSettingPanel = !ActiveSettingPanel;
+        SettingPanel.SetActive(ActiveSettingPanel);
     }
     public void Menu(int Level)
     {
