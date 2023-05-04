@@ -44,9 +44,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86f5de4757b0b814e996f67ecb9149f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerMovement: {fileID: 0}
-  cloneMovement: {fileID: 0}
-  clone: {fileID: 0}
-  currentState:
-    cloneStates: []
-    levelFailed: 0
+  _playerPrefab: {fileID: 0}
+  _clonePrefab: {fileID: 0}
+  _clonesList: []
+  _playerSpawner: {fileID: 0}
+  _stepDistance: 0
+  _numberOfSteps: 0
+  LayerMask:
+    serializedVersion: 2
+    m_Bits: 0
+  _numberOfStepsText: {fileID: 0}
+  _deadPanel: {fileID: 0}
+  _securities: []

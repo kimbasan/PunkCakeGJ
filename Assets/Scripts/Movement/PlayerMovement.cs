@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using static LevelController;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -15,11 +16,15 @@ public class PlayerMovement : MonoBehaviour
     public int NumberOfSteps, NumberOfStepsLeft;//1)îáùåå êîëè÷åñâòî õîäîâ, 2)îñòàâøååñÿ êîëè÷åñòâî õîäîâ
     public Text _numberOfStepsText;
     public Interaction interaction;
+    public CameraState MyCameraState;
+
+    public Action PlayerStep;
     /// <summary>
     /// Äàëüíîñòü ïåðåäâèæåíèÿ çà îäèí øàã
     /// </summary>
     [Header("Äàëüíîñòü ïåðåäâèæåíèÿ çà îäèí øàã")]
     public float StepDistance;
+    public bool IsPlayerStep = true;
 
     public enum Movements
     {
@@ -46,12 +51,14 @@ public class PlayerMovement : MonoBehaviour
 
     private void DoAction()
     {
+        NumberOfStepsLeft--;
         RecordMove(Movements.Action);
         interaction?.DoAction();
         PlayerMoved?.Invoke(this, EventArgs.Empty);
     }
     private void DoSecondaryAction()
     {
+        NumberOfStepsLeft--;
         RecordMove(Movements.SecondaryAction);
         interaction?.DoSecondaryAction();
         PlayerMoved?.Invoke(this, EventArgs.Empty);
@@ -67,14 +74,17 @@ public class PlayerMovement : MonoBehaviour
     }
     private void MovePlane(bool stay = false)
     {//âûáîð íàïðàâëåíèÿ
-        if (NumberOfStepsLeft > 0 && _isReady)
+        if (NumberOfStepsLeft > 0 && _isReady && IsPlayerStep)
         {
             MoveDirection = PlayerInputActions.Player.Move.ReadValue<Vector2>();
+            MoveDirection = ChangeDirection(MoveDirection);
+
             Vector3 Move = new Vector3(transform.position.x + MoveDirection.x * StepDistance, transform.position.y, transform.position.z + MoveDirection.y * StepDistance);
             TransformVector = new Vector3(MoveDirection.x, 0, MoveDirection.y);
 
             if (stay)
             {
+                PlayerStep?.Invoke();
                 NumberOfStepsLeft--;
                 _numberOfStepsText.text = NumberOfStepsLeft.ToString();
                 RecordMove(MoveDirection, stay);
@@ -87,6 +97,7 @@ public class PlayerMovement : MonoBehaviour
             else if (CheckPlane()) // Åñëè ìîæíî ïðîéòè
             {
                 // ïîâåðíóòñÿ
+                PlayerStep?.Invoke();
                 transform.rotation = Quaternion.LookRotation(TransformVector);
 
                 StartCoroutine(MoveAnim(Move));//ïåðåìåùåíèå
@@ -163,8 +174,30 @@ public class PlayerMovement : MonoBehaviour
         }
         yield return new WaitForSeconds(0.2f);
         _isReady = true;
-
         // ïðîâåðèòü åñòü ëè ðÿäîì íîâûå îáúåêòû äëÿ äåéñòâèé
         interaction.RayItems();
+    }
+
+    private Vector2 ChangeDirection(Vector2 inputDirection)
+    {
+
+        switch (MyCameraState)
+        {
+            case CameraState.Front:
+                return inputDirection;
+
+            case CameraState.Right:
+                return new Vector2(inputDirection.y, -inputDirection.x);
+
+            case CameraState.Back:
+                return -inputDirection;
+
+            case CameraState.Left:
+                return new Vector2(-inputDirection.y, inputDirection.x);
+
+            default:
+                Debug.LogError("Неопознанное направление камеры!!!");
+                return inputDirection;
+        }
     }
 }
