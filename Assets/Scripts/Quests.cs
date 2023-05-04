@@ -7,8 +7,8 @@ using TMPro;
 public class Quests : MonoBehaviour
 {
     [SerializeField] private GameObject MainQuest;
-    [SerializeField] private GameObject[] AdditionalQuests, EducationalQuests, ProgressOfTheCompletedTask;
-    [SerializeField] private bool[] AdditionalTasksReceivedBool, CompletingTheQuest;
+    public GameObject[] AdditionalQuests, EducationalQuests, ProgressOfTheCompletedTask;
+    public bool[] AdditionalTasksReceivedBool, CompletingTheQuest;
     private int IndexEducation = 0;
 
     private void Start()

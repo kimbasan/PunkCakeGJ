@@ -10,24 +10,25 @@ public class KeyInteractionCard : MonoBehaviour
     [SerializeField] private AudioSource Source;
     private PlayerInputActions PlayerInputActions;
     public bool CheckKeyCard, CheckDoor, AvailabilityKeyCard;
+    public Quests quests;
 
     private void Awake()
     {
-        PlayerInputActions = new PlayerInputActions();
-        PlayerInputActions.Player.Action.performed += context => InteractionWithTheEnvironment();
+        //PlayerInputActions = new PlayerInputActions();
+        //PlayerInputActions.Player.Action.performed += context => InteractionWithTheEnvironment();
         CardImage.enabled = false;
     }
-    private void OnEnable()
-    {
-        PlayerInputActions.Enable();
-    }
-    private void OnDisable()
-    {
-        PlayerInputActions.Disable();
-    }
+    //private void OnEnable()
+    //{
+    //    PlayerInputActions.Enable();
+    //}
+    //private void OnDisable()
+    //{
+    //    PlayerInputActions.Disable();
+    //}
     public void KeyCard()
     {
-        CheckKeyCard = true;
+        CheckKeyCard = !CheckKeyCard;
     }
     public void InteractionWithTheEnvironment()
     {
@@ -37,18 +38,21 @@ public class KeyInteractionCard : MonoBehaviour
             AvailabilityKeyCard = true;
             CheckKeyCard = false;
             CardImage.enabled = true;
-            //GetComponent<FindObject>().ActionText.enabled = false;
+            CheckQuest();
+            quests.ProgressOfTheCompletedTask[0].SetActive(true);
             Destroy(gameObject);
-            //GetComponent<FindObject>().ObjectFind = null;
         }
-        else if(CheckDoor && AvailabilityKeyCard)
+    }
+    void CheckQuest()
+    {
+        bool quest = false;
+        if (quests.AdditionalQuests[0].activeSelf)
         {
-            Debug.Log("Дверь открыта");
+            quest = false;            
         }
-        else if(CheckDoor && AvailabilityKeyCard == false)
+        if(quest == false)
         {
-            Source.PlayOneShot(Clip);
-            Debug.Log("Где карта");
+            quests.AdditionalQuests[0].SetActive(true);
         }
     }
 }
