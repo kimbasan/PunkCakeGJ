@@ -5348,7 +5348,7 @@ MonoBehaviour:
   - {fileID: 8273594991497521244}
   - {fileID: 6278205985662454817}
   - {fileID: 6278205986775410940}
-  AdditionalTasksReceivedBool: 010101
+  AdditionalTasksReceivedBool: 000000
   CompletingTheQuest: 000000
 --- !u!1 &8273594992309914753
 GameObject:

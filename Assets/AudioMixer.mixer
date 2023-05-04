@@ -1,5 +1,38 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!244 &-8148988708928614689
+AudioMixerEffectController:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_EffectID: df242bb100ed5b544b2ed34cba37d044
+  m_EffectName: Attenuation
+  m_MixLevel: ca9593eb1274ae042aa3e1a6dc2c612b
+  m_Parameters: []
+  m_SendTarget: {fileID: 0}
+  m_EnableWetMix: 0
+  m_Bypass: 0
+--- !u!243 &-7108986546285666531
+AudioMixerGroupController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: SFX
+  m_AudioMixer: {fileID: 24100000}
+  m_GroupID: 97663eb478ae91f459fe4d3824ab1d16
+  m_Children: []
+  m_Volume: 6189e1698a9db1d41ad77f8cf48fe170
+  m_Pitch: c0049a336f83a254b882d2ddef42023a
+  m_Send: 00000000000000000000000000000000
+  m_Effects:
+  - {fileID: -8148988708928614689}
+  m_UserColorIndex: 0
+  m_Mute: 0
+  m_Solo: 0
+  m_BypassEffects: 0
 --- !u!243 &-5508325245756512774
 AudioMixerGroupController:
   m_ObjectHideFlags: 0
@@ -51,10 +84,13 @@ AudioMixerController:
   m_ExposedParameters:
   - guid: fab9c46752fed534fb6d98827671bfdb
     name: MusicVolume
+  - guid: 6189e1698a9db1d41ad77f8cf48fe170
+    name: MyExposedParam
   m_AudioMixerGroupViews:
   - guids:
     - 12f7f08c4e9c5534cb9cd5d8ee943505
     - b68750ba18ff7344db4d8984e2ac3d86
+    - 97663eb478ae91f459fe4d3824ab1d16
     name: View
   m_CurrentViewIndex: 0
   m_TargetSnapshot: {fileID: 24500006}
@@ -69,6 +105,7 @@ AudioMixerGroupController:
   m_GroupID: 12f7f08c4e9c5534cb9cd5d8ee943505
   m_Children:
   - {fileID: -5508325245756512774}
+  - {fileID: -7108986546285666531}
   m_Volume: ee7a47013f99fac42a79a098a4b4f1a4
   m_Pitch: e0ca08fec80f81c4aa85fd601aecbad2
   m_Send: 00000000000000000000000000000000
@@ -101,5 +138,6 @@ AudioMixerSnapshotController:
   m_Name: Snapshot
   m_AudioMixer: {fileID: 24100000}
   m_SnapshotID: 79248e0aa74bc974e81a0ba0e3dc0759
-  m_FloatValues: {}
+  m_FloatValues:
+    fab9c46752fed534fb6d98827671bfdb: 0.3945702
   m_TransitionOverrides: {}

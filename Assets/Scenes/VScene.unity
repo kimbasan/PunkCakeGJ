@@ -5353,6 +5353,9 @@ MonoBehaviour:
   Score: {fileID: 76424829}
   Clip: {fileID: 8300000, guid: 48343ff988449804eb7d9572f797ad41, type: 3}
   Source: {fileID: 2130765651}
+  ScoreNum: 0
+  BoolMoney: 0
+  quests: {fileID: 589364333}
 --- !u!4 &429481623 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 02107b40ad274de4bb45085178956901, type: 3}
@@ -5405,6 +5408,33 @@ MonoBehaviour:
   - {fileID: 1469516229}
   - {fileID: 1469516228}
   Outline: {fileID: 429481625}
+--- !u!114 &429481629
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 429481619}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0908f64df4c842c429517c872071791b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interaction:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 429481620}
+        m_TargetAssemblyTypeName: ScoreMoney, Assembly-CSharp
+        m_MethodName: AccountIncrease
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1001 &434733393
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7179,6 +7209,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3862061300789106635, guid: c1992271936e1fc4ea51b5f80504321e, type: 3}
   m_PrefabInstance: {fileID: 584163768}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &589364333 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8273594992305845442, guid: 237ba384226f0c147b50d7e12a12a9a6, type: 3}
+  m_PrefabInstance: {fileID: 1376983929}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e841281ff2efc4b47a32caa2dae85682, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &595504895
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11576,6 +11617,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ElectricalPanel
       objectReference: {fileID: 0}
+    - target: {fileID: 164813950427017910, guid: 5eca3401816d8024898d04d68fc1031d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 164813950427017911, guid: 5eca3401816d8024898d04d68fc1031d, type: 3}
       propertyPath: m_RootOrder
       value: 31
@@ -12017,6 +12062,10 @@ PrefabInstance:
       propertyPath: Source
       value: 
       objectReference: {fileID: 2130765651}
+    - target: {fileID: 1006104785, guid: 0599aa3cadb807c47a3e7e2f88b63f16, type: 3}
+      propertyPath: quests
+      value: 
+      objectReference: {fileID: 589364333}
     - target: {fileID: 1006104785, guid: 0599aa3cadb807c47a3e7e2f88b63f16, type: 3}
       propertyPath: CardImage
       value: 
