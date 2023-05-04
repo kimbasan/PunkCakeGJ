@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class AIPointWay : MonoBehaviour
 {
-    [SerializeField] private Transform _startT;
-    [SerializeField] private Transform _targetT;
+    //[SerializeField] private Transform _startT;
+    //[SerializeField] private Transform _targetT;
     [SerializeField] private LayerMask _layerPlaneTrue;
-    [SerializeField] private GameObject _prefabCurrentStep;
-    private Transform _currentStepTransform;
+    //[SerializeField] private GameObject _prefabCurrentStep;
+    //private Transform _currentStepTransform;
 
     private List<PointWay> _exploredPointsWays;
     private List<PointWay> _routePoints;
@@ -19,49 +19,72 @@ public class AIPointWay : MonoBehaviour
 
     [SerializeField] private float _stepDistance;
     private bool _isFindRoute;
+    public bool IsFinish;
 
     private void Awake()
     {
         _startPoint = new PointWay();
-        _startPoint.Position = new Vector2(_startT.position.x, _startT.position.z);
+        //_startPoint.Position = new Vector2(_startT.position.x, _startT.position.z);
 
         _targetPoint = new PointWay();
-        _targetPoint.Position = new Vector2(_targetT.position.x, _targetT.position.z);
+        //_targetPoint.Position = new Vector2(_targetT.position.x, _targetT.position.z);
 
         _exploredPointsWays = new List<PointWay>();
         _currentPoint = _startPoint;
         _exploredPointsWays.Add(_currentPoint);
-        _currentStepTransform = Instantiate(_prefabCurrentStep).GetComponent<Transform>();
+        //_currentStepTransform = Instantiate(_prefabCurrentStep).GetComponent<Transform>();
 
         _routePoints = new List<PointWay>();
 
-        GoToPoint(_currentPoint, transform);
-        GoToPoint(_currentPoint, _currentStepTransform);
+        //GoToPoint(_currentPoint, transform);
+        //GoToPoint(_currentPoint, _currentStepTransform);
     }
 
-    private void Update()
+    //private void Update()
+    //{
+    //    if (Input.GetKeyDown(KeyCode.H))
+    //    {
+    //        if (_isFindRoute == false)
+    //        {
+    //            SearchStep();
+    //        }
+    //    }
+    //    else if (Input.GetKeyDown(KeyCode.M))
+    //    {
+    //        if (_isFindRoute)
+    //        {
+    //            MoveStep();
+    //        }
+    //    }
+    //}
+
+    public void SetStartAndEndPoints(Vector3 startPoint, Vector3 endPoint)
     {
-        if (Input.GetKeyDown(KeyCode.H))
+        _startPoint.Position = new Vector2(startPoint.x, startPoint.z);
+        _targetPoint.Position = new Vector2(endPoint.x, endPoint.z);
+        _currentPoint = _startPoint;
+        _currentPoint.NearPoints.Clear();
+        _currentIndexRoutePoint = 0;
+        _isFindRoute = false;
+        IsFinish = false;
+        _exploredPointsWays.Clear();
+        _routePoints.Clear();
+    }
+
+    public void SearhRoute()
+    {
+        while (_isFindRoute == false)
         {
-            if (_isFindRoute == false)
-            {
-                Step();
-            }
-        }
-        else if (Input.GetKeyDown(KeyCode.M))
-        {
-            if (_isFindRoute)
-            {
-                MoveStep();
-            }
+            SearchStep();
         }
     }
 
-    public void Step()
+    private void SearchStep()
     {
         if (_currentPoint == null)
         {
             Debug.LogError("Не возможно пройти до точки!!!");
+            _isFindRoute = true;
             return;
         }
 
@@ -87,12 +110,12 @@ public class AIPointWay : MonoBehaviour
         if (_currentPoint.CheckHaveOpenPoints() == false)
         {
             _currentPoint = GetMinOpenExploredPoint();
-            GoToPoint(_currentPoint, _currentStepTransform);
+            //GoToPoint(_currentPoint, _currentStepTransform);
             return;
         }
 
         _currentPoint = _currentPoint.GetMinOpenNearPoint();
-        GoToPoint(_currentPoint, _currentStepTransform);
+       //GoToPoint(_currentPoint, _currentStepTransform);
 
         if (_currentPoint.Position == _targetPoint.Position)
         {
@@ -103,22 +126,31 @@ public class AIPointWay : MonoBehaviour
 
     public void MoveStep()
     {
-        GoToPoint(_routePoints[_currentIndexRoutePoint], transform);
+        if (_currentIndexRoutePoint > _routePoints.Count - 1)
+        {
+            Debug.LogError("Сбой в поиске пути!");
+            IsFinish = true;
+            return;
+        }
+
         if (_currentIndexRoutePoint == _routePoints.Count - 1)
         {
+            IsFinish = true;
             return;
         }
         _currentIndexRoutePoint += 1;
+        GoToPoint(_routePoints[_currentIndexRoutePoint], transform);
     }
 
     private bool CheckPlane(Vector2 direction2)
     {
+        Vector3 currentPosition = new Vector3(_currentPoint.Position.x, 0, _currentPoint.Position.y);
         bool movable = false;
         Vector3 direction = new Vector3(direction2.x, 0, direction2.y);
         RaycastHit Hit;
-        Ray Ray = new Ray(_currentStepTransform.position, direction);//направляет луч
-        Debug.DrawRay(Ray.origin, Ray.direction * 1.5f);//рисует луч (короткий промежуток)
-        if (Physics.Raycast(_currentStepTransform.position, direction, out Hit, 1.5f, _layerPlaneTrue))//проверка, есть ли в направлении Collider со слоем
+        Ray Ray = new Ray(currentPosition, direction);//направляет луч
+        Debug.DrawRay(Ray.origin, Ray.direction * _stepDistance);//рисует луч (короткий промежуток)
+        if (Physics.Raycast(currentPosition, direction, out Hit, _stepDistance, _layerPlaneTrue))//проверка, есть ли в направлении Collider со слоем
         {
             movable = true;
         }

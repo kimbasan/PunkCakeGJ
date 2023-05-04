@@ -1,10 +1,13 @@
+using Cinemachine;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using static LevelController;
 
 public class LevelController: MonoBehaviour
 {
@@ -22,19 +25,34 @@ public class LevelController: MonoBehaviour
 
     [SerializeField] public Text _numberOfStepsText;
     [SerializeField] private GameObject _deadPanel;
-
+    [SerializeField] private List<SecurityController> _securities;
+    [SerializeField] private List<CinemachineVirtualCamera> _cams;
+    private int _currentCameraIndex = 0;
 
     private GameObject _player;
     private PlayerMovement _playerMovement;
     private Vector3 _startClonePosition;
     private Quaternion _startCloneRotation;
     public Action _cloneEvent;
+    public Action BotStep;
+
+    public enum CameraState
+    {
+        Front,
+        Right,
+        Back,
+        Left
+    }
 
     private void Awake()
     {
         //запоминаем позицию с которой клон начнет
         _player = Instantiate(_playerPrefab, _playerSpawner.position, _playerSpawner.rotation);
         _clonesList = new List<CloneMovement>();
+        for (int i = 0; i < _cams.Count; i++)
+        {
+            _cams[i].Follow = _player.transform;
+        }
     }
 
     private void Start()
@@ -45,6 +63,55 @@ public class LevelController: MonoBehaviour
         _playerMovement.StepDistance = _stepDistance;
         _playerMovement.NumberOfSteps = _numberOfSteps;
         _playerMovement.NumberOfStepsLeft = _numberOfSteps;
+        _playerMovement.PlayerStep += PlayerStep;
+        SecuritiesInitialize();
+    }
+
+    private void CameraLeft()
+    {
+        if (_playerMovement.MyCameraState == CameraState.Left)
+        {
+            _playerMovement.MyCameraState = CameraState.Front;
+        }
+        else
+        {
+            _playerMovement.MyCameraState++;
+        }
+
+        if (_currentCameraIndex == _cams.Count - 1)
+        {
+            _currentCameraIndex = 0;
+            _cams[_currentCameraIndex].gameObject.SetActive(true);
+            _cams[_cams.Count - 1].gameObject.SetActive(false);
+            return;
+        }
+        _currentCameraIndex++;
+        _cams[_currentCameraIndex].gameObject.SetActive(true);
+        _cams[_currentCameraIndex - 1].gameObject.SetActive(false);
+    }
+
+    private void CameraRight()
+    {
+        if (_playerMovement.MyCameraState == 0)
+        {
+            _playerMovement.MyCameraState = CameraState.Left;
+        }
+        else
+        {
+            _playerMovement.MyCameraState--;
+        }
+
+
+        if (_currentCameraIndex == 0)
+        {
+            _currentCameraIndex = _cams.Count - 1;
+            _cams[_currentCameraIndex].gameObject.SetActive(true);
+            _cams[0].gameObject.SetActive(false);
+            return;
+        }
+        _currentCameraIndex--;
+        _cams[_currentCameraIndex].gameObject.SetActive(true);
+        _cams[_currentCameraIndex + 1].gameObject.SetActive(false);
     }
 
     public void ReloadLevel()
@@ -55,6 +122,7 @@ public class LevelController: MonoBehaviour
     public void StartNextClone()
     {
         _cloneEvent?.Invoke();
+
         CloneMovement currentClone;
         if (_clonesList.Count == 0)
         {
@@ -84,5 +152,44 @@ public class LevelController: MonoBehaviour
     public void Dead()
     {
         _deadPanel.SetActive(true);
+    }
+
+    public void PlayerStep()
+    {
+        _playerMovement.IsPlayerStep = false;
+        MStep(BotStep);
+    }
+
+    private IEnumerator TimerStep()
+    {
+        yield return new WaitForSeconds(1);
+        _playerMovement.IsPlayerStep = true;
+    }
+
+    private void MStep(Action action)
+    {
+        action?.Invoke();
+        StartCoroutine(TimerStep());
+    }
+
+    private void SecuritiesInitialize()
+    {
+        for (int i = 0; i < _securities.Count; i++)
+        {
+            BotStep += _securities[i].Step;
+            _cloneEvent += _securities[i].RestartPosition;
+        }
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            CameraLeft();
+        }
+        else if (Input.GetKeyDown(KeyCode.E))
+        {
+            CameraRight();
+        }
     }
 }
