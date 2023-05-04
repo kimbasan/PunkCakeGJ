@@ -8,24 +8,10 @@ public class ScoreMoney : MonoBehaviour
     [SerializeField] private TextMeshProUGUI Score;
     [SerializeField] private AudioClip Clip;
     [SerializeField] private AudioSource Source;
-    private PlayerInputActions PlayerInputActions;
     public int ScoreNum;
     public bool BoolMoney;
     public Quests quests;
 
-    //private void Awake()
-    //{
-    //    PlayerInputActions = new PlayerInputActions();
-    //    PlayerInputActions.Player.Action.performed += context => AccountIncrease();
-    //}
-    //private void OnEnable()
-    //{
-    //    PlayerInputActions.Enable();
-    //}
-    //private void OnDisable()
-    //{
-    //    PlayerInputActions.Disable();
-    //}
     private void Start()
     {
         ScoreNum = 0;
