@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 4299789388492436474}
   m_Layer: 8
   m_Name: cable
-  m_TagString: Untagged
+  m_TagString: Wire
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -97,8 +97,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 200.00005, y: 100, z: 3.3187435}
-  m_Center: {x: 0.000030517578, y: 1.6593715, z: -0.00000005960466}
+  m_Size: {x: 200.00005, y: 100, z: 120}
+  m_Center: {x: 0.000030517578, y: 1.6593715, z: -35}
 --- !u!114 &4299789388492436469
 MonoBehaviour:
   m_ObjectHideFlags: 0
