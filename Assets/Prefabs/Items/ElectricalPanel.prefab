@@ -30,9 +30,83 @@ Transform:
   m_Children:
   - {fileID: 5488019763317130943}
   - {fileID: 4902943152830542766}
+  - {fileID: 1515878262345261686}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1780611437247981362
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 164813950427017911}
+    m_Modifications:
+    - target: {fileID: 990646321012180292, guid: 6c0712a12b7d6634f8fedc45bee26fa6, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 990646321012180292, guid: 6c0712a12b7d6634f8fedc45bee26fa6, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.299
+      objectReference: {fileID: 0}
+    - target: {fileID: 990646321012180292, guid: 6c0712a12b7d6634f8fedc45bee26fa6, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.784
+      objectReference: {fileID: 0}
+    - target: {fileID: 990646321012180292, guid: 6c0712a12b7d6634f8fedc45bee26fa6, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.023
+      objectReference: {fileID: 0}
+    - target: {fileID: 990646321012180292, guid: 6c0712a12b7d6634f8fedc45bee26fa6, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 990646321012180292, guid: 6c0712a12b7d6634f8fedc45bee26fa6, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 990646321012180292, guid: 6c0712a12b7d6634f8fedc45bee26fa6, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 990646321012180292, guid: 6c0712a12b7d6634f8fedc45bee26fa6, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 990646321012180292, guid: 6c0712a12b7d6634f8fedc45bee26fa6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 990646321012180292, guid: 6c0712a12b7d6634f8fedc45bee26fa6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 990646321012180292, guid: 6c0712a12b7d6634f8fedc45bee26fa6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8848008412477575100, guid: 6c0712a12b7d6634f8fedc45bee26fa6, type: 3}
+      propertyPath: m_Name
+      value: LightBulb
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 6c0712a12b7d6634f8fedc45bee26fa6, type: 3}
+--- !u!4 &1515878262345261686 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 990646321012180292, guid: 6c0712a12b7d6634f8fedc45bee26fa6, type: 3}
+  m_PrefabInstance: {fileID: 1780611437247981362}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1897490588926335550 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 208077113124732172, guid: 6c0712a12b7d6634f8fedc45bee26fa6, type: 3}
+  m_PrefabInstance: {fileID: 1780611437247981362}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0363b28e358823849a208e8cd58b771e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &5450452417703977300
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -120,6 +194,27 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 50, y: 100, z: 50}
   m_Center: {x: 0, y: 50, z: 0}
+--- !u!95 &2792915746025936380
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5143827971624606725}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 7970875abb3c92444add4ee0dc485c0e, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &1250820066636344567
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -196,8 +291,8 @@ MonoBehaviour:
   connectedWires:
   - {fileID: 0}
   startingElectricityOn: 1
-  electricityOnMaterial: {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
-  electricityOffMaterial: {fileID: 2100000, guid: 2acb86b0e9ba5324e911199f1a26780b, type: 2}
+  boxAnimator: {fileID: 2792915746025936380}
+  lightController: {fileID: 1897490588926335550}
 --- !u!4 &5488019763317130943 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 8fa65ac34c5a79f4296e6651fb32314e, type: 3}

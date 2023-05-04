@@ -6,11 +6,12 @@ public class ElectricalPanel : MonoBehaviour
     [SerializeField] private List<Wire> connectedWires;
 
     [SerializeField] private bool startingElectricityOn;
+    [SerializeField] private Animator boxAnimator;
+    [SerializeField] private LightController lightController;
+
     private bool electricityOn;
 
-    [SerializeField] private Material electricityOnMaterial;
-    [SerializeField] private Material electricityOffMaterial;
-    private MeshRenderer meshRenderer;
+    private readonly string animParam = "electricity";
     private void Start()
     {
         var levelController = FindAnyObjectByType<LevelController>();
@@ -18,23 +19,17 @@ public class ElectricalPanel : MonoBehaviour
         {
             levelController._cloneEvent += ResetPanel;
         }
-        meshRenderer = GetComponent<MeshRenderer>();
         ResetPanel();
     }
     public void SwitchElectricity()
     {
         electricityOn= !electricityOn;
-        if (!electricityOn)
-        {
-            meshRenderer.material = electricityOffMaterial;
-        } else
-        {
-            meshRenderer.material = electricityOnMaterial;
-        }
+        lightController.SetLight(electricityOn);
         Debug.Log("Electricity On=" + electricityOn);
+        boxAnimator.SetBool(animParam, electricityOn);
         foreach (Wire wire in connectedWires)
         {
-            wire.SetElectricity(electricityOn);
+            wire?.SetElectricity(electricityOn);
         }
     }
 
@@ -43,9 +38,10 @@ public class ElectricalPanel : MonoBehaviour
         electricityOn = startingElectricityOn;
         foreach(Wire wire in connectedWires)
         {
-            wire.ResetWire(startingElectricityOn);
+            wire?.ResetWire(startingElectricityOn);
         }
-        meshRenderer.material= electricityOnMaterial;
+        lightController.SetLight(electricityOn);
+        boxAnimator.SetBool(animParam, electricityOn);
     }
 
 }
