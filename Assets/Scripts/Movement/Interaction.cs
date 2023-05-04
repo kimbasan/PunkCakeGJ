@@ -26,6 +26,7 @@ public class Interaction : MonoBehaviour
         { 
             if (ItemsArray[j] != null)
             {
+                CheckAction(j);
                 TextActionOFF(j);
                 ItemsArray[j] = null;
             }
@@ -43,6 +44,7 @@ public class Interaction : MonoBehaviour
                     {
                         ItemsArray[j] = Hit.collider.gameObject;
                         TextActionOn(j);
+                        CheckAction(j);
                     }
                 }
             }
@@ -55,9 +57,33 @@ public class Interaction : MonoBehaviour
             ItemsArray[0] = ItemsArray[1];
             TextActionOn(0);
             ItemsArray[1] = null;
-        }
+        }       
     }
-
+    public void CheckAction(int Index)
+    {
+        if(ItemsArray[Index] != null)
+        {
+            if (ItemsArray[Index].GetComponent<KeyInteractionCard>() != null)
+            {
+                ItemsArray[Index].GetComponent<KeyInteractionCard>().KeyCard();
+            }
+            else if (ItemsArray[Index].GetComponent<ScoreMoney>() != null)
+            {
+                ItemsArray[Index].GetComponent<ScoreMoney>().CheckMoney();
+            }
+        }
+        //for (int i = 0; i < ItemsArray.Length; i++)
+        //{
+        //    if (ItemsArray[i] != null && ItemsArray[i].GetComponent<KeyInteractionCard>() != null)
+        //    {
+        //        ItemsArray[i].GetComponent<KeyInteractionCard>().KeyCard();
+        //    }
+        //    else if (ItemsArray[i] != null && ItemsArray[i].GetComponent<ScoreMoney>() != null)
+        //    {
+        //        ItemsArray[i].GetComponent<ScoreMoney>().CheckMoney();
+        //    }
+        //}
+    }
     public void TextActionOn(int Index)
     {
         if (ItemsArray[Index] != null)

@@ -90,4 +90,88 @@
 			<ru>Победил</ru>
 		</Translates>
 	</Key>
+	<Key Name="Quests">
+		<Translates/>
+	</Key>
+	<Key Name="TheMainQuest_Key">
+		<Translates>
+			<en-us>&lt;size=12&gt;Release the host :</en-us>
+			<ru>&lt;size=12&gt;Освободить хозяина :</ru>
+		</Translates>
+	</Key>
+	<Key Name="FindTheKeycard_Key">
+		<Translates>
+			<en-us>&lt;size=12&gt;Find the key card</en-us>
+			<ru>&lt;size=12&gt;Найти ключ-карту</ru>
+		</Translates>
+	</Key>
+	<Key Name="CollectGlitter_Key">
+		<Translates>
+			<en-us>&lt;size=12&gt;Collect glitter</en-us>
+			<ru>&lt;size=12&gt;Собрать блестяшки</ru>
+		</Translates>
+	</Key>
+	<Key Name="NeutralizeGuard_Key">
+		<Translates>
+			<en-us>&lt;size=12&gt;Neutralize a guard with a walkie-talkie</en-us>
+			<ru>&lt;size=12&gt;Нейтрализовать охранника с рацией</ru>
+		</Translates>
+	</Key>
+	<Key Name="Education">
+		<Translates/>
+	</Key>
+	<Key Name="Education1_Key">
+		<Translates>
+			<en-us>Move</en-us>
+			<ru>Передвижение </ru>
+		</Translates>
+	</Key>
+	<Key Name="Education2_Key">
+		<Translates>
+			<en-us>Rotation</en-us>
+			<ru>Поворот </ru>
+		</Translates>
+	</Key>
+	<Key Name="Education3_Key">
+		<Translates>
+			<en-us>Open the door</en-us>
+			<ru>Открытие двери </ru>
+		</Translates>
+	</Key>
+	<Key Name="Education4_Key">
+		<Translates>
+			<en-us>Teleport</en-us>
+			<ru>Телепортация </ru>
+		</Translates>
+	</Key>
+	<Key Name="Education5_Key">
+		<Translates>
+			<en-us>Wait</en-us>
+			<ru>Ожидание </ru>
+		</Translates>
+	</Key>
+	<Key Name="Education6_Key">
+		<Translates>
+			<en-us>Treasure selection</en-us>
+			<ru>Подбор сокровища </ru>
+		</Translates>
+	</Key>
+	<Key Name="Education7_Key">
+		<Translates>
+			<en-us>Switching the switch</en-us>
+			<ru>Переключение рубильника</ru>
+		</Translates>
+	</Key>
+	<Key Name="Education8_Key">
+		<Translates>
+			<en-us>Wire snacking</en-us>
+			<ru>Перекусывание провода </ru>
+		</Translates>
+	</Key>
+	<Key Name="Education9_Key">
+		<Translates>
+			<en-us>Water spill</en-us>
+			<ru>Разлитие воды </ru>
+		</Translates>
+	</Key>
 </Keys>

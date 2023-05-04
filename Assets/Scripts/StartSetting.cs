@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class StartSetting : MonoBehaviour
 {
+    //private void Awake()
+    //{
+    //    Screen.SetResolution(2560, 1080, true);
+    //}
     public void NewGame()
     {
         PlayerPrefs.SetInt("Health", 4);

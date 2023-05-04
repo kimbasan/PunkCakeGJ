@@ -1,6 +1,4 @@
-using System;
 using UnityEngine;
-using UnityEngine.Events;
 
 public class Wire : MonoBehaviour
 {
@@ -8,17 +6,15 @@ public class Wire : MonoBehaviour
     public int electricityOnLayer;
     public int electricityOffLayer;
 
-    public Material normalMaterial;
-    public Material tearedMaterial;
+    public MeshRenderer normalMesh;
+    public GameObject tearedVisuals;
 
     [Header("Debug")]    
     [SerializeField] private bool electricityOn;
     [SerializeField] private bool isTeared;
-    private MeshRenderer meshRenderer;
 
     private void Awake()
     {
-        meshRenderer= GetComponent<MeshRenderer>();
         electricityOn = true;
         isTeared = false;
     }
@@ -54,7 +50,10 @@ public class Wire : MonoBehaviour
         {
             // порвать кабель
             isTeared = true;
-            meshRenderer.material = tearedMaterial;
+
+            normalMesh.enabled = false;
+            tearedVisuals.SetActive(true);
+
             this.gameObject.layer = electricityOffLayer;
             Debug.Log("Wire teared");
         }
@@ -64,7 +63,10 @@ public class Wire : MonoBehaviour
     {
         electricityOn = electricity;
         isTeared = false;
-        meshRenderer.material = normalMaterial;
+
+        normalMesh.enabled = true;
+        tearedVisuals.SetActive(false);
+
         gameObject.layer = interactableLayer;
     }
 }
