@@ -42,18 +42,9 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "CameraRight",
+                    "name": "ClosePanel",
                     "type": "Button",
-                    "id": "b4239d03-c18f-44be-be82-52f2791799d3",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "CameraLeft",
-                    "type": "Button",
-                    "id": "dc26c7f7-52ed-45c7-9590-b00dc495da3e",
+                    "id": "08bc2f3c-1bb4-4930-9d73-7fc1d17bae8b",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -151,23 +142,12 @@
                 },
                 {
                     "name": "",
-                    "id": "ebaf8b30-c9d5-4892-9773-93e2ecf5fb70",
-                    "path": "<Keyboard>/e",
+                    "id": "0bc38065-dd04-415f-bcb9-df71355dc62f",
+                    "path": "<Keyboard>/escape",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "CameraRight",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "92f0a19f-812b-4925-ac5b-9944e3784a3f",
-                    "path": "<Keyboard>/q",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "CameraLeft",
+                    "action": "ClosePanel",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

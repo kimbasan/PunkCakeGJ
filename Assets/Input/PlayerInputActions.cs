@@ -64,18 +64,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""CameraRight"",
+                    ""name"": ""ClosePanel"",
                     ""type"": ""Button"",
-                    ""id"": ""b4239d03-c18f-44be-be82-52f2791799d3"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""CameraLeft"",
-                    ""type"": ""Button"",
-                    ""id"": ""dc26c7f7-52ed-45c7-9590-b00dc495da3e"",
+                    ""id"": ""08bc2f3c-1bb4-4930-9d73-7fc1d17bae8b"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -173,23 +164,12 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""ebaf8b30-c9d5-4892-9773-93e2ecf5fb70"",
-                    ""path"": ""<Keyboard>/e"",
+                    ""id"": ""0bc38065-dd04-415f-bcb9-df71355dc62f"",
+                    ""path"": ""<Keyboard>/escape"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""CameraRight"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""92f0a19f-812b-4925-ac5b-9944e3784a3f"",
-                    ""path"": ""<Keyboard>/q"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""CameraLeft"",
+                    ""action"": ""ClosePanel"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -204,8 +184,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         m_Player_Stay = m_Player.FindAction("Stay", throwIfNotFound: true);
         m_Player_Action = m_Player.FindAction("Action", throwIfNotFound: true);
         m_Player_SecondaryAction = m_Player.FindAction("SecondaryAction", throwIfNotFound: true);
-        m_Player_CameraRight = m_Player.FindAction("CameraRight", throwIfNotFound: true);
-        m_Player_CameraLeft = m_Player.FindAction("CameraLeft", throwIfNotFound: true);
+        m_Player_ClosePanel = m_Player.FindAction("ClosePanel", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -271,8 +250,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Stay;
     private readonly InputAction m_Player_Action;
     private readonly InputAction m_Player_SecondaryAction;
-    private readonly InputAction m_Player_CameraRight;
-    private readonly InputAction m_Player_CameraLeft;
+    private readonly InputAction m_Player_ClosePanel;
     public struct PlayerActions
     {
         private @PlayerInputActions m_Wrapper;
@@ -281,8 +259,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         public InputAction @Stay => m_Wrapper.m_Player_Stay;
         public InputAction @Action => m_Wrapper.m_Player_Action;
         public InputAction @SecondaryAction => m_Wrapper.m_Player_SecondaryAction;
-        public InputAction @CameraRight => m_Wrapper.m_Player_CameraRight;
-        public InputAction @CameraLeft => m_Wrapper.m_Player_CameraLeft;
+        public InputAction @ClosePanel => m_Wrapper.m_Player_ClosePanel;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -304,12 +281,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @SecondaryAction.started += instance.OnSecondaryAction;
             @SecondaryAction.performed += instance.OnSecondaryAction;
             @SecondaryAction.canceled += instance.OnSecondaryAction;
-            @CameraRight.started += instance.OnCameraRight;
-            @CameraRight.performed += instance.OnCameraRight;
-            @CameraRight.canceled += instance.OnCameraRight;
-            @CameraLeft.started += instance.OnCameraLeft;
-            @CameraLeft.performed += instance.OnCameraLeft;
-            @CameraLeft.canceled += instance.OnCameraLeft;
+            @ClosePanel.started += instance.OnClosePanel;
+            @ClosePanel.performed += instance.OnClosePanel;
+            @ClosePanel.canceled += instance.OnClosePanel;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -326,12 +300,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @SecondaryAction.started -= instance.OnSecondaryAction;
             @SecondaryAction.performed -= instance.OnSecondaryAction;
             @SecondaryAction.canceled -= instance.OnSecondaryAction;
-            @CameraRight.started -= instance.OnCameraRight;
-            @CameraRight.performed -= instance.OnCameraRight;
-            @CameraRight.canceled -= instance.OnCameraRight;
-            @CameraLeft.started -= instance.OnCameraLeft;
-            @CameraLeft.performed -= instance.OnCameraLeft;
-            @CameraLeft.canceled -= instance.OnCameraLeft;
+            @ClosePanel.started -= instance.OnClosePanel;
+            @ClosePanel.performed -= instance.OnClosePanel;
+            @ClosePanel.canceled -= instance.OnClosePanel;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -355,7 +326,6 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         void OnStay(InputAction.CallbackContext context);
         void OnAction(InputAction.CallbackContext context);
         void OnSecondaryAction(InputAction.CallbackContext context);
-        void OnCameraRight(InputAction.CallbackContext context);
-        void OnCameraLeft(InputAction.CallbackContext context);
+        void OnClosePanel(InputAction.CallbackContext context);
     }
 }

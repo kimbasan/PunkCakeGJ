@@ -44,15 +44,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86f5de4757b0b814e996f67ecb9149f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerPrefab: {fileID: 0}
-  _clonePrefab: {fileID: 0}
+  _playerPrefab: {fileID: 219280391053254569, guid: 86faf74771a23ad4abb0d3e855edac97, type: 3}
+  _clonePrefab: {fileID: 6801387431451510759, guid: af674a6ab6203c34cb70e5355b44a921, type: 3}
   _clonesList: []
   _playerSpawner: {fileID: 0}
-  _stepDistance: 0
-  _numberOfSteps: 0
+  _stepDistance: 2
+  _numberOfSteps: 100
   LayerMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
   _numberOfStepsText: {fileID: 0}
   _deadPanel: {fileID: 0}
   _securities: []
+  _cams: []
