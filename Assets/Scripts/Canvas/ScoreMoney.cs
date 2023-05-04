@@ -5,7 +5,7 @@ using TMPro;
 
 public class ScoreMoney : MonoBehaviour
 {
-    [SerializeField] private TextMeshProUGUI Score;
+    [SerializeField] private TextMeshProUGUI Score, ScoreTextNum;
     [SerializeField] private AudioClip Clip;
     [SerializeField] private AudioSource Source;
     public int ScoreNum;
@@ -15,7 +15,8 @@ public class ScoreMoney : MonoBehaviour
     private void Start()
     {
         ScoreNum = 0;
-        Score.text = ScoreNum.ToString();
+        ScoreTextNum.text = ScoreNum.ToString();
+        Score.text = $"{ScoreNum} / 6";
     }
     public void CheckMoney()
     {
@@ -26,16 +27,17 @@ public class ScoreMoney : MonoBehaviour
         if (BoolMoney)
         {
             Source.PlayOneShot(Clip);
-            ScoreNum = int.Parse(Score.text);
+            ScoreNum = int.Parse(ScoreTextNum.text);
             ScoreNum++;
-            Score.text = ScoreNum.ToString();
+            ScoreTextNum.text = ScoreNum.ToString();
+            Score.text = $"{ScoreNum} / 6";
             BoolMoney = false;
             Destroy(gameObject);
             if(ScoreNum == 1)
             {
                 quests.AdditionalQuests[1].SetActive(true);
             }
-            if (ScoreNum == 3)
+            if (ScoreNum == 6)
             {
                 quests.ProgressOfTheCompletedTask[1].SetActive(true);
             }
