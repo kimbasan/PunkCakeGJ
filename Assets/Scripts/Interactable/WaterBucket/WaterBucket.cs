@@ -12,12 +12,12 @@ public class WaterBucket : MonoBehaviour
     [SerializeField] private int interactableLayer;
     [SerializeField] private int usedLayer;
     [SerializeField] private AssignmentOfKeyInteraction buttonVisual;
+    [SerializeField] private GameObject waterInBucket;
 
     [SerializeField] private Queue<GameObject> tilesToWater;
     [SerializeField] private List<GameObject> wateredTiles; // для отката
-
+    private Transform startingTransform;
     private bool pushed = false;
-
 
     private PlayerMovement playerMovement;
     private Vector3 waterDirection;
@@ -28,6 +28,7 @@ public class WaterBucket : MonoBehaviour
         playerMovement = FindAnyObjectByType<PlayerMovement>();
         levelController = FindAnyObjectByType<LevelController>();
         levelController._cloneEvent += ResetBucket;
+        startingTransform = transform;
     }
 
     public void PushBucket(Vector3 actorPosition, bool isClone = false)
@@ -43,7 +44,11 @@ public class WaterBucket : MonoBehaviour
             // найти направление куда лить
             Vector3 actor = new Vector3(actorPosition.x, 0, actorPosition.z);
             Vector3 bucket = new Vector3(transform.position.x, 0, transform.position.z);
-            var direction = bucket - actor;
+            var direction = (bucket - actor).normalized;
+            Debug.Log("direction " + direction);
+            transform.position = new Vector3(transform.position.x, transform.position.y + 0.2f, transform.position.z);
+            transform.rotation = Quaternion.Euler(0, GetAngle(direction), -90);
+
             // начать разливать воду
             Activate(direction.normalized, isClone);
 
@@ -52,9 +57,32 @@ public class WaterBucket : MonoBehaviour
             buttonVisual?.TurningOffText();
 
             pushed= true;
+
+            waterInBucket.SetActive(false);
         }
     }
 
+    private float GetAngle(Vector3 direction)
+    {
+        float angle = 0;
+        if (Math.Round(direction.x) < 0)
+        {
+            angle = 180;
+        }
+        if (Math.Round(direction.x) > 0)
+        {
+            angle = 0;
+        }
+        if (Math.Round(direction.z) < 0)
+        {
+            angle = 90;
+        }
+        if (Math.Round(direction.z) > 0)
+        {
+            angle = -90;
+        }
+        return angle;
+    }
 
     private void Activate(Vector3 direction, bool isClone)
     {
@@ -146,6 +174,11 @@ public class WaterBucket : MonoBehaviour
         {
             playerMovement.PlayerMoved -= PlayerMovement_PlayerMoved;
         }
+
+        transform.rotation = startingTransform.rotation;
+        transform.position = startingTransform.position;
+
+        waterInBucket.SetActive(true);
     }
 
 }
