@@ -6,41 +6,53 @@ using UnityEngine.UI;
 public class KeyInteractionCard : MonoBehaviour
 {
     [SerializeField] private Image CardImage;
+    [SerializeField] private AudioClip Clip;
+    [SerializeField] private AudioSource Source;
     private PlayerInputActions PlayerInputActions;
     public bool CheckKeyCard, CheckDoor, AvailabilityKeyCard;
+    public Quests quests;
 
     private void Awake()
     {
-        PlayerInputActions = new PlayerInputActions();
-        PlayerInputActions.Player.Action.performed += context => InteractionWithTheEnvironment();
+        //PlayerInputActions = new PlayerInputActions();
+        //PlayerInputActions.Player.Action.performed += context => InteractionWithTheEnvironment();
         CardImage.enabled = false;
     }
-    private void OnEnable()
+    //private void OnEnable()
+    //{
+    //    PlayerInputActions.Enable();
+    //}
+    //private void OnDisable()
+    //{
+    //    PlayerInputActions.Disable();
+    //}
+    public void KeyCard()
     {
-        PlayerInputActions.Enable();
-    }
-    private void OnDisable()
-    {
-        PlayerInputActions.Disable();
+        CheckKeyCard = !CheckKeyCard;
     }
     public void InteractionWithTheEnvironment()
     {
         if (CheckKeyCard)
         {
+            Source.PlayOneShot(Clip);
             AvailabilityKeyCard = true;
             CheckKeyCard = false;
             CardImage.enabled = true;
-            GetComponent<FindObject>().ActionText.enabled = false;
-            Destroy(GetComponent<FindObject>().ObjectFind.GetComponent<ParentSearch>().Parent);
-            GetComponent<FindObject>().ObjectFind = null;
+            CheckQuest();
+            quests.ProgressOfTheCompletedTask[0].SetActive(true);
+            Destroy(gameObject);
         }
-        else if(CheckDoor && AvailabilityKeyCard)
+    }
+    void CheckQuest()
+    {
+        bool quest = false;
+        if (quests.AdditionalQuests[0].activeSelf)
         {
-            Debug.Log("Дверь открыта");
+            quest = false;            
         }
-        else if(CheckDoor && AvailabilityKeyCard == false)
+        if(quest == false)
         {
-            Debug.Log("Где карта");
+            quests.AdditionalQuests[0].SetActive(true);
         }
     }
 }

@@ -109,13 +109,13 @@ GameObject:
   m_Component:
   - component: {fileID: 4444980678276070346}
   - component: {fileID: 4444980678276070347}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: Trigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &4444980678276070346
 Transform:
   m_ObjectHideFlags: 0

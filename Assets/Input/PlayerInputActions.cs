@@ -37,9 +37,27 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
+                    ""name"": ""Stay"",
+                    ""type"": ""Button"",
+                    ""id"": ""a559f9d3-4a70-4d89-bc3a-b4545749e5b7"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
                     ""name"": ""Action"",
                     ""type"": ""Button"",
-                    ""id"": ""c42e51e5-a9de-483d-84d5-a1f50f24b586"",
+                    ""id"": ""7a7c147d-c713-4aaf-bff6-ab865b778f12"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SecondaryAction"",
+                    ""type"": ""Button"",
+                    ""id"": ""c6966439-cf26-4561-909a-d6c9f92a316b"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -104,12 +122,34 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""9766ddd8-8fad-4f92-9390-df0bf4c1a57b"",
-                    ""path"": ""<Keyboard>/e"",
+                    ""id"": ""2e0dfef5-e124-4746-99c2-54aa26466b59"",
+                    ""path"": ""<Keyboard>/x"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Stay"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""867546e5-6d57-43d4-bda1-7e4e9701ddf1"",
+                    ""path"": ""<Keyboard>/r"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Action"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ced73c2f-d0bd-4af0-94d9-8dcf524f5819"",
+                    ""path"": ""<Keyboard>/f"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SecondaryAction"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -121,7 +161,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         // Player
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
+        m_Player_Stay = m_Player.FindAction("Stay", throwIfNotFound: true);
         m_Player_Action = m_Player.FindAction("Action", throwIfNotFound: true);
+        m_Player_SecondaryAction = m_Player.FindAction("SecondaryAction", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -184,13 +226,17 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Player;
     private List<IPlayerActions> m_PlayerActionsCallbackInterfaces = new List<IPlayerActions>();
     private readonly InputAction m_Player_Move;
+    private readonly InputAction m_Player_Stay;
     private readonly InputAction m_Player_Action;
+    private readonly InputAction m_Player_SecondaryAction;
     public struct PlayerActions
     {
         private @PlayerInputActions m_Wrapper;
         public PlayerActions(@PlayerInputActions wrapper) { m_Wrapper = wrapper; }
         public InputAction @Move => m_Wrapper.m_Player_Move;
+        public InputAction @Stay => m_Wrapper.m_Player_Stay;
         public InputAction @Action => m_Wrapper.m_Player_Action;
+        public InputAction @SecondaryAction => m_Wrapper.m_Player_SecondaryAction;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -203,9 +249,15 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @Move.started += instance.OnMove;
             @Move.performed += instance.OnMove;
             @Move.canceled += instance.OnMove;
+            @Stay.started += instance.OnStay;
+            @Stay.performed += instance.OnStay;
+            @Stay.canceled += instance.OnStay;
             @Action.started += instance.OnAction;
             @Action.performed += instance.OnAction;
             @Action.canceled += instance.OnAction;
+            @SecondaryAction.started += instance.OnSecondaryAction;
+            @SecondaryAction.performed += instance.OnSecondaryAction;
+            @SecondaryAction.canceled += instance.OnSecondaryAction;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -213,9 +265,15 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @Move.started -= instance.OnMove;
             @Move.performed -= instance.OnMove;
             @Move.canceled -= instance.OnMove;
+            @Stay.started -= instance.OnStay;
+            @Stay.performed -= instance.OnStay;
+            @Stay.canceled -= instance.OnStay;
             @Action.started -= instance.OnAction;
             @Action.performed -= instance.OnAction;
             @Action.canceled -= instance.OnAction;
+            @SecondaryAction.started -= instance.OnSecondaryAction;
+            @SecondaryAction.performed -= instance.OnSecondaryAction;
+            @SecondaryAction.canceled -= instance.OnSecondaryAction;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -236,6 +294,8 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     public interface IPlayerActions
     {
         void OnMove(InputAction.CallbackContext context);
+        void OnStay(InputAction.CallbackContext context);
         void OnAction(InputAction.CallbackContext context);
+        void OnSecondaryAction(InputAction.CallbackContext context);
     }
 }

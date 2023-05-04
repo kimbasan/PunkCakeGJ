@@ -1,40 +1,62 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
-using System.IO;
 using UnityEngine;
-using UnityEngine.InputSystem;
-using System.Runtime.Serialization.Formatters.Binary;
+using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour
 {
-    //public Queue<Movements> movementsQueue;
+    public event EventHandler PlayerMoved;
+    private PlayerInputActions PlayerInputActions;//Г±ГЄГ°ГЁГЇГІ Г­Г  ГіГЇГ°Г ГўГ«ГҐГ­ГЁГҐ
+    private Vector2 MoveDirection;// 1)ГўГҐГЄГІГ®Г° Г­Г ГЇГ°Г ГўГ«ГҐГ­ГЁГї
+    private Vector3 TransformVector;//ГўГҐГЄГІГ®Г° Г­Г ГЇГ°Г ГўГ«ГҐГ­ГЁГї Г«ГіГ·Г 
+    private Queue<Movements> movementsQueue;
+    public LayerMask LayerMask;//Г¬Г Г±ГЄГ , ГЄГ®ГІГ®Г°ГіГѕ ГЁГ№ГҐГІ Г«ГіГ·
+    public int NumberOfSteps, NumberOfStepsLeft;//1)Г®ГЎГ№ГҐГҐ ГЄГ®Г«ГЁГ·ГҐГ±ГўГІГ® ГµГ®Г¤Г®Гў, 2)Г®Г±ГІГ ГўГёГҐГҐГ±Гї ГЄГ®Г«ГЁГ·ГҐГ±ГІГўГ® ГµГ®Г¤Г®Гў
+    public Text _numberOfStepsText;
+    public Interaction interaction;
+    /// <summary>
+    /// Г„Г Г«ГјГ­Г®Г±ГІГј ГЇГҐГ°ГҐГ¤ГўГЁГ¦ГҐГ­ГЁГї Г§Г  Г®Г¤ГЁГ­ ГёГ ГЈ
+    /// </summary>
+    [Header("Г„Г Г«ГјГ­Г®Г±ГІГј ГЇГҐГ°ГҐГ¤ГўГЁГ¦ГҐГ­ГЁГї Г§Г  Г®Г¤ГЁГ­ ГёГ ГЈ")]
+    public float StepDistance;
 
-    //public event EventHandler PlayerMoved;
-    private Rigidbody RbPlayer;
-    private PlayerInputActions PlayerInputActions;//скрипт на управление
-    private Vector2 MoveDirection, MoveVector;// 1)вектор направления, 2)вектор движения
-    private Vector3 TransformVector;//вектор направления луча
-    public LayerMask LayerMask;//маска, которую ищет луч
-    public int NumberOfSteps, NumberOfStepsLeft;//1)общее количесвто ходов, 2)оставшееся количество ходов
-    public List<Vector2> MemorizingThePath;//массив совершенного пути 
-    private string FileName = "vectors.dat";
+    public enum Movements
+    {
+        Up, 
+        Down, 
+        Left,
+        Right,
+        Wait,
+        Action, SecondaryAction
+    }
+    private bool _isReady;
 
     private void Awake()
     {
+        _isReady = true;
         PlayerInputActions = new PlayerInputActions();
-        //PlayerInputActions.Player.W.performed += W_performed;
         PlayerInputActions.Player.Move.performed += context => MovePlane();
+        PlayerInputActions.Player.Stay.performed += context => MovePlane(stay : true);
+        PlayerInputActions.Player.Action.performed += context => DoAction();
+        PlayerInputActions.Player.SecondaryAction.performed += context => DoSecondaryAction();
         NumberOfStepsLeft = NumberOfSteps;
-        //PlayerInputActions playerInputActions = new PlayerInputActions();        
-        //playerInputActions.Enable();
-        //playerInputActions.Player.W.performed += W_performed;
-        //playerInputActions.Player.S.performed += S_performed;
-        //playerInputActions.Player.A.performed += A_performed;
-        //playerInputActions.Player.D.performed += D_performed;
-        //playerInputActions.Player.Wait.performed += Wait_performed;
-
-        //movementsQueue = new Queue<Movements>();
+        movementsQueue = new Queue<Movements>();
     }
+
+    private void DoAction()
+    {
+        RecordMove(Movements.Action);
+        interaction?.DoAction();
+        PlayerMoved?.Invoke(this, EventArgs.Empty);
+    }
+    private void DoSecondaryAction()
+    {
+        RecordMove(Movements.SecondaryAction);
+        interaction?.DoSecondaryAction();
+        PlayerMoved?.Invoke(this, EventArgs.Empty);
+    }
+
     private void OnEnable()
     {
         PlayerInputActions.Enable();
@@ -43,104 +65,106 @@ public class PlayerMovement : MonoBehaviour
     {
         PlayerInputActions.Disable();
     }
-    private void Start()
-    {
-        RbPlayer = GetComponent<Rigidbody>();
-    }
-    private void MovePlane()
-    {//выбор направления
-        MoveDirection = PlayerInputActions.Player.Move.ReadValue<Vector2>();
-        Vector3 Move = new Vector3(transform.position.x + MoveDirection.x, transform.position.y, transform.position.z + MoveDirection.y);
-        TransformVector = new Vector3(MoveDirection.x, 0, MoveDirection.y);
-        if(NumberOfStepsLeft > 0)
+    private void MovePlane(bool stay = false)
+    {//ГўГ»ГЎГ®Г° Г­Г ГЇГ°Г ГўГ«ГҐГ­ГЁГї
+        if (NumberOfStepsLeft > 0 && _isReady)
         {
-            //проверка, чтобы вектор направления и движения совпадал
-            if (MoveVector == MoveDirection)
+            MoveDirection = PlayerInputActions.Player.Move.ReadValue<Vector2>();
+            Vector3 Move = new Vector3(transform.position.x + MoveDirection.x * StepDistance, transform.position.y, transform.position.z + MoveDirection.y * StepDistance);
+            TransformVector = new Vector3(MoveDirection.x, 0, MoveDirection.y);
+
+            if (stay)
             {
-                transform.position = new Vector3(Move.x, Move.y, Move.z);//перемещение
-                MoveVector = new Vector2(0, 0);//обнуление вектора перемещения
                 NumberOfStepsLeft--;
+                _numberOfStepsText.text = NumberOfStepsLeft.ToString();
+                RecordMove(MoveDirection, stay);
+
+                if (PlayerMoved != null)
+                {
+                    PlayerMoved.Invoke(this, EventArgs.Empty);
+                }
             }
-            else if (MoveVector != MoveDirection)
+            else if (CheckPlane()) // Г…Г±Г«ГЁ Г¬Г®Г¦Г­Г® ГЇГ°Г®Г©ГІГЁ
             {
-                CheckPlane();
+                // ГЇГ®ГўГҐГ°Г­ГіГІГ±Гї
+                transform.rotation = Quaternion.LookRotation(TransformVector);
+
+                StartCoroutine(MoveAnim(Move));//ГЇГҐГ°ГҐГ¬ГҐГ№ГҐГ­ГЁГҐ
+                NumberOfStepsLeft--;
+                _numberOfStepsText.text = NumberOfStepsLeft.ToString();
+                RecordMove(MoveDirection, stay);
+
+                // Г±Г®ГЎГ»ГІГЁГҐ Г·ГІГ®ГЎГ» Г±Г¤ГўГЁГ­ГіГ«ГЁГ±Гј Г¤Г°ГіГЈГЁГҐ ГЄГ«Г®Г­Г»
+                if (PlayerMoved!= null)
+                {
+                    PlayerMoved.Invoke(this, EventArgs.Empty);
+                }
             }
         }
     }
-    private void CheckPlane()
+
+    private bool CheckPlane()
     {
+        bool movable = false;
         RaycastHit Hit;
-        Ray Ray = new Ray(transform.position, TransformVector);//направляет луч
-        Debug.DrawRay(Ray.origin, Ray.direction * 1.5f);//рисует луч (короткий промежуток)
-        if(Physics.Raycast(transform.position, TransformVector, out Hit, 1.5f, LayerMask))//проверка, есть ли в направлении Collider со слоем
+        if(Physics.Raycast(transform.position, TransformVector, out Hit, 1.5f, LayerMask))//ГЇГ°Г®ГўГҐГ°ГЄГ , ГҐГ±ГІГј Г«ГЁ Гў Г­Г ГЇГ°Г ГўГ«ГҐГ­ГЁГЁ Collider Г±Г® Г±Г«Г®ГҐГ¬
         {
-            MemorizingThePath.Add(MoveDirection);
-            MoveVector = MoveDirection;
-        }               
-    }
-    public void SaveWay()//сохранение пройденного пути
-    {
-        string Data = "";
-        for (int i = 0; i < MemorizingThePath.Count; i++)
-        {
-            Data += MemorizingThePath[i].x + "," + MemorizingThePath[i].y + ";";
+            movable = true;
         }
-        PlayerPrefs.SetString("Positions", Data);
-        //MemorizingThePath
+        return movable;
     }
-    //private void Wait_performed(InputAction.CallbackContext obj)
-    //{
-    //    movementsQueue.Enqueue(Movements.Wait);
-    //    PlayerMoved?.Invoke(this, EventArgs.Empty);
-    //}
+    
+    private void RecordMove(Vector2 move, bool wait)
+    {
+        if (wait)
+        {
+            movementsQueue.Enqueue(Movements.Wait);
+            return;
+        }
 
-    //private void W_performed(InputAction.CallbackContext context)
-    //{
-    //    Debug.Log(context);
-    //    transform.position += Vector3.forward;
-    //    movementsQueue.Enqueue(Movements.Up);
-    //    PlayerMoved?.Invoke(this, EventArgs.Empty);
-    //}
+        if (move == Vector2.up)
+        {
+            movementsQueue.Enqueue(Movements.Up);
+        } else if (move == Vector2.down)
+        {
+            movementsQueue.Enqueue(Movements.Down);
+        } else if (move == Vector2.left)
+        {
+            movementsQueue.Enqueue(Movements.Left);
+        } else if (move == Vector2.right)
+        {
+            movementsQueue.Enqueue(Movements.Right);
+        }
+    }
 
-    //private void S_performed(InputAction.CallbackContext context)
-    //{
-    //    Debug.Log(context);
-    //    transform.position += Vector3.back;
-    //    movementsQueue.Enqueue(Movements.Down);
-    //    PlayerMoved?.Invoke(this, EventArgs.Empty);
-    //}
-    //private void A_performed(InputAction.CallbackContext context)
-    //{
-    //    Debug.Log(context);
-    //    transform.position += Vector3.left;
-    //    movementsQueue.Enqueue(Movements.Left);
-    //    PlayerMoved?.Invoke(this, EventArgs.Empty);
-    //}
-    //private void D_performed(InputAction.CallbackContext context)
-    //{
-    //    Debug.Log(context);
-    //    transform.position += Vector3.right;
-    //    movementsQueue.Enqueue(Movements.Right);
-    //    PlayerMoved?.Invoke(this, EventArgs.Empty);
-    //}
+    private void RecordMove(Movements move)
+    {
+        movementsQueue.Enqueue(move);
+    }
 
-    //public enum Movements
-    //{
-    //    Up, Down, Left, Right, Wait
-    //}
 
-    //public void SaveData()
-    //{
-    //    SavingManager.Save(new PlayerMoves(movementsQueue));
-    //}
+    public Queue<Movements> GetMovements()
+    {
+        return movementsQueue;
+    }
 
-    //public void LoadData()
-    //{
-    //    PlayerMoves moves = SavingManager.Load();
-    //    Debug.Log("Loaded Moves");
-    //    foreach(Movements move in moves.moves)
-    //    {
-    //        Debug.Log(move);
-    //    }
-    //}
+    public void ClearMovements()
+    {
+        movementsQueue.Clear();
+    }
+
+    private IEnumerator MoveAnim(Vector3 target)
+    {
+        _isReady = false;
+        while(transform.position != target)
+        {
+            gameObject.transform.position = Vector3.MoveTowards(transform.position, target, 5 * Time.deltaTime);
+            yield return new WaitForEndOfFrame();
+        }
+        yield return new WaitForSeconds(0.2f);
+        _isReady = true;
+
+        // ГЇГ°Г®ГўГҐГ°ГЁГІГј ГҐГ±ГІГј Г«ГЁ Г°ГїГ¤Г®Г¬ Г­Г®ГўГ»ГҐ Г®ГЎГєГҐГЄГІГ» Г¤Г«Гї Г¤ГҐГ©Г±ГІГўГЁГ©
+        interaction.RayItems();
+    }
 }
