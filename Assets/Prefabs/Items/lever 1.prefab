@@ -151,7 +151,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 0.28401783}
+  m_Size: {x: 1, y: 2, z: 0.28401783}
   m_Center: {x: 0, y: -0.33000004, z: -0.0020089298}
 --- !u!114 &2531860957903620805
 MonoBehaviour:
@@ -166,8 +166,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TextAction:
-  - {fileID: 6118034721666470448}
-  - {fileID: 6118034721343724330}
+  - {fileID: 4493326455484038083}
+  - {fileID: 1449568714873078363}
   Outline: {fileID: 3550619866743770860}
 --- !u!114 &4617979369894456606
 MonoBehaviour:
@@ -406,26 +406,26 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e1c8b26c95fd84e4bb1b4983f3303eeb, type: 3}
---- !u!114 &6118034721343724330 stripped
+--- !u!114 &1449568714873078363 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3433790990957967313, guid: e1c8b26c95fd84e4bb1b4983f3303eeb, type: 3}
+  m_CorrespondingSourceObject: {fileID: 8024571813701430944, guid: e1c8b26c95fd84e4bb1b4983f3303eeb, type: 3}
   m_PrefabInstance: {fileID: 8881352025175928059}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &6118034721666470448 stripped
+--- !u!114 &4493326455484038083 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3433790991304310475, guid: e1c8b26c95fd84e4bb1b4983f3303eeb, type: 3}
+  m_CorrespondingSourceObject: {fileID: 4979685990272800568, guid: e1c8b26c95fd84e4bb1b4983f3303eeb, type: 3}
   m_PrefabInstance: {fileID: 8881352025175928059}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!224 &6118034722620273421 stripped

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 using static LevelController;
 
 public class PlayerMovement : MonoBehaviour
@@ -14,7 +15,7 @@ public class PlayerMovement : MonoBehaviour
     private Queue<Movements> movementsQueue;
     public LayerMask LayerMask;//ìàñêà, êîòîðóþ èùåò ëó÷
     public int NumberOfSteps, NumberOfStepsLeft;//1)îáùåå êîëè÷åñâòî õîäîâ, 2)îñòàâøååñÿ êîëè÷åñòâî õîäîâ
-    public Text _numberOfStepsText;
+    public TextMeshProUGUI _numberOfStepsText;
     public Interaction interaction;
     public CameraState MyCameraState;
 

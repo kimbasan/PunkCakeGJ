@@ -51,6 +51,36 @@
 	<Key Name="Interface">
 		<Translates/>
 	</Key>
+	<Key Name="Step_Key">
+		<Translates>
+			<en-us>Moves left -</en-us>
+			<ru>Осталось ходов -</ru>
+		</Translates>
+	</Key>
+	<Key Name="Management_Key">
+		<Translates>
+			<en-us>Management - WASD</en-us>
+			<ru>Управление - WASD</ru>
+		</Translates>
+	</Key>
+	<Key Name="SkipMove_Key">
+		<Translates>
+			<en-us>Skip Move - X</en-us>
+			<ru>Пропустить ход - X</ru>
+		</Translates>
+	</Key>
+	<Key Name="NextClone_Key">
+		<Translates>
+			<en-us>Next clone</en-us>
+			<ru>Следующий клон</ru>
+		</Translates>
+	</Key>
+	<Key Name="Reload_Key">
+		<Translates>
+			<en-us>Reload</en-us>
+			<ru>Перезапуск</ru>
+		</Translates>
+	</Key>
 	<Key Name="Score_Key">
 		<Translates>
 			<en-us>Score :</en-us>

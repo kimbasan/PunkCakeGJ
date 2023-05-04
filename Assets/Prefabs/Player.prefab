@@ -87,6 +87,7 @@ MonoBehaviour:
   NumberOfStepsLeft: 0
   _numberOfStepsText: {fileID: 0}
   interaction: {fileID: 2908579657007227556}
+  MyCameraState: 0
   StepDistance: 2
   IsPlayerStep: 1
 --- !u!114 &2908579657007227556

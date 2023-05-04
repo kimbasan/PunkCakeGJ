@@ -1,9 +1,11 @@
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 
 public class AssignmentOfKeyInteraction : MonoBehaviour
 {
-    [SerializeField] private TextMeshProUGUI[] TextAction;//текст с буквами для взаимодействия
+    //[SerializeField] private TextMeshProUGUI[] TextAction;//текст с буквами для взаимодействия
+    [SerializeField] private Image[] TextAction;
     [SerializeField] private Outline Outline;//б=подсветка
 
     private void Start()

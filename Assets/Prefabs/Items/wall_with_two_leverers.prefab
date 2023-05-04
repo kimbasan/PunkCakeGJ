@@ -158,6 +158,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: lever 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6118034722620273419, guid: 86ccaec4d0b099841a88d8b43fd85b0f, type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6908061865598846509, guid: 86ccaec4d0b099841a88d8b43fd85b0f, type: 3}
       propertyPath: m_RootOrder
       value: 0

@@ -7,6 +7,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using TMPro;
 using static LevelController;
 
 public class LevelController: MonoBehaviour
@@ -23,7 +24,7 @@ public class LevelController: MonoBehaviour
     [SerializeField] private int _numberOfSteps;
     [SerializeField] private LayerMask LayerMask;//маска, которую ищет луч
 
-    [SerializeField] public Text _numberOfStepsText;
+    [SerializeField] public TextMeshProUGUI _numberOfStepsText;
     [SerializeField] private GameObject _deadPanel;
     [SerializeField] private List<SecurityController> _securities;
     [SerializeField] private List<CinemachineVirtualCamera> _cams;
