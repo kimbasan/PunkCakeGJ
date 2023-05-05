@@ -133,11 +133,11 @@ public class RouteSecurity : MonoBehaviour
             ETurn(270, vartransform);
         }
 
-        else
-        {
-            Debug.LogError("Неопознанный поворот охранника");
-            ETurn(0, this.transform);
-        }
+        //else
+        //{
+        //    Debug.LogError("Неопознанный поворот охранника");
+        //    ETurn(0, this.transform);
+        //}
     }
 
     private void ETurn(float angle, Transform vartransform)
