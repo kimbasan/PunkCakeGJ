@@ -8,13 +8,17 @@ public class AssessmentOfPassingTheLevel : MonoBehaviour
     [SerializeField] private Sprite StarEmpty, StarGood;
     [SerializeField] private Image[] LevelAssessment;
     [SerializeField] private Quests quests;
-    int o = 0;
+    [SerializeField] private GameObject[] Panel;
 
     private void Start()
     {
         for(int i = 0; i < LevelAssessment.Length; i++)
         {
             LevelAssessment[i].sprite = StarEmpty;
+        }
+        for (int i = 0; i < Panel.Length; i++)
+        {
+            Panel[i].SetActive(false);
         }
     }
     public void StarUp()
@@ -25,5 +29,5 @@ public class AssessmentOfPassingTheLevel : MonoBehaviour
         }
         //LevelAssessment[o].sprite = StarGood;
         //o++;
-    }
+    }    
 }
