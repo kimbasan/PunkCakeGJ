@@ -7,8 +7,10 @@ public class Lever : MonoBehaviour
 {
     public UnityEvent eventToTrigger;
     public LayerMask characterLayer;
+    public Lever otherLever;
 
     [SerializeField] private bool pulled;
+    
     private void Start()
     {
         var levelControl = FindAnyObjectByType<LevelController>();
@@ -26,6 +28,14 @@ public class Lever : MonoBehaviour
         }
     }
 
+    public bool IsHolding()
+    {
+        var rayStart = new Vector3(transform.position.x, transform.position.y - 1f, transform.position.z);
+        var direction = transform.rotation * Vector3.back;
+        Debug.DrawRay(rayStart, direction * 2f, Color.yellow, 2, true);
+        return Physics.Raycast(rayStart, direction, 2f, characterLayer);
+    }
+
     private IEnumerator CheckPlayerStaying()
     {
         yield return new WaitForSeconds(0.2f);
@@ -36,9 +46,14 @@ public class Lever : MonoBehaviour
         
         if (!Physics.Raycast(rayStart, direction, 2f, characterLayer))
         {
-            Switch();
-            Debug.Log("Player hit");
-            pulled = false;
+            Debug.Log("this lever not holding");
+            if (otherLever != null && !otherLever.IsHolding())
+            {
+                Debug.Log("Other lever not holding");
+                Switch();
+                Debug.Log("Player hit");
+                pulled = false;
+            }
         };
     }
 
