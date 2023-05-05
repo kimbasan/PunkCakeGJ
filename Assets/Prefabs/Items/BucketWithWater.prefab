@@ -131,7 +131,7 @@ MonoBehaviour:
     m_Bits: 128
   wallMask:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 512
   waterTilePrefab: {fileID: 3689472181523421966, guid: 14b8e2453973f8240bc336c0bcaab664, type: 3}
   interactableLayer: 8
   usedLayer: 1
