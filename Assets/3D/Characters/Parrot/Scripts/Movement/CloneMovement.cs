@@ -11,6 +11,7 @@ using Vector3 = UnityEngine.Vector3;
 public class CloneMovement : MonoBehaviour
 {
     [SerializeField] private GameObject nextStepArrow;
+    [SerializeField] private PlayerAnimManager animManager;
     /// <summary>
     /// Служит конструктором и необходим при создании нового объекта
     /// </summary>
@@ -155,6 +156,7 @@ public class CloneMovement : MonoBehaviour
     private void Move(Vector3 direction)
     {
         Vector3 Move = new Vector3(transform.position.x + direction.x * _stepDistance, transform.position.y, transform.position.z + direction.z * _stepDistance);
+        animManager.PlayWalk();
         StartCoroutine(MoveAnim(Move));
         transform.rotation = Quaternion.LookRotation(direction);
     }
