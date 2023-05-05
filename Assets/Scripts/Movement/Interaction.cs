@@ -10,6 +10,12 @@ public class Interaction : MonoBehaviour
     private float RayDistance = Constants.TILE_SIZE;//дистанция луча
     Ray[] Ray = new Ray[4];//массив направления лучей
 
+    private void Awake()
+    {
+        // обновить предметы в начале игры
+        RayItems();
+    }
+
     public void RayItems()//должен вызываться после перемещения
     {
         RaycastHit Hit;//луч попадания по объекту            
