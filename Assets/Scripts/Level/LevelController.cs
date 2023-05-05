@@ -122,6 +122,11 @@ public class LevelController: MonoBehaviour
 
     public void StartNextClone()
     {
+        if (_playerMovement.IsPlayerStep == false)
+        {
+            return;
+        }
+
         _cloneEvent?.Invoke();
 
         CloneMovement currentClone;
@@ -184,11 +189,11 @@ public class LevelController: MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Q))
+        if (Input.GetKeyDown(KeyCode.E))
         {
             CameraLeft();
         }
-        else if (Input.GetKeyDown(KeyCode.E))
+        else if (Input.GetKeyDown(KeyCode.Q))
         {
             CameraRight();
         }
