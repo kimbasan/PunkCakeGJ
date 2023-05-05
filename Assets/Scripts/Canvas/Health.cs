@@ -9,6 +9,27 @@ public class Health : MonoBehaviour
     public Image Hp;
     public float NumberOfLivesNum, IndexHealthNum;
     public TextMeshProUGUI HpText;
+    private PlayerInputActions PlayerInputActions;
+
+    private void Awake()
+    {
+        PlayerInputActions = new PlayerInputActions();
+        PlayerInputActions.Player.Move.performed += context => CheckBattery();
+    }
+    private void OnEnable()
+    {
+        PlayerInputActions.Enable();
+    }
+    private void OnDisable()
+    {
+        PlayerInputActions.Disable();
+    }
+    void CheckBattery()// уменьшение заряда батареи
+    {
+        NumberOfLivesNum--;
+        Hp.fillAmount = NumberOfLivesNum / IndexHealthNum;
+        HpText.text = $"{ NumberOfLivesNum} / {IndexHealthNum}";
+    }
     void Start()
     {
         NumberOfLivesNum = PlayerPrefs.GetInt("HealthNum");
