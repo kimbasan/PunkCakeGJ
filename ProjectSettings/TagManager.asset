@@ -7,6 +7,7 @@ TagManager:
   - Clone
   - Wire
   - Security
+  - ClosedDoor
   layers:
   - Default
   - TransparentFX

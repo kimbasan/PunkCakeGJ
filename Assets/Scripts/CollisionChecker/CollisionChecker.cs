@@ -7,7 +7,7 @@ public class CollisionChecker : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag(Constants.CLONE_TAG) || collision.gameObject.CompareTag("Security"))
+        if (collision.gameObject.CompareTag(Constants.CLONE_TAG) || collision.gameObject.CompareTag("Security") || collision.gameObject.CompareTag("ClosedDoor"))
         {
             PlayerCollision?.Invoke();
         }
