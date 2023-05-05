@@ -12,6 +12,7 @@ public class ElectricalPanel : MonoBehaviour
     private bool electricityOn;
 
     private readonly string animParam = "electricity";
+    private readonly string reloadTrigger = "Reload";
     private void Start()
     {
         var levelController = FindAnyObjectByType<LevelController>();
@@ -41,6 +42,7 @@ public class ElectricalPanel : MonoBehaviour
             wire?.ResetWire(startingElectricityOn);
         }
         lightController.SetLight(electricityOn);
+        boxAnimator.SetTrigger(reloadTrigger);
         boxAnimator.SetBool(animParam, electricityOn);
     }
 

@@ -28,14 +28,16 @@ public class Lever : MonoBehaviour
 
     private IEnumerator CheckPlayerStaying()
     {
-        yield return new WaitForSeconds(0.8f);
+        yield return new WaitForSeconds(0.5f);
         var rayStart = new Vector3(transform.position.x, transform.position.y - 1f, transform.position.z);
 
         var direction = transform.rotation * Vector3.back;
         Debug.DrawRay(rayStart, direction * 2f, Color.yellow, 2, true);
+        
         if (!Physics.Raycast(rayStart, direction, 2f, characterLayer))
         {
             Switch();
+            Debug.Log("Player hit");
             pulled = false;
         };
     }

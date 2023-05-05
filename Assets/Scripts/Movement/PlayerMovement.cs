@@ -56,6 +56,7 @@ public class PlayerMovement : MonoBehaviour
         RecordMove(Movements.Action);
         interaction?.DoAction();
         PlayerMoved?.Invoke(this, EventArgs.Empty);
+        StartCoroutine(InteractAnim());
     }
     private void DoSecondaryAction()
     {
@@ -63,6 +64,7 @@ public class PlayerMovement : MonoBehaviour
         RecordMove(Movements.SecondaryAction);
         interaction?.DoSecondaryAction();
         PlayerMoved?.Invoke(this, EventArgs.Empty);
+        StartCoroutine(InteractAnim());
     }
 
     private void OnEnable()
@@ -177,6 +179,12 @@ public class PlayerMovement : MonoBehaviour
         _isReady = true;
         // ïðîâåðèòü åñòü ëè ðÿäîì íîâûå îáúåêòû äëÿ äåéñòâèé
         interaction.RayItems();
+    }
+
+    private IEnumerator InteractAnim() {
+        _isReady = false;
+        yield return new WaitForSeconds(1f);
+        _isReady = true;
     }
 
     private Vector2 ChangeDirection(Vector2 inputDirection)

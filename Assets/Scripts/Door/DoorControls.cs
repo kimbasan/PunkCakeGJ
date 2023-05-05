@@ -7,6 +7,9 @@ public class DoorControls : MonoBehaviour
     [SerializeField] private GameObject doorColliderTile;
     [SerializeField] private int walkableLayer;
     [SerializeField] private int wallLayer;
+
+    private static readonly string closedAnimParam = "Closed";
+    private static readonly string reloadAnimParam = "Reload";
     private void Start()
     {
         var levelController = FindAnyObjectByType<LevelController>();
@@ -14,7 +17,10 @@ public class DoorControls : MonoBehaviour
         {
             levelController._cloneEvent += Reset;
         }
-        Reset();
+        if (!closed)
+        {
+            Reset();
+        }
     }
 
     public void TriggerDoor()
@@ -27,13 +33,14 @@ public class DoorControls : MonoBehaviour
         {
             doorColliderTile.layer = walkableLayer;
         }
-        doorAnimator.SetBool("Closed", closed);
+        doorAnimator.SetBool(closedAnimParam, closed);
     }
 
     private void Reset()
     {
         closed = true;
-        doorAnimator.SetBool("Closed", closed);
+        doorAnimator.SetTrigger(reloadAnimParam);
+        doorAnimator.SetBool(closedAnimParam, closed);
         doorColliderTile.layer = wallLayer;
     }
 }
