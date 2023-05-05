@@ -6,8 +6,7 @@ using UnityEngine.Events;
 public class Water: MonoBehaviour
 {
     [SerializeField] private MeshRenderer waterRender;
-    [SerializeField] private Material waterMaterial;
-    [SerializeField] private Material electricMaterial;
+    
     [SerializeField] private int waterDefaultLayer;
     [SerializeField] private int electricWaterLayer;
     [Header("слои провода")]
@@ -17,7 +16,7 @@ public class Water: MonoBehaviour
     [Header("Debug")]
     [SerializeField] private List<GameObject> waterList;
     [SerializeField] private bool isElectric = false;
-
+    [SerializeField] private GameObject electricityParticles;
     public void SetWaterList(ref List<GameObject> waterList)
     {
         this.waterList = waterList;
@@ -66,13 +65,13 @@ public class Water: MonoBehaviour
         {
             isElectric= true;
             gameObject.layer = electricWaterLayer;
-            waterRender.material= electricMaterial;
+            electricityParticles.SetActive(true);
         }
         else
         {
             isElectric= false;
             gameObject.layer = waterDefaultLayer;
-            waterRender.material = waterMaterial;
+            electricityParticles.SetActive(false);
         }
     }
 }
