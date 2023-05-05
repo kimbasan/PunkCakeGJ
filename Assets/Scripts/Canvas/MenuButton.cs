@@ -7,11 +7,37 @@ public class MenuButton : MonoBehaviour
 {
     [SerializeField] private GameObject SettingPanel, AuthorsPanel;
     private bool ActiveSettingPanel, ActiveAuthorsPanel;
+    private PlayerInputActions PlayerInputActions;
 
+    private void Awake()
+    {
+        PlayerInputActions = new PlayerInputActions();
+        PlayerInputActions.Player.ClosePanel.performed += context => CheckPanel();
+    }
+    private void OnEnable()
+    {
+        PlayerInputActions.Enable();
+    }
+    private void OnDisable()
+    {
+        PlayerInputActions.Disable();
+    }
     private void Start()
     {
         SettingPanel.SetActive(ActiveSettingPanel);
         AuthorsPanel.SetActive(ActiveAuthorsPanel);
+    }
+    public void CheckPanel()
+    {
+        Debug.Log(0);
+        if (SettingPanel.activeSelf)
+        {
+            CheckSetting();
+        }
+        else if (AuthorsPanel.activeSelf)
+        {
+            CheckAuthors();
+        }
     }
     public void StartGame(int Level)
     {
