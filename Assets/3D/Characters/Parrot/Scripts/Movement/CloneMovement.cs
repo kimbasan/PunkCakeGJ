@@ -32,6 +32,8 @@ public class CloneMovement : MonoBehaviour
         {
             _currentMovementsQueue.Enqueue(item);
         }
+
+        UpdateInteractableObjects();
     }
 
     private Collider _myCollider;
@@ -83,14 +85,16 @@ public class CloneMovement : MonoBehaviour
     // Находим объекты для взаимодействия как игрок и сохраняем ссылки на них
     private void UpdateInteractableObjects()
     {
-        raysToCheck[0] = new Ray(transform.position, Vector3.forward);
-        raysToCheck[1] = new Ray(transform.position, Vector3.right);
-        raysToCheck[2] = new Ray(transform.position, Vector3.back);
-        raysToCheck[3] = new Ray(transform.position, Vector3.left);
-        Debug.DrawRay(transform.position, Vector3.forward * RayDistance, Color.green, 1, true);
-        Debug.DrawRay(transform.position, Vector3.right * RayDistance, Color.green, 1, true);
-        Debug.DrawRay(transform.position, Vector3.back * RayDistance, Color.green, 1, true);
-        Debug.DrawRay(transform.position, Vector3.left * RayDistance, Color.green, 1, true);
+        var startVector = new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z);
+        raysToCheck[0] = new Ray(startVector, Vector3.forward);
+        raysToCheck[1] = new Ray(startVector, Vector3.right);
+        raysToCheck[2] = new Ray(startVector, Vector3.back);
+        raysToCheck[3] = new Ray(startVector, Vector3.left);
+        
+        Debug.DrawRay(startVector, Vector3.forward * RayDistance, Color.green, 1, true);
+        Debug.DrawRay(startVector, Vector3.right * RayDistance, Color.green, 1, true);
+        Debug.DrawRay(startVector, Vector3.back * RayDistance, Color.green, 1, true);
+        Debug.DrawRay(startVector, Vector3.left * RayDistance, Color.green, 1, true);
         for (int j = 0; j < ItemsArray.Length; j++) //выключаем подсказки и удаляем объект
         {
             if (ItemsArray[j] != null)
@@ -189,5 +193,6 @@ public class CloneMovement : MonoBehaviour
         {
             _currentMovementsQueue.Enqueue(item);
         }
+        UpdateInteractableObjects();
     }
 }

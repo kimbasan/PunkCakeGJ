@@ -120,7 +120,7 @@ public class WaterBucket : MonoBehaviour
             // добавить клетку с водой
             if (waterTilePrefab != null)
             {
-                var waterTile = Instantiate(waterTilePrefab, tile.transform.position, tile.transform.rotation);
+                var waterTile = Instantiate(waterTilePrefab, tile.transform.position, Quaternion.identity);
                 wateredTiles.Add(waterTile);
                 waterTile.GetComponent<Water>().SetWaterList(ref wateredTiles);
             }
