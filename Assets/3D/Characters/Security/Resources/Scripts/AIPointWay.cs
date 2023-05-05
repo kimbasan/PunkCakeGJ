@@ -8,6 +8,7 @@ public class AIPointWay : MonoBehaviour
     //[SerializeField] private Transform _startT;
     //[SerializeField] private Transform _targetT;
     [SerializeField] private LayerMask _layerPlaneTrue;
+    [SerializeField] private LayerMask _layerSecurity;
     //[SerializeField] private GameObject _prefabCurrentStep;
     //private Transform _currentStepTransform;
 
@@ -153,7 +154,14 @@ public class AIPointWay : MonoBehaviour
         Debug.DrawRay(Ray.origin, Ray.direction * _stepDistance);//рисует луч (короткий промежуток)
         if (Physics.Raycast(currentPosition, direction, out Hit, _stepDistance, _layerPlaneTrue))//проверка, есть ли в направлении Collider со слоем
         {
-            movable = true;
+            if (Physics.Raycast(currentPosition, direction, out Hit, _stepDistance, _layerSecurity))
+            {
+                return movable;
+            }
+            else
+            {
+                movable = true;
+            }
         }
         return movable;
     }
