@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.02495846, g: 0.02274444, b: 0.07047759, a: 1}
+  m_IndirectSpecularColor: {r: 0.024967156, g: 0.022754043, b: 0.070475414, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -5413,8 +5413,8 @@ Transform:
   - {fileID: 543450651573839295}
   - {fileID: 682501485}
   - {fileID: 1239303235}
-  - {fileID: 566769804}
   - {fileID: 1502583412}
+  - {fileID: 566769804}
   - {fileID: 1368413202}
   m_Father: {fileID: 0}
   m_RootOrder: 11
@@ -8545,6 +8545,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2139066750569182298, guid: c0a65cd29d3ded941900d18b4d9a53df, type: 3}
   m_PrefabInstance: {fileID: 576493989}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &579758805 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5388411057088405067, guid: a881f3ec8390ab04480eb11f6f8db858, type: 3}
+  m_PrefabInstance: {fileID: 1642914339}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ae99b6ffe331bd438f1d567cd81ddef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &581002822
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -21951,6 +21962,22 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 2.5
       objectReference: {fileID: 0}
+    - target: {fileID: 3528681619435756651, guid: 54db6f8af911b3447a9240e8819342c3, type: 3}
+      propertyPath: connectedWires.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3528681619435756651, guid: 54db6f8af911b3447a9240e8819342c3, type: 3}
+      propertyPath: connectedWires.Array.data[0]
+      value: 
+      objectReference: {fileID: 579758805}
+    - target: {fileID: 3528681619435756651, guid: 54db6f8af911b3447a9240e8819342c3, type: 3}
+      propertyPath: connectedWires.Array.data[1]
+      value: 
+      objectReference: {fileID: 1853136732}
+    - target: {fileID: 3528681619435756651, guid: 54db6f8af911b3447a9240e8819342c3, type: 3}
+      propertyPath: connectedWires.Array.data[2]
+      value: 
+      objectReference: {fileID: 990097933}
     - target: {fileID: 7162155940071331075, guid: 54db6f8af911b3447a9240e8819342c3, type: 3}
       propertyPath: m_Name
       value: corner_wall_with_switcher
