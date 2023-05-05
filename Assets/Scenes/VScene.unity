@@ -31032,7 +31032,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 919132148649656059}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 6.02, y: 0.061638355, z: 3.61}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -31664,6 +31664,7 @@ GameObject:
   - component: {fileID: 919132148649656061}
   - component: {fileID: 919132148649656060}
   - component: {fileID: 919132148649656062}
+  - component: {fileID: 919132148649656064}
   m_Layer: 0
   m_Name: Security
   m_TagString: Untagged
@@ -31683,7 +31684,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3126d7aa8aa903248931b6f52a994a4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _routeMovements: 000000000000000000000000
+  _routeMovements: 0000000000000000000000000300000003000000030000000100000002000000
   _currentIndexPoint: 0
   _stepDistance: 2
 --- !u!114 &919132148649656061
@@ -31740,6 +31741,7 @@ MonoBehaviour:
   _myAIPointWay: {fileID: 0}
   _myRouteSecurity: {fileID: 0}
   _animator: {fileID: 0}
+  _animManager: {fileID: 0}
   _wallLayerMask:
     serializedVersion: 2
     m_Bits: 512
@@ -31747,6 +31749,19 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   _lastPlayerPosition: {x: 0, y: 0, z: 0}
+--- !u!114 &919132148649656064
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 919132148649656059}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ad5d5be09bd505439829f18ae092d02, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MyAnimator: {fileID: 0}
 --- !u!1001 &969099100927929153
 PrefabInstance:
   m_ObjectHideFlags: 0

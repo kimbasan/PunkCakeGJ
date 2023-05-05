@@ -180,6 +180,7 @@ public class AIPointWay : MonoBehaviour
 
     private void GoToPoint(PointWay point, Transform vartransform)
     {
+        Turn(point, vartransform);
         StartCoroutine(Move(point, vartransform));
     }
 
@@ -191,5 +192,37 @@ public class AIPointWay : MonoBehaviour
             yield return new WaitForEndOfFrame();
         }
         yield return new WaitForEndOfFrame();
+    }
+
+    private void Turn(PointWay point, Transform vartransform)
+    {
+        if (point.Position.y > vartransform.position.z)
+        {
+            ETurn(0, vartransform);
+        }
+        else if (point.Position.x > vartransform.position.x)
+        {
+            ETurn(90, vartransform);
+        }
+        else if (point.Position.y < vartransform.position.z)
+        {
+            ETurn(180, vartransform);
+        }
+        else if (point.Position.x < vartransform.position.x)
+        {
+            ETurn(270, vartransform);
+        }
+
+        else
+        {
+            Debug.LogError("Неопознанный поворот охранника");
+            ETurn(0, this.transform);
+        }
+    }
+
+    private void ETurn(float angle, Transform vartransform)
+    {
+        var rotationPoint = new Vector3(0, angle, 0);
+        vartransform.rotation = Quaternion.Euler(rotationPoint);
     }
 }

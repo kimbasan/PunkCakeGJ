@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using UnityEngine;
 
@@ -63,6 +64,7 @@ public class RouteSecurity : MonoBehaviour
 
     private void Move(Vector2 direction, float stepDistance)
     {
+        Turn(direction * _stepDistance / stepDistance, this.transform);
         var a = this.transform.position;
         a += new Vector3(direction.x, 0, direction.y) * stepDistance;
 
@@ -110,5 +112,37 @@ public class RouteSecurity : MonoBehaviour
             yield return new WaitForEndOfFrame();
         }
         yield return new WaitForEndOfFrame();
+    }
+
+    private void Turn(Vector2 direction, Transform vartransform)
+    {
+        if (direction == Vector2.up)
+        {
+            ETurn(0, vartransform);
+        }
+        else if (direction == Vector2.right)
+        {
+            ETurn(90, vartransform);
+        }
+        else if (direction == Vector2.down)
+        {
+            ETurn(180, vartransform);
+        }
+        else if (direction == Vector2.left)
+        {
+            ETurn(270, vartransform);
+        }
+
+        else
+        {
+            Debug.LogError("Неопознанный поворот охранника");
+            ETurn(0, this.transform);
+        }
+    }
+
+    private void ETurn(float angle, Transform vartransform)
+    {
+        var rotationPoint = new Vector3(0, angle, 0);
+        vartransform.rotation = Quaternion.Euler(rotationPoint);
     }
 }
