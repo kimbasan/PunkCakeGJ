@@ -7,6 +7,7 @@ public class MenuButton : MonoBehaviour
 {
     [SerializeField] private GameObject SettingPanel, AuthorsPanel;
     private bool ActiveSettingPanel, ActiveAuthorsPanel;
+
     private void Start()
     {
         SettingPanel.SetActive(ActiveSettingPanel);

@@ -20,16 +20,16 @@ public class LocalizationManager : MonoBehaviour
         {
             LoadLocalization();
         }
-        //if (PlayerPrefs.HasKey("Lang"))
-        //{
-        //    dropdown.value = PlayerPrefs.GetInt("Lang");
-        //    SetLanguageDrop();
-        //}
-        //else
-        //{
-        //    dropdown.value = 0;
-        //    SetLanguageDrop();
-        //}
+        if (PlayerPrefs.HasKey("Lang"))
+        {
+            dropdown.value = PlayerPrefs.GetInt("Lang");
+            SetLanguageDrop();
+        }
+        else
+        {
+            dropdown.value = 0;
+            SetLanguageDrop();
+        }
     }
 
     public void SetLanguageDrop()
