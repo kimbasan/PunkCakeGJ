@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -179,6 +180,16 @@ public class AIPointWay : MonoBehaviour
 
     private void GoToPoint(PointWay point, Transform vartransform)
     {
-        vartransform.position = new Vector3(point.Position.x, vartransform.position.y, point.Position.y);
+        StartCoroutine(Move(point, vartransform));
+    }
+
+    private IEnumerator Move(PointWay point, Transform vartransform)
+    {
+        while (vartransform.position != new Vector3(point.Position.x, vartransform.position.y, point.Position.y))
+        {
+            vartransform.position = Vector3.MoveTowards(vartransform.position, new Vector3(point.Position.x, vartransform.position.y, point.Position.y), 3 * Time.deltaTime);
+            yield return new WaitForEndOfFrame();
+        }
+        yield return new WaitForEndOfFrame();
     }
 }

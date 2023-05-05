@@ -63,7 +63,10 @@ public class RouteSecurity : MonoBehaviour
 
     private void Move(Vector2 direction, float stepDistance)
     {
-        this.transform.position += new Vector3(direction.x, 0, direction.y) * stepDistance;
+        var a = this.transform.position;
+        a += new Vector3(direction.x, 0, direction.y) * stepDistance;
+
+        StartCoroutine(EMove(a, this.transform));
     }
 
     private Vector2 GetVectorMove(SecurityMovement movement) 
@@ -97,5 +100,15 @@ public class RouteSecurity : MonoBehaviour
     public void ResetRoute()
     {
         _currentIndexPoint = 0;
+    }
+
+    private IEnumerator EMove(Vector3 point, Transform vartransform)
+    {
+        while (vartransform.position != point)
+        {
+            vartransform.position = Vector3.MoveTowards(vartransform.position, point, 3 * Time.fixedDeltaTime);
+            yield return new WaitForEndOfFrame();
+        }
+        yield return new WaitForEndOfFrame();
     }
 }

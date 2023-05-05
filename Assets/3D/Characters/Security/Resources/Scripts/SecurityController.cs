@@ -8,6 +8,8 @@ using UnityEngine.InputSystem.HID;
 
 [RequireComponent(typeof(AIPointWay))]
 [RequireComponent(typeof(RouteSecurity))]
+[RequireComponent (typeof(Animator))]
+[RequireComponent(typeof(SecurityAnimManager))]
 public class SecurityController : MonoBehaviour
 {
     public enum SecurityState
@@ -22,6 +24,8 @@ public class SecurityController : MonoBehaviour
     [SerializeField] private List<Vizor> _myVizors;
     [SerializeField] private AIPointWay _myAIPointWay;
     [SerializeField] private RouteSecurity _myRouteSecurity;
+    [SerializeField] private Animator _animator;
+    [SerializeField] private SecurityAnimManager _animManager;
     [SerializeField] private LayerMask _wallLayerMask;
     [SerializeField] private LayerMask _playerLayerMask;
     [SerializeField] private Vector3 _lastPlayerPosition;
@@ -32,6 +36,9 @@ public class SecurityController : MonoBehaviour
         _myAIPointWay = gameObject.GetComponent<AIPointWay>();
         _myRouteSecurity = gameObject.GetComponent<RouteSecurity>();
         _startPosition = transform.position;
+        _animator = gameObject.GetComponent<Animator>();
+        _animManager = gameObject.GetComponent<SecurityAnimManager>();
+        _animManager.MyAnimator = _animator;
     }
 
     public void Step()
@@ -43,11 +50,13 @@ public class SecurityController : MonoBehaviour
             _myAIPointWay.SetStartAndEndPoints(this.transform.position, _lastPlayerPosition);
             _myAIPointWay.SearhRoute();
             _myAIPointWay.MoveStep();
+            _animManager.PlayWalk();
         }
         else if (_myState == SecurityState.Pursuit)
         {
             _myState = SecurityState.Seek;
             _myAIPointWay.MoveStep();
+            _animManager.PlayWalk();
         }
         else if (_myState == SecurityState.Seek)
         {
@@ -60,6 +69,7 @@ public class SecurityController : MonoBehaviour
             }
 
             _myAIPointWay.MoveStep();
+            _animManager.PlayWalk();
         }
         else if (_myState == SecurityState.Return)
         {
@@ -70,10 +80,12 @@ public class SecurityController : MonoBehaviour
             }
 
             _myAIPointWay.MoveStep();
+            _animManager.PlayWalk();
         }
         else // _myState == SecurityState.Patrol
         {
             _myRouteSecurity.Step();
+            _animManager.PlayWalk();
         }
 
         StartCoroutine(SearchWait());
