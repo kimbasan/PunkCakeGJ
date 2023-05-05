@@ -108,7 +108,7 @@ public class RouteSecurity : MonoBehaviour
     {
         while (vartransform.position != point)
         {
-            vartransform.position = Vector3.MoveTowards(vartransform.position, point, 3 * Time.fixedDeltaTime);
+            vartransform.position = Vector3.MoveTowards(vartransform.position, point, 3 * Time.deltaTime);
             yield return new WaitForEndOfFrame();
         }
         yield return new WaitForEndOfFrame();
