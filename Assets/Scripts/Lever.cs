@@ -8,8 +8,7 @@ public class Lever : MonoBehaviour
     public UnityEvent eventToTrigger;
     public LayerMask characterLayer;
 
-    private bool pulled = false;
-
+    [SerializeField] private bool pulled;
     private void Start()
     {
         var levelControl = FindAnyObjectByType<LevelController>();
@@ -22,13 +21,14 @@ public class Lever : MonoBehaviour
     {
         if (pulled)
         {
+            Debug.Log("moved event");
             StartCoroutine(CheckPlayerStaying());
         }
     }
 
     private IEnumerator CheckPlayerStaying()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.2f);
         var rayStart = new Vector3(transform.position.x, transform.position.y - 1f, transform.position.z);
 
         var direction = transform.rotation * Vector3.back;
@@ -45,6 +45,7 @@ public class Lever : MonoBehaviour
 
     public void Switch()
     {
+        Debug.Log("Switch");
         pulled= !pulled;
         eventToTrigger.Invoke();
     }
