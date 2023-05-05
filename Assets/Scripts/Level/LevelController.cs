@@ -65,6 +65,7 @@ public class LevelController: MonoBehaviour
         _playerMovement.NumberOfSteps = _numberOfSteps;
         _playerMovement.NumberOfStepsLeft = _numberOfSteps;
         _playerMovement.PlayerStep += PlayerStep;
+        _playerMovement.PlayerInputActions.Player.NextClone.performed += context => StartNextClone();
         SecuritiesInitialize();
     }
 

@@ -9,7 +9,7 @@ using static LevelController;
 public class PlayerMovement : MonoBehaviour
 {
     public event EventHandler PlayerMoved;
-    private PlayerInputActions PlayerInputActions;//ñêðèïò íà óïðàâëåíèå
+    public PlayerInputActions PlayerInputActions;//ñêðèïò íà óïðàâëåíèå
     private Vector2 MoveDirection;// 1)âåêòîð íàïðàâëåíèÿ
     private Vector3 TransformVector;//âåêòîð íàïðàâëåíèÿ ëó÷à
     private Queue<Movements> movementsQueue;
@@ -18,7 +18,7 @@ public class PlayerMovement : MonoBehaviour
     public TextMeshProUGUI _numberOfStepsText;
     public Interaction interaction;
     public CameraState MyCameraState;
-
+    private PlayerAnimManager _playerAnimManager;
     public Action PlayerStep;
     /// <summary>
     /// Äàëüíîñòü ïåðåäâèæåíèÿ çà îäèí øàã
@@ -42,6 +42,8 @@ public class PlayerMovement : MonoBehaviour
     {
         _isReady = true;
         PlayerInputActions = new PlayerInputActions();
+        _playerAnimManager = GetComponent<PlayerAnimManager>();
+        _playerAnimManager._animator = this.gameObject.GetComponent<Animator>();
         PlayerInputActions.Player.Move.performed += context => MovePlane();
         PlayerInputActions.Player.Stay.performed += context => MovePlane(stay : true);
         PlayerInputActions.Player.Action.performed += context => DoAction();
@@ -102,7 +104,7 @@ public class PlayerMovement : MonoBehaviour
                 // ïîâåðíóòñÿ
                 PlayerStep?.Invoke();
                 transform.rotation = Quaternion.LookRotation(TransformVector);
-
+                _playerAnimManager.PlayWalk();
                 StartCoroutine(MoveAnim(Move));//ïåðåìåùåíèå
                 NumberOfStepsLeft--;
                 _numberOfStepsText.text = NumberOfStepsLeft.ToString();

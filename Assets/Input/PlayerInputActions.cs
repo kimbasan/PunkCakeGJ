@@ -71,6 +71,15 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""NextClone"",
+                    ""type"": ""Button"",
+                    ""id"": ""9d56d961-7891-4b65-b4f6-fc87e236a420"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -172,6 +181,17 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""action"": ""ClosePanel"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d2938a42-05dd-48c1-956a-893c08cd2f6c"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""NextClone"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -185,6 +205,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         m_Player_Action = m_Player.FindAction("Action", throwIfNotFound: true);
         m_Player_SecondaryAction = m_Player.FindAction("SecondaryAction", throwIfNotFound: true);
         m_Player_ClosePanel = m_Player.FindAction("ClosePanel", throwIfNotFound: true);
+        m_Player_NextClone = m_Player.FindAction("NextClone", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -251,6 +272,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Action;
     private readonly InputAction m_Player_SecondaryAction;
     private readonly InputAction m_Player_ClosePanel;
+    private readonly InputAction m_Player_NextClone;
     public struct PlayerActions
     {
         private @PlayerInputActions m_Wrapper;
@@ -260,6 +282,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         public InputAction @Action => m_Wrapper.m_Player_Action;
         public InputAction @SecondaryAction => m_Wrapper.m_Player_SecondaryAction;
         public InputAction @ClosePanel => m_Wrapper.m_Player_ClosePanel;
+        public InputAction @NextClone => m_Wrapper.m_Player_NextClone;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -284,6 +307,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @ClosePanel.started += instance.OnClosePanel;
             @ClosePanel.performed += instance.OnClosePanel;
             @ClosePanel.canceled += instance.OnClosePanel;
+            @NextClone.started += instance.OnNextClone;
+            @NextClone.performed += instance.OnNextClone;
+            @NextClone.canceled += instance.OnNextClone;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -303,6 +329,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @ClosePanel.started -= instance.OnClosePanel;
             @ClosePanel.performed -= instance.OnClosePanel;
             @ClosePanel.canceled -= instance.OnClosePanel;
+            @NextClone.started -= instance.OnNextClone;
+            @NextClone.performed -= instance.OnNextClone;
+            @NextClone.canceled -= instance.OnNextClone;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -327,5 +356,6 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         void OnAction(InputAction.CallbackContext context);
         void OnSecondaryAction(InputAction.CallbackContext context);
         void OnClosePanel(InputAction.CallbackContext context);
+        void OnNextClone(InputAction.CallbackContext context);
     }
 }
