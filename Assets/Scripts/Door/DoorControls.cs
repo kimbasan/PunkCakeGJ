@@ -4,7 +4,9 @@ public class DoorControls : MonoBehaviour
 {
     [SerializeField] private bool closed;
     [SerializeField] private Animator doorAnimator;
-
+    [SerializeField] private GameObject doorColliderTile;
+    [SerializeField] private int walkableLayer;
+    [SerializeField] private int wallLayer;
     private void Start()
     {
         var levelController = FindAnyObjectByType<LevelController>();
@@ -18,6 +20,13 @@ public class DoorControls : MonoBehaviour
     public void TriggerDoor()
     {
         closed = !closed;
+        if (closed)
+        {
+            doorColliderTile.layer = wallLayer;
+        } else
+        {
+            doorColliderTile.layer = walkableLayer;
+        }
         doorAnimator.SetBool("Closed", closed);
     }
 
@@ -25,5 +34,6 @@ public class DoorControls : MonoBehaviour
     {
         closed = true;
         doorAnimator.SetBool("Closed", closed);
+        doorColliderTile.layer = wallLayer;
     }
 }

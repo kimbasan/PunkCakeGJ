@@ -30,8 +30,10 @@ public class Lever : MonoBehaviour
     {
         yield return new WaitForSeconds(0.8f);
         var rayStart = new Vector3(transform.position.x, transform.position.y - 1f, transform.position.z);
-        //Debug.DrawRay(rayStart, Vector3.back * 2f, Color.yellow, 2, true);
-        if (!Physics.Raycast(rayStart, Vector3.back, 2f, characterLayer))
+
+        var direction = transform.rotation * Vector3.back;
+        Debug.DrawRay(rayStart, direction * 2f, Color.yellow, 2, true);
+        if (!Physics.Raycast(rayStart, direction, 2f, characterLayer))
         {
             Switch();
             pulled = false;
