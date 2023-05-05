@@ -10,6 +10,7 @@ public class Quests : MonoBehaviour
     public GameObject[] AdditionalQuests, EducationalQuests, ProgressOfTheCompletedTask;
     public bool[] AdditionalTasksReceivedBool, CompletingTheQuest;
     private int IndexEducation = 0;
+    public int NumQuest = 0;
 
     private void Start()
     {
@@ -39,6 +40,7 @@ public class Quests : MonoBehaviour
         if (CompletingTheQuest[IndexQuest])
         {
             ProgressOfTheCompletedTask[IndexQuest].SetActive(true);
+            NumQuest++;
         }
     }
     public void CheckEducationQuest()
