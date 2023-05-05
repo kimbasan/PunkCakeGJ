@@ -27,7 +27,7 @@ public class LocalizationManager : MonoBehaviour
         }
         else
         {
-            dropdown.value = 0;
+            dropdown.value = 1;
             SetLanguageDrop();
         }
     }

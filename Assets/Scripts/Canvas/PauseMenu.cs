@@ -46,12 +46,17 @@ public class PauseMenu : MonoBehaviour
         PauseObject.SetActive(CheckPause);
         if (CheckPause)
         {
-            Time.timeScale = 1;
+            Time.timeScale = 0;
         }
         else
         {
-            Time.timeScale = 0;
+            Time.timeScale = 1;
         }
+    }
+    public void Restart()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        Time.timeScale = 1;
     }
     public void Setting()
     {

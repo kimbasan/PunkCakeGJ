@@ -80,6 +80,15 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Q E"",
+                    ""type"": ""Button"",
+                    ""id"": ""7e2ce344-9477-4b82-850c-523a0b450f1f"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -192,6 +201,28 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""action"": ""NextClone"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""47da5183-03ed-4e45-a011-bd13e6144f1d"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Q E"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a9d7d744-21b9-41fc-90d8-455bdb12901d"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Q E"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -206,6 +237,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         m_Player_SecondaryAction = m_Player.FindAction("SecondaryAction", throwIfNotFound: true);
         m_Player_ClosePanel = m_Player.FindAction("ClosePanel", throwIfNotFound: true);
         m_Player_NextClone = m_Player.FindAction("NextClone", throwIfNotFound: true);
+        m_Player_QE = m_Player.FindAction("Q E", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -273,6 +305,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_SecondaryAction;
     private readonly InputAction m_Player_ClosePanel;
     private readonly InputAction m_Player_NextClone;
+    private readonly InputAction m_Player_QE;
     public struct PlayerActions
     {
         private @PlayerInputActions m_Wrapper;
@@ -283,6 +316,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         public InputAction @SecondaryAction => m_Wrapper.m_Player_SecondaryAction;
         public InputAction @ClosePanel => m_Wrapper.m_Player_ClosePanel;
         public InputAction @NextClone => m_Wrapper.m_Player_NextClone;
+        public InputAction @QE => m_Wrapper.m_Player_QE;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -310,6 +344,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @NextClone.started += instance.OnNextClone;
             @NextClone.performed += instance.OnNextClone;
             @NextClone.canceled += instance.OnNextClone;
+            @QE.started += instance.OnQE;
+            @QE.performed += instance.OnQE;
+            @QE.canceled += instance.OnQE;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -332,6 +369,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @NextClone.started -= instance.OnNextClone;
             @NextClone.performed -= instance.OnNextClone;
             @NextClone.canceled -= instance.OnNextClone;
+            @QE.started -= instance.OnQE;
+            @QE.performed -= instance.OnQE;
+            @QE.canceled -= instance.OnQE;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -357,5 +397,6 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         void OnSecondaryAction(InputAction.CallbackContext context);
         void OnClosePanel(InputAction.CallbackContext context);
         void OnNextClone(InputAction.CallbackContext context);
+        void OnQE(InputAction.CallbackContext context);
     }
 }
