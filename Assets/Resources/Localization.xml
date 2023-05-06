@@ -92,21 +92,18 @@
 	</Key>
 	<Key Name="DeathButton_Key">
 		<Translates>
-			<en-us>Перейти в таймлайн, в которой ты победишь </en-us>
+			<en-us>To the timeline of winner</en-us>
 			<ru>Перейти в таймлайн, в которой ты победишь </ru>
 		</Translates>
 	</Key>
 	<Key Name="WinButton_Key">
 		<Translates>
-			<en-us>Перепройти на “отлично”</en-us>
-			<ru>Перепройти на “отлично”</ru>
+			<en-us>Lets try again</en-us>
+			<ru>Еще раз</ru>
 		</Translates>
 	</Key>
 	<Key Name="WinAAAButton_Key">
-		<Translates>
-			<en-us>Покорить новый таймлайн </en-us>
-			<ru>Покорить новый таймлайн </ru>
-		</Translates>
+		<Translates/>
 	</Key>
 	<Key Name="Death_Key">
 		<Translates>
@@ -152,56 +149,56 @@
 	</Key>
 	<Key Name="Education1_Key">
 		<Translates>
-			<en-us>Move</en-us>
-			<ru>Передвижение </ru>
+			<en-us>Walk straight</en-us>
+			<ru>Иди вперед</ru>
 		</Translates>
 	</Key>
 	<Key Name="Education2_Key">
 		<Translates>
-			<en-us>Rotation</en-us>
-			<ru>Поворот </ru>
+			<en-us>Turn the camera</en-us>
+			<ru>Поверни камеру</ru>
 		</Translates>
 	</Key>
 	<Key Name="Education3_Key">
 		<Translates>
 			<en-us>Open the door</en-us>
-			<ru>Открытие двери </ru>
+			<ru>Открой дверь </ru>
 		</Translates>
 	</Key>
 	<Key Name="Education4_Key">
 		<Translates>
-			<en-us>Teleport</en-us>
-			<ru>Телепортация </ru>
+			<en-us>Move in time</en-us>
+			<ru>Прыгай во времени</ru>
 		</Translates>
 	</Key>
 	<Key Name="Education5_Key">
 		<Translates>
 			<en-us>Wait</en-us>
-			<ru>Ожидание </ru>
+			<ru>Подожди</ru>
 		</Translates>
 	</Key>
 	<Key Name="Education6_Key">
 		<Translates>
-			<en-us>Treasure selection</en-us>
-			<ru>Подбор сокровища </ru>
+			<en-us>Take the coin</en-us>
+			<ru>Возьми монету</ru>
 		</Translates>
 	</Key>
 	<Key Name="Education7_Key">
 		<Translates>
-			<en-us>Switching the switch</en-us>
-			<ru>Переключение рубильника</ru>
+			<en-us>Switch the electricity</en-us>
+			<ru>Переключи электричество</ru>
 		</Translates>
 	</Key>
 	<Key Name="Education8_Key">
 		<Translates>
-			<en-us>Wire snacking</en-us>
-			<ru>Перекусывание провода </ru>
+			<en-us>Bite the wire</en-us>
+			<ru>Кусай провод</ru>
 		</Translates>
 	</Key>
 	<Key Name="Education9_Key">
 		<Translates>
-			<en-us>Water spill</en-us>
-			<ru>Разлитие воды </ru>
+			<en-us>Spill water</en-us>
+			<ru>Разлей воду</ru>
 		</Translates>
 	</Key>
 	<Key Name="Further_Key">
@@ -211,6 +208,51 @@
 		</Translates>
 	</Key>
 	<Key Name="EducationStart_Key">
-		<Translates/>
+		<Translates>
+			<en-us>Time Traveler’s Guide:
+1. Press [SPACE] to jump through time.
+2. You’ll travel through time, but not space.
+3. Your variant from past will repeat all your movements. Do not try to touch him. You’ll die.
+4. Don’t let the guards catch you. They’ve ruined a lot of parrots’ life before you. 
+5. Gathered things stay with you even if you jump through time.
+
+Some details about controls:
+1. Press WASD to move.
+2. Press Q or E to rotate the camera. 
+3. Press F and G to interact with objects. 
+4. Some objects need to be interacted with for more than one move. 
+5. Press X to skip a move.</en-us>
+			<ru>Памятка путешественника во времени: 
+1. Для перемещения во времени задействуй устройство на SPACE
+2. Устройство перемещает тебя во времени, но не в пространстве 
+3. Ты из прошлого повторишь свой путь, не сталкивайся с самим собой, иначе смерть 
+4. Не попадайся в лапы охранникам, в их руках закончилась ни одна попугайная жизнь 
+5. Собранные сокровища остаются с тобой, даже если ты совершаешь скачек во времени 
+
+Пояснение к управлению: 
+1. Чтобы передвигаться, нажимай WASD 
+2. Для поворота камеры используй Q E 
+3. Использовать предметы можно на клавиши F и G 
+4. Некоторые объекты нужно удерживать (например, рычаг у двери) 
+5. Пропустить ход, для удержания или ожидания, можно клавишей X</ru>
+		</Translates>
+	</Key>
+	<Key Name="Music_Key">
+		<Translates>
+			<en-us>Music</en-us>
+			<ru>Музыка</ru>
+		</Translates>
+	</Key>
+	<Key Name="Sound_Key">
+		<Translates>
+			<en-us>Sound</en-us>
+			<ru>Звук</ru>
+		</Translates>
+	</Key>
+	<Key Name="Language_Key">
+		<Translates>
+			<en-us>Language</en-us>
+			<ru>Язык</ru>
+		</Translates>
 	</Key>
 </Keys>
