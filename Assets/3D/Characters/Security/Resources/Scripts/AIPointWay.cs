@@ -22,7 +22,9 @@ public class AIPointWay : MonoBehaviour
     [SerializeField] private float _stepDistance;
     private bool _isFindRoute;
     public bool IsFinish;
+    private bool _errorRoute;
     private Coroutine _coroutine;
+    private List<PointWay> _secondRoutePoints;
 
     private void Awake()
     {
@@ -38,6 +40,7 @@ public class AIPointWay : MonoBehaviour
         //_currentStepTransform = Instantiate(_prefabCurrentStep).GetComponent<Transform>();
 
         _routePoints = new List<PointWay>();
+        _secondRoutePoints = new List<PointWay>();
 
         //GoToPoint(_currentPoint, transform);
         //GoToPoint(_currentPoint, _currentStepTransform);
@@ -80,6 +83,30 @@ public class AIPointWay : MonoBehaviour
         {
             SearchStep(_routePoints);
         }
+        _errorRoute = false;
+    }
+
+    public void SearhSecondRoute()
+    {
+        _isFindRoute = false;
+        _exploredPointsWays.Clear();
+        if (_targetPoint.Position == new Vector2(this.transform.position.x, this.transform.position.z))
+        {
+            return;
+        }
+
+        while (_isFindRoute == false)
+        {
+            SearchStep(_secondRoutePoints);
+        }
+        _secondRoutePoints.Clear();
+
+        if (_errorRoute)
+        {
+            _errorRoute = false;
+            SetStartAndEndPoints(this.transform.position, new Vector3(_targetPoint.Position.x, this.transform.position.y, _targetPoint.Position.y));
+            SearhRoute();
+        }
     }
 
     private void SearchStep(List<PointWay> routePoints)
@@ -88,6 +115,7 @@ public class AIPointWay : MonoBehaviour
         {
             Debug.LogError("?? ???????? ?????? ?? ?????!!!");
             _isFindRoute = true;
+            _errorRoute = true;
             return;
         }
 
@@ -129,6 +157,7 @@ public class AIPointWay : MonoBehaviour
 
     public void MoveStep()
     {
+        SearhSecondRoute();
         if (_currentIndexRoutePoint > _routePoints.Count - 1)
         {
             Debug.LogError("???? ? ?????? ????!");
