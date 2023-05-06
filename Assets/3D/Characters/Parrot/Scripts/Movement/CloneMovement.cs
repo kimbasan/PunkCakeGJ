@@ -10,6 +10,8 @@ using Vector3 = UnityEngine.Vector3;
 
 public class CloneMovement : MonoBehaviour
 {
+    [SerializeField] private GameObject nextStepArrow;
+    [SerializeField] private PlayerAnimManager animManager;
     /// <summary>
     /// Служит конструктором и необходим при создании нового объекта
     /// </summary>
@@ -34,6 +36,7 @@ public class CloneMovement : MonoBehaviour
         }
 
         UpdateInteractableObjects();
+        UpdateNextStepArrow();
     }
 
     private Collider _myCollider;
@@ -71,15 +74,16 @@ public class CloneMovement : MonoBehaviour
         {
             switch (result)
             {
-                case Movements.Wait: UpdateInteractableObjects(); break;
+                case Movements.Wait: UpdateInteractableObjects(); UpdateNextStepArrow(); break;
                 case Movements.Up: Move(Vector3.forward); break;
                 case Movements.Down: Move(Vector3.back); break;
                 case Movements.Left: Move(Vector3.left); break;
                 case Movements.Right: Move(Vector3.right); break;
-                case Movements.Action: DoAction(); break;
-                case Movements.SecondaryAction: DoSecondaryAction(); break;
+                case Movements.Action: DoAction(); UpdateNextStepArrow(); break;
+                case Movements.SecondaryAction: DoSecondaryAction(); UpdateNextStepArrow(); break;
             }
         }
+        
     }
 
     // Находим объекты для взаимодействия как игрок и сохраняем ссылки на них
@@ -152,12 +156,14 @@ public class CloneMovement : MonoBehaviour
     private void Move(Vector3 direction)
     {
         Vector3 Move = new Vector3(transform.position.x + direction.x * _stepDistance, transform.position.y, transform.position.z + direction.z * _stepDistance);
+        animManager.PlayWalk();
         StartCoroutine(MoveAnim(Move));
         transform.rotation = Quaternion.LookRotation(direction);
     }
 
     private IEnumerator MoveAnim(Vector3 target)
     {
+        nextStepArrow.SetActive(false);
         //_isReady = false;
         while (transform.position != target)
         {
@@ -167,6 +173,7 @@ public class CloneMovement : MonoBehaviour
         //_isReady = true;
 
         UpdateInteractableObjects();
+        UpdateNextStepArrow();
     }
 
     /// <summary>
@@ -194,5 +201,32 @@ public class CloneMovement : MonoBehaviour
             _currentMovementsQueue.Enqueue(item);
         }
         UpdateInteractableObjects();
+    }
+
+    private void UpdateNextStepArrow()
+    {
+        if (_currentMovementsQueue.Count != 0)
+        {
+            Movements nextMove = _currentMovementsQueue.Peek();
+            switch(nextMove)
+            {
+                case (Movements.Action): nextStepArrow.SetActive(false); break;
+                case (Movements.SecondaryAction): nextStepArrow.SetActive(false); break;
+                case (Movements.Wait): nextStepArrow.SetActive(false); break;
+                case (Movements.Up): SetupArrow(Vector3.forward); break;
+                case (Movements.Left): SetupArrow(Vector3.left); break;
+                case (Movements.Right): SetupArrow(Vector3.right); break;
+                case (Movements.Down): SetupArrow(Vector3.back); break;
+            }
+        } else
+        {
+            nextStepArrow.SetActive(false);
+        }
+    }
+
+    private void SetupArrow(Vector3 vector)
+    {
+        nextStepArrow.SetActive(true);
+        nextStepArrow.transform.rotation = Quaternion.LookRotation(vector, Vector3.up);
     }
 }
