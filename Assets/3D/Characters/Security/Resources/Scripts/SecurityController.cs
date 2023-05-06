@@ -31,7 +31,7 @@ public class SecurityController : MonoBehaviour
     [SerializeField] private Vector3 _lastPlayerPosition;
     private Vector3 _startPosition;
 
-    private SecurityCollisionCheker _stanChecker;
+    [SerializeField] private SecurityCollisionCheker _stanChecker;
     private Vector3 _previousPosition;
 
     private void Awake()
@@ -42,6 +42,7 @@ public class SecurityController : MonoBehaviour
         _animator = gameObject.GetComponent<Animator>();
         _animManager = gameObject.GetComponent<SecurityAnimManager>();
         _animManager.MyAnimator = _animator;
+        _stanChecker.Stan += Stan;
     }
 
     public void Step()

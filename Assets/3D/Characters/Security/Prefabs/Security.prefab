@@ -1394,7 +1394,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   _lastPlayerPosition: {x: 0, y: 0, z: 0}
-  _trigger: {fileID: 8503942498735069937}
+  _stanChecker: {fileID: 4277899869492739251}
 --- !u!114 &2517167854377449049
 MonoBehaviour:
   m_ObjectHideFlags: 0

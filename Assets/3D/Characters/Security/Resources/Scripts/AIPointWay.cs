@@ -78,11 +78,11 @@ public class AIPointWay : MonoBehaviour
     {
         while (_isFindRoute == false)
         {
-            SearchStep();
+            SearchStep(_routePoints);
         }
     }
 
-    private void SearchStep()
+    private void SearchStep(List<PointWay> routePoints)
     {
         if (_currentPoint == null)
         {
@@ -107,12 +107,12 @@ public class AIPointWay : MonoBehaviour
         }
 
         _currentPoint.ClosePoint();
-        _routePoints.Add(_currentPoint);
+        routePoints.Add(_currentPoint);
         _currentPoint.CheckAndCloseNearPoints(_exploredPointsWays);
 
         if (_currentPoint.CheckHaveOpenPoints() == false)
         {
-            _currentPoint = GetMinOpenExploredPoint();
+            _currentPoint = GetMinOpenExploredPoint(routePoints);
             //GoToPoint(_currentPoint, _currentStepTransform);
             return;
         }
@@ -122,7 +122,7 @@ public class AIPointWay : MonoBehaviour
 
         if (_currentPoint.Position == _targetPoint.Position)
         {
-            _routePoints.Add(_currentPoint);
+            routePoints.Add(_currentPoint);
             _isFindRoute = true;
         }
     }
@@ -167,7 +167,7 @@ public class AIPointWay : MonoBehaviour
         return movable;
     }
 
-    private PointWay GetMinOpenExploredPoint()
+    private PointWay GetMinOpenExploredPoint(List<PointWay> routePoints)
     {
         PointWay minPoint = new PointWay();
         minPoint.Distance = float.MaxValue;
@@ -180,7 +180,7 @@ public class AIPointWay : MonoBehaviour
             }
             else
             {
-                _routePoints.Remove(_exploredPointsWays[i]);
+                routePoints.Remove(_exploredPointsWays[i]);
             }
         }
 
