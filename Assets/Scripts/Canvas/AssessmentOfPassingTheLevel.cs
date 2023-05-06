@@ -27,7 +27,5 @@ public class AssessmentOfPassingTheLevel : MonoBehaviour
         {
             LevelAssessment[i].sprite = StarGood;
         }
-        //LevelAssessment[o].sprite = StarGood;
-        //o++;
     }    
 }
