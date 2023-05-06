@@ -8,7 +8,7 @@ public class AssessmentOfPassingTheLevel : MonoBehaviour
     [SerializeField] private Sprite StarEmpty, StarGood;
     [SerializeField] private Image[] LevelAssessment;
     [SerializeField] private Quests quests;
-    [SerializeField] private GameObject[] Panel;
+    public GameObject[] Panel;
 
     private void Start()
     {

@@ -6,9 +6,11 @@ using UnityEngine.SceneManagement;
 public class PauseMenu : MonoBehaviour
 {
     [SerializeField] private GameObject SettingPanel;
+    [SerializeField] private AssessmentOfPassingTheLevel EndPanel;
     public bool ActiveSettingPanel;
     public GameObject PauseObject;
-    bool CheckPause;
+    bool CheckPause, ActivePause;
+    bool[] CheckEndPanel = new bool[2];
     private PlayerInputActions PlayerInputActions;
 
     private void Awake()
@@ -26,14 +28,41 @@ public class PauseMenu : MonoBehaviour
     }
     public void CheckPanel()
     {
-        if(ActiveSettingPanel==false)
+        for(int i = 0; i < EndPanel.Panel.Length; i++)
         {
-            Continue();
+            if (EndPanel.Panel[i].activeSelf)
+            {
+                CheckEndPanel[i] = true;
+            }
+            else
+            {
+                CheckEndPanel[i] = false;
+            }
         }
-        else if((SettingPanel.activeSelf))
+        for (int i = 0; i < CheckEndPanel.Length; i++)
         {
-            Setting();
+            if (CheckEndPanel[i] == true)
+            {
+                ActivePause = true;
+                break;
+            }
+            else
+            {
+                ActivePause = false;
+            }
         }
+        if (!ActivePause)
+        {
+            if (ActiveSettingPanel == false)
+            {
+                Continue();
+            }
+            else if ((SettingPanel.activeSelf))
+            {
+                Setting();
+            }
+        }
+
     }
     private void Start()
     {
