@@ -9,7 +9,7 @@ public class Quests : MonoBehaviour
     [SerializeField] private GameObject MainQuest;
     public GameObject[] AdditionalQuests, EducationalQuests, ProgressOfTheCompletedTask;
     public bool[] AdditionalTasksReceivedBool, CompletingTheQuest;
-    private int IndexEducation = 0;
+    public int IndexEducation = 0;
     public int NumQuest = 0;
 
     private void Start()
