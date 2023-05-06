@@ -311,6 +311,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Exit
       objectReference: {fileID: 0}
+    - target: {fileID: 5596456240199813466, guid: 67e843be6fa03204280f73d34d236415, type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5596456240199813468, guid: 67e843be6fa03204280f73d34d236415, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 67e843be6fa03204280f73d34d236415, type: 3}
 --- !u!1 &14835990
