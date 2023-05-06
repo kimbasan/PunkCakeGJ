@@ -5,10 +5,10 @@ using UnityEngine;
 public class Sound : MonoBehaviour
 {
     [SerializeField] private AudioSource Audio;
-    [SerializeField] private AudioClip Clip;
+    [SerializeField] private AudioClip[] Clip;
 
-    public void PlaySound()
+    public void PlaySound(int Index)
     {
-        Audio.PlayOneShot(Clip);
+        Audio.PlayOneShot(Clip[Index]);
     }
 }
