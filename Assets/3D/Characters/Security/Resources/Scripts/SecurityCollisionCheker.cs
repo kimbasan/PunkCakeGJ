@@ -7,7 +7,7 @@ public class SecurityCollisionCheker : MonoBehaviour
 {
     public event Action Stan;
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider collision)
     {
         if (collision.gameObject.CompareTag("Security"))
         {

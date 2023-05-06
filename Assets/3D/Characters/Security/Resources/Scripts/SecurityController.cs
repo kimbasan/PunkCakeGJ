@@ -201,7 +201,7 @@ public class SecurityController : MonoBehaviour
         {
             transform.position = _previousPosition;
         }
-        Debug.LogError("????!");
+        Debug.LogError("Stan!");
     }
 
     private void HideVision()
