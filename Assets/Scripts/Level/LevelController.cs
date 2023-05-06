@@ -28,6 +28,9 @@ public class LevelController: MonoBehaviour
     [SerializeField] private GameObject _deadPanel;
     [SerializeField] private List<SecurityController> _securities;
     [SerializeField] private List<CinemachineVirtualCamera> _cams;
+
+    [SerializeField] private GameObject portalUpPrefab;
+
     private int _currentCameraIndex = 0;
 
     private GameObject _player;
@@ -134,11 +137,12 @@ public class LevelController: MonoBehaviour
         if (_clonesList.Count == 0)
         {
             currentClone = Instantiate(_clonePrefab, _playerSpawner.position, _playerSpawner.rotation).GetComponent<CloneMovement>();
+            Instantiate(portalUpPrefab, _playerMovement.transform.position, portalUpPrefab.transform.rotation);
         }
         else
         {
             currentClone = Instantiate(_clonePrefab, _startClonePosition, _startCloneRotation).GetComponent<CloneMovement>();
-
+            Instantiate(portalUpPrefab, _playerMovement.transform.position, portalUpPrefab.transform.rotation);
         }
         foreach (var item in _clonesList)
         {
