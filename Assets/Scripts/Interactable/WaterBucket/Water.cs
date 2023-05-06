@@ -59,6 +59,9 @@ public class Water: MonoBehaviour
 
             else if (collision.gameObject.CompareTag("Security"))
             {
+                var levelController = FindAnyObjectByType<LevelController>();
+                Instantiate(levelController.DeathSecurity, collision.gameObject.transform.position, collision.gameObject.transform.rotation);
+                levelController.RemoveSecurity(collision.gameObject.GetComponent<SecurityController>());
                 Destroy(collision.gameObject);
             }
         }

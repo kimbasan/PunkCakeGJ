@@ -41919,7 +41919,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5967866147912279522}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 34, y: 0, z: 33.6}
+  m_LocalPosition: {x: 30, y: 0, z: 19.599998}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -47807,6 +47807,7 @@ MonoBehaviour:
   - {fileID: 5967866145951339145}
   - {fileID: 5967866146207961553}
   portalUpPrefab: {fileID: 4564353162283490839, guid: 2c802b57bfb22be4aa941012bc631fe9, type: 3}
+  DeathSecurity: {fileID: 2620586811906704864, guid: 411e55f35b7b1b0429f9f36b5edb70b8, type: 3}
 --- !u!4 &9130932331999939791
 Transform:
   m_ObjectHideFlags: 0

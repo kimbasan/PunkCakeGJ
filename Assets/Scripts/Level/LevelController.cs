@@ -30,6 +30,7 @@ public class LevelController: MonoBehaviour
     [SerializeField] private List<CinemachineVirtualCamera> _cams;
 
     [SerializeField] private GameObject portalUpPrefab;
+    [SerializeField] public GameObject DeathSecurity;
 
     private int _currentCameraIndex = 0;
 
@@ -46,6 +47,13 @@ public class LevelController: MonoBehaviour
         Right,
         Back,
         Left
+    }
+
+    public void RemoveSecurity(SecurityController security)
+    {
+        BotStep -= security.Step;
+        _cloneEvent -= security.RestartPosition;
+        _securities.Remove(security);
     }
 
     private void Awake()
