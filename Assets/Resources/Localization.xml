@@ -210,4 +210,7 @@
 			<ru>Далее</ru>
 		</Translates>
 	</Key>
+	<Key Name="EducationStart_Key">
+		<Translates/>
+	</Key>
 </Keys>
