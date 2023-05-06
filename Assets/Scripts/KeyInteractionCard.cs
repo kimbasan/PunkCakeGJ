@@ -39,7 +39,9 @@ public class KeyInteractionCard : MonoBehaviour
             CheckKeyCard = false;
             CardImage.enabled = true;
             CheckQuest();
-            quests.ProgressOfTheCompletedTask[0].SetActive(true);
+            quests.CompletingTheQuest[0] = true;
+            //quests.ProgressOfTheCompletedTask[0].SetActive(true);
+            quests.CheckProgressAdditionalQuest(0);
             Destroy(gameObject);
         }
     }

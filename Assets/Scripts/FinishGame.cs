@@ -6,7 +6,7 @@ public class FinishGame : MonoBehaviour
 {
     [SerializeField] private AudioSource Source;
     [SerializeField] private AudioClip[] Clip;
-    [SerializeField] private AssessmentOfPassingTheLevel AssessmentOfPassingTheLevel;
+    //[SerializeField] private AssessmentOfPassingTheLevel AssessmentOfPassingTheLevel;
     [SerializeField] GameObject EndCanvas;
     public KeyInteractionCard keyInteractionCard;
 
@@ -15,8 +15,9 @@ public class FinishGame : MonoBehaviour
         if (keyInteractionCard.AvailabilityKeyCard)
         {
             Source.PlayOneShot(Clip[0]);
-            AssessmentOfPassingTheLevel.StarUp();
+            //AssessmentOfPassingTheLevel.StarUp();
             EndCanvas.GetComponent<AssessmentOfPassingTheLevel>().Panel[1].SetActive(true);
+            EndCanvas.GetComponent<AssessmentOfPassingTheLevel>().StarUp();
             Debug.Log("Дверь открыта");
         }
         else

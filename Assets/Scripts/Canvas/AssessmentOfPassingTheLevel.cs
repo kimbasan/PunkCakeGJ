@@ -25,6 +25,7 @@ public class AssessmentOfPassingTheLevel : MonoBehaviour
     {
         for(int i = 0; i < quests.NumQuest; i++)
         {
+            Debug.Log(quests.NumQuest);
             LevelAssessment[i].sprite = StarGood;
         }
     }    
