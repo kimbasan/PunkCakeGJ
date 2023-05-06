@@ -34,6 +34,15 @@ public class RouteSecurity : MonoBehaviour
             Step();
         }
     }
+    
+    public bool StepIsNotWait()
+    {
+        if (_routeMovements[_currentIndexPoint] == SecurityMovement.Wait)
+        {
+            return false;
+        }
+        return true;
+    }
 
     public void Step()
     {

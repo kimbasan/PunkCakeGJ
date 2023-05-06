@@ -64,7 +64,10 @@ public class SecurityController : MonoBehaviour
         {
             _myState = SecurityState.Seek;
             _myAIPointWay.MoveStep();
-            _animManager.PlayWalk();
+            if (_myAIPointWay.LastMove == false)
+            {
+                _animManager.PlayWalk();
+            }
         }
         else if (_myState == SecurityState.Seek)
         {
@@ -75,9 +78,11 @@ public class SecurityController : MonoBehaviour
                 _myAIPointWay.SearhRoute();
                 LookAround();
             }
-
+            if (_myAIPointWay.LastMove == false)
+            {
+                _animManager.PlayWalk();
+            }
             _myAIPointWay.MoveStep();
-            _animManager.PlayWalk();
         }
         else if (_myState == SecurityState.Return)
         {
@@ -86,14 +91,22 @@ public class SecurityController : MonoBehaviour
                 _myState = SecurityState.Patrol;
                 _myRouteSecurity.ResetRoute();
             }
-
+            else
+            {
+                if (_myAIPointWay.LastMove == false)
+                {
+                    _animManager.PlayWalk();
+                }
+            }
             _myAIPointWay.MoveStep();
-            _animManager.PlayWalk();
         }
         else if (_myState == SecurityState.Patrol)
         {
+            if (_myRouteSecurity.StepIsNotWait())
+            {
+                _animManager.PlayWalk();
+            }
             _myRouteSecurity.Step();
-            _animManager.PlayWalk();
         }
 
         else
@@ -111,6 +124,7 @@ public class SecurityController : MonoBehaviour
     {
         foreach (var item in _myVizors)
         {
+            item.CheckClone();
             if (item.DetectedPlayer)
             {
                 var direction = item.transform.position - this.transform.position;
@@ -161,36 +175,22 @@ public class SecurityController : MonoBehaviour
 
     private IEnumerator SearchWait()
     {
-        yield return new WaitForSeconds(0.1f);
-        yield return new WaitForEndOfFrame();
-
-        if (CheckPlayerVis())
-        {
-            _myState = SecurityState.Pursuit;
-            _lastPlayerPosition = GetNearestClone();
-            _myAIPointWay.SetStartAndEndPoints(this.transform.position, _lastPlayerPosition);
-            _myAIPointWay.SearhRoute();
-        }
+        //if (CheckPlayerVis())
+        //{
+        //    _myState = SecurityState.Pursuit;
+        //    _lastPlayerPosition = GetNearestClone();
+        //    _myAIPointWay.SetStartAndEndPoints(this.transform.position, _lastPlayerPosition);
+        //    _myAIPointWay.SearhRoute();
+        //}
 
         yield return new WaitForEndOfFrame();
-
-        UnDetectedVizors();
         yield return new WaitForSeconds(0.6f);
         ShowVision();
-    }
-
-    private void UnDetectedVizors()
-    {
-        for (int i = 0; i < _myVizors.Count; i++)
-        {
-            _myVizors[i].DetectedPlayer = false;
-        }
     }
 
     public void RestartPosition()
     {
         this.transform.position = _startPosition;
-        UnDetectedVizors();
         _myRouteSecurity.ResetRoute();
         _myState = SecurityState.Patrol;
     }
@@ -201,12 +201,12 @@ public class SecurityController : MonoBehaviour
         _myAIPointWay.StopMove();
         if (_myState == SecurityState.Patrol)
         {
-            transform.position = _previousPosition;
+            this.transform.position = _previousPosition;
             _myRouteSecurity.PreviousStep();
         }
         else
         {
-            transform.position = _previousPosition;
+            this.transform.position = _previousPosition;
         }
         Debug.LogError("Stan!");
     }

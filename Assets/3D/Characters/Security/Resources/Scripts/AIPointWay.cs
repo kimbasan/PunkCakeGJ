@@ -23,10 +23,11 @@ public class AIPointWay : MonoBehaviour
     [SerializeField] private float _stepDistance;
     private bool _isFindRoute;
     public bool IsFinish;
-    private bool _errorRoute;
+    //private bool _errorRoute;
     private Coroutine _coroutine;
     private List<PointWay> _secondRoutePoints;
     public event Action ErrorWay;
+    public bool LastMove = false;
 
     private void Awake()
     {
@@ -75,6 +76,7 @@ public class AIPointWay : MonoBehaviour
         _currentIndexRoutePoint = 0;
         _isFindRoute = false;
         IsFinish = false;
+        LastMove = false;
         _exploredPointsWays.Clear();
         _routePoints.Clear();
     }
@@ -85,31 +87,35 @@ public class AIPointWay : MonoBehaviour
         {
             SearchStep(_routePoints);
         }
-        _errorRoute = false;
+
+        //for (int i = 0; i < _routePoints.Count; i++)
+        //{
+        //    Debug.Log(_routePoints[i].Position);
+        //}
     }
 
-    public void SearhSecondRoute()
-    {
-        _isFindRoute = false;
-        _exploredPointsWays.Clear();
-        if (_targetPoint.Position == new Vector2(this.transform.position.x, this.transform.position.z))
-        {
-            return;
-        }
+    //public void SearhSecondRoute()
+    //{
+    //    _isFindRoute = false;
+    //    _exploredPointsWays.Clear();
+    //    if (_targetPoint.Position == new Vector2(this.transform.position.x, this.transform.position.z))
+    //    {
+    //        return;
+    //    }
 
-        while (_isFindRoute == false)
-        {
-            SearchStep(_secondRoutePoints);
-        }
-        _secondRoutePoints.Clear();
+    //    while (_isFindRoute == false)
+    //    {
+    //        SearchStep(_secondRoutePoints);
+    //    }
+    //    _secondRoutePoints.Clear();
 
-        if (_errorRoute)
-        {
-            _errorRoute = false;
-            SetStartAndEndPoints(this.transform.position, new Vector3(_targetPoint.Position.x, this.transform.position.y, _targetPoint.Position.y));
-            SearhRoute();
-        }
-    }
+    //    if (_errorRoute)
+    //    {
+    //        _errorRoute = false;
+    //        SetStartAndEndPoints(this.transform.position, new Vector3(_targetPoint.Position.x, this.transform.position.y, _targetPoint.Position.y));
+    //        SearhRoute();
+    //    }
+    //}
 
     private void SearchStep(List<PointWay> routePoints)
     {
@@ -118,7 +124,6 @@ public class AIPointWay : MonoBehaviour
             Debug.LogError("?? ???????? ?????? ?? ?????!!!");
             _isFindRoute = true;
             ErrorWay?.Invoke();
-            _errorRoute = true;
             return;
         }
 
@@ -160,12 +165,17 @@ public class AIPointWay : MonoBehaviour
 
     public void MoveStep()
     {
-        SearhSecondRoute();
+        //SearhSecondRoute();
         if (_currentIndexRoutePoint > _routePoints.Count - 1)
         {
             Debug.LogError("???? ? ?????? ????!");
+            ErrorWay?.Invoke();
             IsFinish = true;
             return;
+        }
+        if (_currentIndexRoutePoint == _routePoints.Count - 2)
+        {
+            LastMove = true;
         }
 
         if (_currentIndexRoutePoint == _routePoints.Count - 1)
@@ -187,14 +197,7 @@ public class AIPointWay : MonoBehaviour
         Debug.DrawRay(Ray.origin, Ray.direction * _stepDistance);//?????? ??? (???????? ??????????)
         if (Physics.Raycast(currentPosition, direction, out Hit, _stepDistance, _layerPlaneTrue))//????????, ???? ?? ? ??????????? Collider ?? ?????
         {
-            if (Physics.Raycast(currentPosition, direction, out Hit, _stepDistance, _layerSecurity))
-            {
-                return movable;
-            }
-            else
-            {
-                movable = true;
-            }
+            movable = true;
         }
         return movable;
     }

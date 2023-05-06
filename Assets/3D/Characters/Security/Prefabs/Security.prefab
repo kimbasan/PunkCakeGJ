@@ -1596,7 +1596,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3328071072966105695}
-  - component: {fileID: 3328071072966105681}
   - component: {fileID: 3328071072966105694}
   m_Layer: 0
   m_Name: Vizor (4)
@@ -1621,19 +1620,6 @@ Transform:
   m_Father: {fileID: 3328071074019273283}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &3328071072966105681
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3328071072966105692}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.2, y: 1, z: 0.2}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &3328071072966105694
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1646,8 +1632,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 916af1f75494a7f46aec66242895184b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DetectedPlayer: 0
   Vision: {fileID: 3671067226934158920}
+  _cloneLayer:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!1 &3328071072980855352
 GameObject:
   m_ObjectHideFlags: 0
@@ -1657,7 +1645,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3328071072980855355}
-  - component: {fileID: 3328071072980855357}
   - component: {fileID: 3328071072980855354}
   m_Layer: 0
   m_Name: Vizor (5)
@@ -1682,19 +1669,6 @@ Transform:
   m_Father: {fileID: 3328071074019273283}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &3328071072980855357
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3328071072980855352}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.2, y: 1, z: 0.2}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &3328071072980855354
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1707,8 +1681,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 916af1f75494a7f46aec66242895184b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DetectedPlayer: 0
   Vision: {fileID: 6713163698016866925}
+  _cloneLayer:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!1 &3328071073098204520
 GameObject:
   m_ObjectHideFlags: 0
@@ -1718,7 +1694,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3328071073098204523}
-  - component: {fileID: 3328071073098204525}
   - component: {fileID: 3328071073098204522}
   m_Layer: 0
   m_Name: Vizor (7)
@@ -1743,19 +1718,6 @@ Transform:
   m_Father: {fileID: 3328071074019273283}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &3328071073098204525
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3328071073098204520}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.2, y: 1, z: 0.2}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &3328071073098204522
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1768,8 +1730,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 916af1f75494a7f46aec66242895184b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DetectedPlayer: 0
   Vision: {fileID: 1847566820184374755}
+  _cloneLayer:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!1 &3328071073119608700
 GameObject:
   m_ObjectHideFlags: 0
@@ -1779,7 +1743,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3328071073119608703}
-  - component: {fileID: 3328071073119608689}
   - component: {fileID: 3328071073119608702}
   m_Layer: 0
   m_Name: Vizor (12)
@@ -1804,19 +1767,6 @@ Transform:
   m_Father: {fileID: 3328071074019273283}
   m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &3328071073119608689
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3328071073119608700}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.2, y: 1, z: 0.2}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &3328071073119608702
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1829,8 +1779,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 916af1f75494a7f46aec66242895184b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DetectedPlayer: 0
   Vision: {fileID: 8585958786875158175}
+  _cloneLayer:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!1 &3328071073140276648
 GameObject:
   m_ObjectHideFlags: 0
@@ -1840,7 +1792,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3328071073140276651}
-  - component: {fileID: 3328071073140276653}
   - component: {fileID: 3328071073140276650}
   m_Layer: 0
   m_Name: Vizor (14)
@@ -1865,19 +1816,6 @@ Transform:
   m_Father: {fileID: 3328071074019273283}
   m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &3328071073140276653
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3328071073140276648}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.2, y: 1, z: 0.2}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &3328071073140276650
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1890,8 +1828,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 916af1f75494a7f46aec66242895184b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DetectedPlayer: 0
   Vision: {fileID: 413962904162679074}
+  _cloneLayer:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!1 &3328071073245147267
 GameObject:
   m_ObjectHideFlags: 0
@@ -1901,7 +1841,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3328071073245147266}
-  - component: {fileID: 3328071073245147268}
   - component: {fileID: 3328071073245147269}
   m_Layer: 0
   m_Name: Vizor (11)
@@ -1926,19 +1865,6 @@ Transform:
   m_Father: {fileID: 3328071074019273283}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &3328071073245147268
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3328071073245147267}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.2, y: 1, z: 0.2}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &3328071073245147269
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1951,8 +1877,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 916af1f75494a7f46aec66242895184b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DetectedPlayer: 0
   Vision: {fileID: 6462879224898860673}
+  _cloneLayer:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!1 &3328071073271883071
 GameObject:
   m_ObjectHideFlags: 0
@@ -1962,7 +1890,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3328071073271883070}
-  - component: {fileID: 3328071073271883056}
   - component: {fileID: 3328071073271883057}
   m_Layer: 0
   m_Name: Vizor (16)
@@ -1987,19 +1914,6 @@ Transform:
   m_Father: {fileID: 3328071074019273283}
   m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &3328071073271883056
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3328071073271883071}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.2, y: 1, z: 0.2}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &3328071073271883057
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2012,8 +1926,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 916af1f75494a7f46aec66242895184b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DetectedPlayer: 0
   Vision: {fileID: 2862418153616500880}
+  _cloneLayer:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!1 &3328071073339546271
 GameObject:
   m_ObjectHideFlags: 0
@@ -2023,7 +1939,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3328071073339546270}
-  - component: {fileID: 3328071073339546256}
   - component: {fileID: 3328071073339546257}
   m_Layer: 0
   m_Name: Vizor (17)
@@ -2048,19 +1963,6 @@ Transform:
   m_Father: {fileID: 3328071074019273283}
   m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &3328071073339546256
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3328071073339546271}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.2, y: 1, z: 0.2}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &3328071073339546257
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2073,8 +1975,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 916af1f75494a7f46aec66242895184b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DetectedPlayer: 0
   Vision: {fileID: 9157385669408376097}
+  _cloneLayer:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!1 &3328071073506521359
 GameObject:
   m_ObjectHideFlags: 0
@@ -2084,7 +1988,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3328071073506521358}
-  - component: {fileID: 3328071073506521344}
   - component: {fileID: 3328071073506521345}
   m_Layer: 0
   m_Name: Vizor (13)
@@ -2109,19 +2012,6 @@ Transform:
   m_Father: {fileID: 3328071074019273283}
   m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &3328071073506521344
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3328071073506521359}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.2, y: 1, z: 0.2}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &3328071073506521345
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2134,8 +2024,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 916af1f75494a7f46aec66242895184b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DetectedPlayer: 0
   Vision: {fileID: 5409742493308806516}
+  _cloneLayer:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!1 &3328071073564168731
 GameObject:
   m_ObjectHideFlags: 0
@@ -2145,7 +2037,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3328071073564168730}
-  - component: {fileID: 3328071073564168732}
   - component: {fileID: 3328071073564168733}
   m_Layer: 0
   m_Name: Vizor (1)
@@ -2170,19 +2061,6 @@ Transform:
   m_Father: {fileID: 3328071074019273283}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &3328071073564168732
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3328071073564168731}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.2, y: 1, z: 0.2}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &3328071073564168733
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2195,8 +2073,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 916af1f75494a7f46aec66242895184b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DetectedPlayer: 0
   Vision: {fileID: 7240703768210439914}
+  _cloneLayer:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!1 &3328071073598853180
 GameObject:
   m_ObjectHideFlags: 0
@@ -2206,7 +2086,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3328071073598853183}
-  - component: {fileID: 3328071073598853169}
   - component: {fileID: 3328071073598853182}
   m_Layer: 0
   m_Name: Vizor (15)
@@ -2231,19 +2110,6 @@ Transform:
   m_Father: {fileID: 3328071074019273283}
   m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &3328071073598853169
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3328071073598853180}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.2, y: 1, z: 0.2}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &3328071073598853182
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2256,8 +2122,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 916af1f75494a7f46aec66242895184b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DetectedPlayer: 0
   Vision: {fileID: 1876221935556913711}
+  _cloneLayer:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!1 &3328071073648965250
 GameObject:
   m_ObjectHideFlags: 0
@@ -2267,7 +2135,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3328071073648965253}
-  - component: {fileID: 3328071073648965255}
   - component: {fileID: 3328071073648965252}
   m_Layer: 0
   m_Name: Vizor (6)
@@ -2292,19 +2159,6 @@ Transform:
   m_Father: {fileID: 3328071074019273283}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &3328071073648965255
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3328071073648965250}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.2, y: 1, z: 0.2}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &3328071073648965252
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2317,8 +2171,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 916af1f75494a7f46aec66242895184b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DetectedPlayer: 0
   Vision: {fileID: 5208608551134259318}
+  _cloneLayer:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!1 &3328071073786363653
 GameObject:
   m_ObjectHideFlags: 0
@@ -2328,7 +2184,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3328071073786363652}
-  - component: {fileID: 3328071073786363654}
   - component: {fileID: 3328071073786363655}
   m_Layer: 0
   m_Name: Vizor (19)
@@ -2353,19 +2208,6 @@ Transform:
   m_Father: {fileID: 3328071074019273283}
   m_RootOrder: 19
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &3328071073786363654
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3328071073786363653}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.2, y: 1, z: 0.2}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &3328071073786363655
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2378,8 +2220,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 916af1f75494a7f46aec66242895184b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DetectedPlayer: 0
   Vision: {fileID: 7569248994108418150}
+  _cloneLayer:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!1 &3328071073955849144
 GameObject:
   m_ObjectHideFlags: 0
@@ -2389,7 +2233,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3328071073955849147}
-  - component: {fileID: 3328071073955849149}
   - component: {fileID: 3328071073955849146}
   m_Layer: 0
   m_Name: Vizor (9)
@@ -2414,19 +2257,6 @@ Transform:
   m_Father: {fileID: 3328071074019273283}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &3328071073955849149
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3328071073955849144}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.2, y: 1, z: 0.2}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &3328071073955849146
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2439,8 +2269,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 916af1f75494a7f46aec66242895184b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DetectedPlayer: 0
   Vision: {fileID: 7862584913564097703}
+  _cloneLayer:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!1 &3328071074019273280
 GameObject:
   m_ObjectHideFlags: 0
@@ -2501,7 +2333,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3328071074039903750}
-  - component: {fileID: 3328071074039903800}
   - component: {fileID: 3328071074039903801}
   m_Layer: 0
   m_Name: Vizor (2)
@@ -2526,19 +2357,6 @@ Transform:
   m_Father: {fileID: 3328071074019273283}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &3328071074039903800
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3328071074039903751}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.2, y: 1, z: 0.2}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &3328071074039903801
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2551,8 +2369,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 916af1f75494a7f46aec66242895184b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DetectedPlayer: 0
   Vision: {fileID: 8163745672202058102}
+  _cloneLayer:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!1 &3328071074206718718
 GameObject:
   m_ObjectHideFlags: 0
@@ -2562,7 +2382,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3328071074206718705}
-  - component: {fileID: 3328071074206718707}
   - component: {fileID: 3328071074206718704}
   m_Layer: 0
   m_Name: Vizor
@@ -2587,19 +2406,6 @@ Transform:
   m_Father: {fileID: 3328071074019273283}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &3328071074206718707
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3328071074206718718}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.2, y: 1, z: 0.2}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &3328071074206718704
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2612,8 +2418,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 916af1f75494a7f46aec66242895184b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DetectedPlayer: 0
   Vision: {fileID: 7421829347632030779}
+  _cloneLayer:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!1 &3328071074225435295
 GameObject:
   m_ObjectHideFlags: 0
@@ -2623,7 +2431,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3328071074225435294}
-  - component: {fileID: 3328071074225435280}
   - component: {fileID: 3328071074225435281}
   m_Layer: 0
   m_Name: Vizor (18)
@@ -2648,19 +2455,6 @@ Transform:
   m_Father: {fileID: 3328071074019273283}
   m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &3328071074225435280
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3328071074225435295}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.2, y: 1, z: 0.2}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &3328071074225435281
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2673,8 +2467,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 916af1f75494a7f46aec66242895184b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DetectedPlayer: 0
   Vision: {fileID: 4059942357381718679}
+  _cloneLayer:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!1 &3328071074586128639
 GameObject:
   m_ObjectHideFlags: 0
@@ -2684,7 +2480,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3328071074586128638}
-  - component: {fileID: 3328071074586128624}
   - component: {fileID: 3328071074586128625}
   m_Layer: 0
   m_Name: Vizor (3)
@@ -2709,19 +2504,6 @@ Transform:
   m_Father: {fileID: 3328071074019273283}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &3328071074586128624
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3328071074586128639}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.2, y: 1, z: 0.2}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &3328071074586128625
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2734,8 +2516,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 916af1f75494a7f46aec66242895184b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DetectedPlayer: 0
   Vision: {fileID: 1675898085515609957}
+  _cloneLayer:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!1 &3328071074607969524
 GameObject:
   m_ObjectHideFlags: 0
@@ -2745,7 +2529,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3328071074607969527}
-  - component: {fileID: 3328071074607969513}
   - component: {fileID: 3328071074607969526}
   m_Layer: 0
   m_Name: Vizor (10)
@@ -2770,19 +2553,6 @@ Transform:
   m_Father: {fileID: 3328071074019273283}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &3328071074607969513
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3328071074607969524}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.2, y: 1, z: 0.2}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &3328071074607969526
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2795,8 +2565,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 916af1f75494a7f46aec66242895184b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DetectedPlayer: 0
   Vision: {fileID: 770502164369996289}
+  _cloneLayer:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!1 &3328071074614522773
 GameObject:
   m_ObjectHideFlags: 0
@@ -2806,7 +2578,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3328071074614522772}
-  - component: {fileID: 3328071074614522774}
   - component: {fileID: 3328071074614522775}
   m_Layer: 0
   m_Name: Vizor (8)
@@ -2831,19 +2602,6 @@ Transform:
   m_Father: {fileID: 3328071074019273283}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &3328071074614522774
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3328071074614522773}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.2, y: 1, z: 0.2}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &3328071074614522775
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2856,8 +2614,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 916af1f75494a7f46aec66242895184b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DetectedPlayer: 0
   Vision: {fileID: 6997267768597955390}
+  _cloneLayer:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!1 &3671067226934158920
 GameObject:
   m_ObjectHideFlags: 0
@@ -5167,7 +4927,7 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0

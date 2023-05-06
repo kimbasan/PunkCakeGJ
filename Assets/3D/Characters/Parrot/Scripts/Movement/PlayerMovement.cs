@@ -54,21 +54,27 @@ public class PlayerMovement : MonoBehaviour
 
     private void DoAction()
     {
-        NumberOfStepsLeft--;
-        PlayerStep?.Invoke();
-        RecordMove(Movements.Action);
-        interaction?.DoAction();
-        PlayerMoved?.Invoke(this, EventArgs.Empty);
-        StartCoroutine(InteractAnim());
+        if (IsPlayerStep)
+        {
+            NumberOfStepsLeft--;
+            PlayerStep?.Invoke();
+            RecordMove(Movements.Action);
+            interaction?.DoAction();
+            PlayerMoved?.Invoke(this, EventArgs.Empty);
+            StartCoroutine(InteractAnim());
+        }
     }
     private void DoSecondaryAction()
     {
-        NumberOfStepsLeft--;
-        PlayerStep?.Invoke();
-        RecordMove(Movements.SecondaryAction);
-        interaction?.DoSecondaryAction();
-        PlayerMoved?.Invoke(this, EventArgs.Empty);
-        StartCoroutine(InteractAnim());
+        if (IsPlayerStep)
+        {
+            NumberOfStepsLeft--;
+            PlayerStep?.Invoke();
+            RecordMove(Movements.SecondaryAction);
+            interaction?.DoSecondaryAction();
+            PlayerMoved?.Invoke(this, EventArgs.Empty);
+            StartCoroutine(InteractAnim());
+        }
     }
 
     private void OnEnable()

@@ -1,32 +1,22 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Vizor : MonoBehaviour
 {
-    [SerializeField] public bool DetectedPlayer = false;
+    [SerializeField] public bool DetectedPlayer { get; private set; }
     [SerializeField] public GameObject Vision;
+    [SerializeField] private LayerMask _cloneLayer;
+    private Collider[] _colliders;
 
-    private void OnTriggerEnter(Collider other)
+    public void CheckClone()
     {
-        if (other.tag == "Clone")
+        _colliders = Physics.OverlapSphere(this.transform.position, 0.3f, _cloneLayer);
+        if (_colliders.Length > 0)
         {
-            StartCoroutine(TimerToDetect());
+            DetectedPlayer = true;
         }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.tag == "Clone")
+        else
         {
             DetectedPlayer = false;
         }
-    }
-
-    private IEnumerator TimerToDetect()
-    {
-        yield return new WaitForSeconds(0.5f);
-        yield return new WaitForEndOfFrame();
-        DetectedPlayer = true;
     }
 }
