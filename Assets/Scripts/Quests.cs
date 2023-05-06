@@ -41,6 +41,7 @@ public class Quests : MonoBehaviour
         {
             ProgressOfTheCompletedTask[IndexQuest].SetActive(true);
             NumQuest++;
+            Debug.Log(NumQuest);
         }
     }
     public void CheckEducationQuest()

@@ -39,7 +39,9 @@ public class ScoreMoney : MonoBehaviour
             }
             if (ScoreNum == 6)
             {
-                quests.ProgressOfTheCompletedTask[1].SetActive(true);
+                quests.CompletingTheQuest[1] = true;
+                quests.CheckProgressAdditionalQuest(1);
+                //quests.ProgressOfTheCompletedTask[1].SetActive(true);
             }
         }
 
