@@ -1390,7 +1390,9 @@ MonoBehaviour:
   - {fileID: 7598370833118485301}
   - {fileID: 7598370832730931350}
   quests: {fileID: 0}
-  Panel: []
+  Panel:
+  - {fileID: 7598370833732847986}
+  - {fileID: 7598370832120029376}
 --- !u!1 &7598370833657351046
 GameObject:
   m_ObjectHideFlags: 0

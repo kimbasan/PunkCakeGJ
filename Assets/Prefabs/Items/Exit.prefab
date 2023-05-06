@@ -316,6 +316,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 488593257154574215}
     m_Modifications:
+    - target: {fileID: 3433790991956959216, guid: e1c8b26c95fd84e4bb1b4983f3303eeb, type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3433790991956959221, guid: e1c8b26c95fd84e4bb1b4983f3303eeb, type: 3}
       propertyPath: m_Name
       value: Action Player Canvas
