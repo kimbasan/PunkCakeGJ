@@ -1960,7 +1960,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8092625755961431440, guid: 570a38e2a31cd144abe5a240855b6975, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8092625755961431443, guid: 570a38e2a31cd144abe5a240855b6975, type: 3}
       propertyPath: m_SortingOrder
@@ -2064,7 +2064,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8092625757266654568, guid: 570a38e2a31cd144abe5a240855b6975, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8092625757266654568, guid: 570a38e2a31cd144abe5a240855b6975, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -5320,6 +5320,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 279343314438515506, guid: 49a811d19c3de1f4faa0ac31dd05d44d, type: 3}
+      propertyPath: m_Name
+      value: UI Slider
+      objectReference: {fileID: 0}
     - target: {fileID: 279343314493427557, guid: 49a811d19c3de1f4faa0ac31dd05d44d, type: 3}
       propertyPath: m_Name
       value: Setting Panel
@@ -5501,6 +5505,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1791116836221318414, guid: fec17cf5fea13614ca23dd1f4cf4f2ee, type: 3}
+      propertyPath: UISlider
+      value: 
+      objectReference: {fileID: 963303387}
     - target: {fileID: 1791116836221318414, guid: fec17cf5fea13614ca23dd1f4cf4f2ee, type: 3}
       propertyPath: SFXSlider
       value: 
