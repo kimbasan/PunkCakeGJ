@@ -13,7 +13,7 @@ PlayerSettings:
   useOnDemandResources: 0
   accelerometerFrequency: 60
   companyName: Punk Cake
-  productName: Jam
+  productName: Punk Parrot From Outer Space
   defaultCursor: {fileID: 2800000, guid: eacc00a0e1bb9194aa22265208cde52c, type: 3}
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenBackgroundColor: {r: 0.13725491, g: 0.12156863, b: 0.1254902, a: 1}
@@ -134,7 +134,7 @@ PlayerSettings:
     16:10: 1
     16:9: 1
     Others: 1
-  bundleVersion: 0.2
+  bundleVersion: 1.0
   preloadedAssets: []
   metroInputSource: 0
   wsaTransparentSwapchain: 0
@@ -155,7 +155,7 @@ PlayerSettings:
   androidSupportedAspectRatio: 1
   androidMaxAspectRatio: 2.1
   applicationIdentifier:
-    Standalone: com.Punk-Cake.Jam
+    Standalone: com.Punk-Cake.Punk-Parrot-From-Outer-Space
   buildNumber:
     Standalone: 0
     iPhone: 0
