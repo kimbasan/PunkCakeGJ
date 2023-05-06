@@ -368,7 +368,7 @@ MonoBehaviour:
       - m_Target: {fileID: 1779344400}
         m_TargetAssemblyTypeName: Sound, Assembly-CSharp
         m_MethodName: PlaySound
-        m_Mode: 1
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -2214,7 +2214,7 @@ MonoBehaviour:
       - m_Target: {fileID: 1779344400}
         m_TargetAssemblyTypeName: Sound, Assembly-CSharp
         m_MethodName: PlaySound
-        m_Mode: 1
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -2571,7 +2571,7 @@ MonoBehaviour:
       - m_Target: {fileID: 1779344400}
         m_TargetAssemblyTypeName: Sound, Assembly-CSharp
         m_MethodName: PlaySound
-        m_Mode: 1
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -3781,7 +3781,7 @@ MonoBehaviour:
       - m_Target: {fileID: 1779344400}
         m_TargetAssemblyTypeName: Sound, Assembly-CSharp
         m_MethodName: PlaySound
-        m_Mode: 1
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -4736,7 +4736,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Audio: {fileID: 539058154}
-  Clip: {fileID: 8300000, guid: b511ec6c663770845b62f0afdd58ce29, type: 3}
+  Clip:
+  - {fileID: 8300000, guid: b511ec6c663770845b62f0afdd58ce29, type: 3}
 --- !u!1 &1962390815
 GameObject:
   m_ObjectHideFlags: 0
