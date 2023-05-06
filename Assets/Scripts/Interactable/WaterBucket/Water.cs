@@ -56,6 +56,11 @@ public class Water: MonoBehaviour
                 levelController?.Dead();
                 Debug.Log("Player died");
             }
+
+            else if (collision.gameObject.CompareTag("Security"))
+            {
+                Destroy(collision.gameObject);
+            }
         }
     }
 
