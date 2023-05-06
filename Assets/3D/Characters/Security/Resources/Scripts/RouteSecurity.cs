@@ -63,6 +63,15 @@ public class RouteSecurity : MonoBehaviour
         }
     }
 
+    private void Move(Vector2 direction, float stepDistance)
+    {
+        Turn(direction * _stepDistance / stepDistance, this.transform);
+        var a = this.transform.position;
+        a += new Vector3(direction.x, 0, direction.y) * stepDistance;
+
+        _coroutine = StartCoroutine(EMove(a, this.transform));
+    }
+
     public void PreviousStep()
     {
         if (_revertRoute)
@@ -75,16 +84,7 @@ public class RouteSecurity : MonoBehaviour
         }
     }
 
-    private void Move(Vector2 direction, float stepDistance)
-    {
-        Turn(direction * _stepDistance / stepDistance, this.transform);
-        var a = this.transform.position;
-        a += new Vector3(direction.x, 0, direction.y) * stepDistance;
-
-        _coroutine = StartCoroutine(EMove(a, this.transform));
-    }
-
-    private Vector2 GetVectorMove(SecurityMovement movement) 
+    private Vector2 GetVectorMove(SecurityMovement movement)
     {
         if (movement == SecurityMovement.Wait)
         {
@@ -94,21 +94,21 @@ public class RouteSecurity : MonoBehaviour
         if (movement == SecurityMovement.Up)
         {
             return Vector2.up;
-        } 
+        }
         else if (movement == SecurityMovement.Right)
         {
             return Vector2.right;
-        } 
+        }
         else if (movement == SecurityMovement.Down)
         {
             return Vector2.down;
-        } 
+        }
         else if (movement == SecurityMovement.Left)
         {
             return Vector2.left;
         }
 
-        Debug.LogError("Ќеопознаное направление потрулировани€");
+        Debug.LogError("??????????? ??????????? ??????????????");
         return Vector2.zero;
     }
 
@@ -148,7 +148,7 @@ public class RouteSecurity : MonoBehaviour
 
         //else
         //{
-        //    Debug.LogError("Ќеопознанный поворот охранника");
+        //    Debug.LogError("???????????? ??????? ?????????");
         //    ETurn(0, this.transform);
         //}
     }

@@ -86,7 +86,7 @@ public class AIPointWay : MonoBehaviour
     {
         if (_currentPoint == null)
         {
-            Debug.LogError("Error!!!");
+            Debug.LogError("?? ???????? ?????? ?? ?????!!!");
             _isFindRoute = true;
             return;
         }
@@ -100,7 +100,7 @@ public class AIPointWay : MonoBehaviour
                 lastNearPoint.ClosePoint();
                 if (_currentPoint.SetValueEqualNearPoint(lastNearPoint) == false)
                 {
-                    Debug.LogError("Error!");
+                    Debug.LogError("????? ?? ???????!");
                 }
             }
             _exploredPointsWays.Add(_currentPoint.NearPoints.Last());
@@ -131,7 +131,7 @@ public class AIPointWay : MonoBehaviour
     {
         if (_currentIndexRoutePoint > _routePoints.Count - 1)
         {
-            Debug.LogError("Error!");
+            Debug.LogError("???? ? ?????? ????!");
             IsFinish = true;
             return;
         }
@@ -224,7 +224,7 @@ public class AIPointWay : MonoBehaviour
 
         else
         {
-            Debug.LogError("Error");
+            Debug.LogError("???????????? ??????? ?????????");
             ETurn(0, this.transform);
         }
     }
