@@ -214,22 +214,24 @@
 2. You’ll travel through time, but not space.
 3. Your variant from past will repeat all your movements. Do not try to touch him. You’ll die.
 4. Don’t let the guards catch you. They’ve ruined a lot of parrots’ life before you. 
-5. Gathered things stay with you even if you jump through time.
-
-Some details about controls:
-1. Press WASD to move.
-2. Press Q or E to rotate the camera. 
-3. Press F and G to interact with objects. 
-4. Some objects need to be interacted with for more than one move. 
-5. Press X to skip a move.</en-us>
+5. Gathered things stay with you even if you jump through time.</en-us>
 			<ru>Памятка путешественника во времени: 
 1. Для перемещения во времени задействуй устройство на SPACE
 2. Устройство перемещает тебя во времени, но не в пространстве 
 3. Ты из прошлого повторишь свой путь, не сталкивайся с самим собой, иначе смерть 
 4. Не попадайся в лапы охранникам, в их руках закончилась ни одна попугайная жизнь 
-5. Собранные сокровища остаются с тобой, даже если ты совершаешь скачек во времени 
-
-Пояснение к управлению: 
+5. Собранные сокровища остаются с тобой, даже если ты совершаешь скачек во времени </ru>
+		</Translates>
+	</Key>
+	<Key Name="EducationStart_Key1">
+		<Translates>
+			<en-us>Some details about controls:
+1. Press WASD to move.
+2. Press Q or E to rotate the camera. 
+3. Press F and G to interact with objects. 
+4. Some objects need to be interacted with for more than one move. 
+5. Press X to skip a move.</en-us>
+			<ru>Пояснение к управлению: 
 1. Чтобы передвигаться, нажимай WASD 
 2. Для поворота камеры используй Q E 
 3. Использовать предметы можно на клавиши F и G 
