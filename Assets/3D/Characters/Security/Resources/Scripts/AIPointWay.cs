@@ -22,6 +22,7 @@ public class AIPointWay : MonoBehaviour
     [SerializeField] private float _stepDistance;
     private bool _isFindRoute;
     public bool IsFinish;
+    private Coroutine _coroutine;
 
     private void Awake()
     {
@@ -85,7 +86,7 @@ public class AIPointWay : MonoBehaviour
     {
         if (_currentPoint == null)
         {
-            Debug.LogError("Ќе возможно пройти до точки!!!");
+            Debug.LogError("Error!!!");
             _isFindRoute = true;
             return;
         }
@@ -99,7 +100,7 @@ public class AIPointWay : MonoBehaviour
                 lastNearPoint.ClosePoint();
                 if (_currentPoint.SetValueEqualNearPoint(lastNearPoint) == false)
                 {
-                    Debug.LogError("“очка не найдена!");
+                    Debug.LogError("Error!");
                 }
             }
             _exploredPointsWays.Add(_currentPoint.NearPoints.Last());
@@ -117,7 +118,7 @@ public class AIPointWay : MonoBehaviour
         }
 
         _currentPoint = _currentPoint.GetMinOpenNearPoint();
-       //GoToPoint(_currentPoint, _currentStepTransform);
+        //GoToPoint(_currentPoint, _currentStepTransform);
 
         if (_currentPoint.Position == _targetPoint.Position)
         {
@@ -130,7 +131,7 @@ public class AIPointWay : MonoBehaviour
     {
         if (_currentIndexRoutePoint > _routePoints.Count - 1)
         {
-            Debug.LogError("—бой в поиске пути!");
+            Debug.LogError("Error!");
             IsFinish = true;
             return;
         }
@@ -150,9 +151,9 @@ public class AIPointWay : MonoBehaviour
         bool movable = false;
         Vector3 direction = new Vector3(direction2.x, 0, direction2.y);
         RaycastHit Hit;
-        Ray Ray = new Ray(currentPosition, direction);//направл€ет луч
-        Debug.DrawRay(Ray.origin, Ray.direction * _stepDistance);//рисует луч (короткий промежуток)
-        if (Physics.Raycast(currentPosition, direction, out Hit, _stepDistance, _layerPlaneTrue))//проверка, есть ли в направлении Collider со слоем
+        Ray Ray = new Ray(currentPosition, direction);//?????????? ???
+        Debug.DrawRay(Ray.origin, Ray.direction * _stepDistance);//?????? ??? (???????? ??????????)
+        if (Physics.Raycast(currentPosition, direction, out Hit, _stepDistance, _layerPlaneTrue))//????????, ???? ?? ? ??????????? Collider ?? ?????
         {
             if (Physics.Raycast(currentPosition, direction, out Hit, _stepDistance, _layerSecurity))
             {
@@ -189,7 +190,7 @@ public class AIPointWay : MonoBehaviour
     private void GoToPoint(PointWay point, Transform vartransform)
     {
         Turn(point, vartransform);
-        StartCoroutine(Move(point, vartransform));
+        _coroutine = StartCoroutine(Move(point, vartransform));
     }
 
     private IEnumerator Move(PointWay point, Transform vartransform)
@@ -223,7 +224,7 @@ public class AIPointWay : MonoBehaviour
 
         else
         {
-            Debug.LogError("Ќеопознанный поворот охранника");
+            Debug.LogError("Error");
             ETurn(0, this.transform);
         }
     }
@@ -232,5 +233,10 @@ public class AIPointWay : MonoBehaviour
     {
         var rotationPoint = new Vector3(0, angle, 0);
         vartransform.rotation = Quaternion.Euler(rotationPoint);
+    }
+
+    public void StopMove()
+    {
+        StopCoroutine(_coroutine);
     }
 }

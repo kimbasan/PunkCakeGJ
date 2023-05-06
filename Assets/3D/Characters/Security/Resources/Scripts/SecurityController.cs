@@ -29,7 +29,11 @@ public class SecurityController : MonoBehaviour
     [SerializeField] private LayerMask _wallLayerMask;
     [SerializeField] private LayerMask _playerLayerMask;
     [SerializeField] private Vector3 _lastPlayerPosition;
+    [SerializeField] private GameObject _trigger;
+    private SecurityCollisionCheker _stanChecker;
     private Vector3 _startPosition;
+
+    private Vector3 _previousPosition;
 
     private void Awake()
     {
@@ -39,10 +43,14 @@ public class SecurityController : MonoBehaviour
         _animator = gameObject.GetComponent<Animator>();
         _animManager = gameObject.GetComponent<SecurityAnimManager>();
         _animManager.MyAnimator = _animator;
+        _stanChecker = _trigger.GetComponent<SecurityCollisionCheker>();
+        _stanChecker.Stan += Stan;
     }
 
     public void Step()
     {
+        _previousPosition = this.transform.position;
+        HideVision();
         if (CheckPlayerVis())
         {
             _myState = SecurityState.Pursuit;
@@ -117,6 +125,30 @@ public class SecurityController : MonoBehaviour
         return false;
     }
 
+    private void ShowVision()
+    {
+        foreach (var item in _myVizors)
+        {
+            var direction = item.transform.position - this.transform.position;
+            if (Physics.Raycast(this.transform.position, direction, Vector3.Distance(item.transform.position, this.transform.position), _wallLayerMask))
+            {
+                item.Vision.SetActive(false);
+            }
+            else
+            {
+                item.Vision.SetActive(true);
+            }
+        }
+    }
+
+    private void HideVision()
+    {
+        foreach (var item in _myVizors)
+        {
+            item.Vision.SetActive(false);
+        }
+    }
+
     private Vector3 GetNearestClone()
     {
         Vector3 nearestClonePosition = new Vector3(10000, 10000, 10000);
@@ -149,7 +181,6 @@ public class SecurityController : MonoBehaviour
     private IEnumerator SearchWait()
     {
         yield return new WaitForSeconds(0.1f);
-        yield return new WaitForEndOfFrame();
 
         if (CheckPlayerVis())
         {
@@ -158,10 +189,10 @@ public class SecurityController : MonoBehaviour
             _myAIPointWay.SetStartAndEndPoints(this.transform.position, _lastPlayerPosition);
             _myAIPointWay.SearhRoute();
         }
-
-        yield return new WaitForEndOfFrame();
-
         UnDetectedVizors();
+
+        yield return new WaitForSeconds(0.6f);
+        ShowVision();
     }
 
     private void UnDetectedVizors()
@@ -178,5 +209,21 @@ public class SecurityController : MonoBehaviour
         UnDetectedVizors();
         _myRouteSecurity.ResetRoute();
         _myState = SecurityState.Patrol;
+    }
+
+    private void Stan()
+    {
+        _myRouteSecurity.StopMove();
+        _myAIPointWay.StopMove();
+        if (_myState == SecurityState.Patrol)
+        {
+            transform.position = _previousPosition;
+            _myRouteSecurity.PreviousStep();
+        }
+        else
+        {
+            transform.position = _previousPosition;
+        }
+        Debug.LogError("Стан!");
     }
 }

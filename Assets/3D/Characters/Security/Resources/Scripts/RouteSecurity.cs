@@ -11,6 +11,7 @@ public class RouteSecurity : MonoBehaviour
     [SerializeField] private float _stepDistance;
     public Vector3 _startRoutePoint { get; private set; }
     private bool _revertRoute;
+    private Coroutine _coroutine;
 
     private void Awake()
     {
@@ -62,13 +63,25 @@ public class RouteSecurity : MonoBehaviour
         }
     }
 
+    public void PreviousStep()
+    {
+        if (_revertRoute)
+        {
+            _currentIndexPoint--;
+        }
+        else
+        {
+            _currentIndexPoint++;
+        }
+    }
+
     private void Move(Vector2 direction, float stepDistance)
     {
         Turn(direction * _stepDistance / stepDistance, this.transform);
         var a = this.transform.position;
         a += new Vector3(direction.x, 0, direction.y) * stepDistance;
 
-        StartCoroutine(EMove(a, this.transform));
+        _coroutine = StartCoroutine(EMove(a, this.transform));
     }
 
     private Vector2 GetVectorMove(SecurityMovement movement) 
@@ -144,5 +157,10 @@ public class RouteSecurity : MonoBehaviour
     {
         var rotationPoint = new Vector3(0, angle, 0);
         vartransform.rotation = Quaternion.Euler(rotationPoint);
+    }
+
+    public void StopMove()
+    {
+        StopCoroutine(_coroutine);
     }
 }

@@ -5,12 +5,13 @@ using UnityEngine;
 public class Vizor : MonoBehaviour
 {
     [SerializeField] public bool DetectedPlayer = false;
+    [SerializeField] public GameObject Vision;
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Clone")
         {
-            DetectedPlayer = true;
+            StartCoroutine(TimerToDetect());
         }
     }
 
@@ -20,5 +21,12 @@ public class Vizor : MonoBehaviour
         {
             DetectedPlayer = false;
         }
+    }
+
+    private IEnumerator TimerToDetect()
+    {
+        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForEndOfFrame();
+        DetectedPlayer = true;
     }
 }

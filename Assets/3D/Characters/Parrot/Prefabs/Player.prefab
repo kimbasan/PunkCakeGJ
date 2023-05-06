@@ -522,6 +522,7 @@ GameObject:
   - component: {fileID: 6145065875349681290}
   - component: {fileID: -6378526231688428259}
   - component: {fileID: 3932485862880417885}
+  - component: {fileID: 4790980094617212324}
   m_Layer: 6
   m_Name: Player
   m_TagString: Clone
@@ -707,6 +708,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.5, y: 0.8, z: 0.5}
   m_Center: {x: 0, y: 0.6, z: 0}
+--- !u!65 &4790980094617212324
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 219280391053254569}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.75, y: 0.75, z: 0.75}
+  m_Center: {x: 0, y: 0.35, z: 0}
 --- !u!1 &221813893414511803
 GameObject:
   m_ObjectHideFlags: 0
