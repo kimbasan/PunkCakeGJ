@@ -18,6 +18,7 @@ public class FinishGame : MonoBehaviour
             //AssessmentOfPassingTheLevel.StarUp();
             EndCanvas.GetComponent<AssessmentOfPassingTheLevel>().Panel[1].SetActive(true);
             EndCanvas.GetComponent<AssessmentOfPassingTheLevel>().StarUp();
+            Time.timeScale = 0;
             Debug.Log("Дверь открыта");
         }
         else
