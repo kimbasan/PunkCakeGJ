@@ -5,13 +5,13 @@ using UnityEngine.UI;
 
 public class StartCutscenes : MonoBehaviour
 {
-    [SerializeField] private Canvas Cuscene;
-    [SerializeField] private GameObject Button;
+    [SerializeField] private GameObject Cuscene, Button;
     [SerializeField] private Image[] Slider;
     public float Timer, time = 0;
     int Index = 0;
     private void Awake()
     {
+        Cuscene.SetActive(false);
         Button.SetActive(false);
         for (int i = 0; i < Slider.Length; i++)
         {
@@ -24,24 +24,27 @@ public class StartCutscenes : MonoBehaviour
     }
     private void Update()
     {
-        if (time < Timer && Index < Slider.Length)
+        if (Cuscene.activeSelf)
         {
-            time += Time.deltaTime/1.2f;
-            Slider[Index].color = new Color(1, 1, 1, time);
-        }
-        else if(Index < Slider.Length)
-        {           
-            time = 0;
-            Index++;
-        }
-        if (Index == Slider.Length - 1)
-        {
-            Button.SetActive(true);
+            if (time < Timer && Index < Slider.Length)
+            {
+                time += Time.deltaTime / 1.2f;
+                Slider[Index].color = new Color(1, 1, 1, time);
+            }
+            else if (Index < Slider.Length)
+            {
+                time = 0;
+                Index++;
+            }
+            if (Index == Slider.Length - 1)
+            {
+                Button.SetActive(true);
+            }
         }
     }
     public void StartButton()
     {
-        Cuscene.enabled = false;
+        Cuscene.SetActive(true);
     }
     //IEnumerator CutsceneCorotine(float Timer)
     //{
