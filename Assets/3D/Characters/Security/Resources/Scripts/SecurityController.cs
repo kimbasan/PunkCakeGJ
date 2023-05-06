@@ -17,7 +17,8 @@ public class SecurityController : MonoBehaviour
         Patrol,
         Pursuit,
         Seek,
-        Return
+        Return,
+        Error
     }
 
     [SerializeField] private SecurityState _myState = SecurityState.Patrol;
@@ -43,6 +44,7 @@ public class SecurityController : MonoBehaviour
         _animManager = gameObject.GetComponent<SecurityAnimManager>();
         _animManager.MyAnimator = _animator;
         _stanChecker.Stan += Stan;
+        _myAIPointWay.ErrorWay += SetErrorState;
     }
 
     public void Step()
@@ -88,10 +90,15 @@ public class SecurityController : MonoBehaviour
             _myAIPointWay.MoveStep();
             _animManager.PlayWalk();
         }
-        else // _myState == SecurityState.Patrol
+        else if (_myState == SecurityState.Patrol)
         {
             _myRouteSecurity.Step();
             _animManager.PlayWalk();
+        }
+
+        else
+        {
+
         }
 
         StartCoroutine(SearchWait());
@@ -226,6 +233,11 @@ public class SecurityController : MonoBehaviour
                 item.Vision.SetActive(true);
             }
         }
+    }
+
+    private void SetErrorState()
+    {
+        _myState = SecurityState.Error;
     }
 
 }

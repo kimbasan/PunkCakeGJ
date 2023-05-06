@@ -9,7 +9,7 @@ public class SecurityCollisionCheker : MonoBehaviour
 
     private void OnTriggerEnter(Collider collision)
     {
-        if (collision.gameObject.CompareTag("Security"))
+        if (collision.gameObject.CompareTag("Security") || collision.gameObject.CompareTag("ClosedDoor"))
         {
             Stan?.Invoke();
             Debug.Log("Стан");

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,6 +26,7 @@ public class AIPointWay : MonoBehaviour
     private bool _errorRoute;
     private Coroutine _coroutine;
     private List<PointWay> _secondRoutePoints;
+    public event Action ErrorWay;
 
     private void Awake()
     {
@@ -115,6 +117,7 @@ public class AIPointWay : MonoBehaviour
         {
             Debug.LogError("?? ???????? ?????? ?? ?????!!!");
             _isFindRoute = true;
+            ErrorWay?.Invoke();
             _errorRoute = true;
             return;
         }
