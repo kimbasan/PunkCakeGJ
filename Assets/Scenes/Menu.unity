@@ -2762,6 +2762,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Mixer: {fileID: 24100000, guid: dbe8a9376501c7547acb8c1109a79ef4, type: 2}
   MusicSlider: {fileID: 28172435}
+  SFXSlider: {fileID: 963303387}
 --- !u!4 &809697292
 Transform:
   m_ObjectHideFlags: 0
@@ -2861,6 +2862,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &963303387 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 279343314438515516, guid: 49a811d19c3de1f4faa0ac31dd05d44d, type: 3}
+  m_PrefabInstance: {fileID: 279343315581042676}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1002582272
 GameObject:
   m_ObjectHideFlags: 0

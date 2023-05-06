@@ -497,7 +497,7 @@ GameObject:
   m_Component:
   - component: {fileID: 279343314272146951}
   m_Layer: 5
-  m_Name: Soyund
+  m_Name: SFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -536,7 +536,7 @@ GameObject:
   - component: {fileID: 279343314438515507}
   - component: {fileID: 279343314438515516}
   m_Layer: 5
-  m_Name: Slider
+  m_Name: SFX Slider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2063,7 +2063,7 @@ GameObject:
   - component: {fileID: 8095416302861599641}
   - component: {fileID: 3239140477396304639}
   m_Layer: 5
-  m_Name: Slider
+  m_Name: Music Slider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

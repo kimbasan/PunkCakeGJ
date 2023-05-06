@@ -204,4 +204,10 @@
 			<ru>Разлитие воды </ru>
 		</Translates>
 	</Key>
+	<Key Name="Further_Key">
+		<Translates>
+			<en-us>Further</en-us>
+			<ru>Далее</ru>
+		</Translates>
+	</Key>
 </Keys>
